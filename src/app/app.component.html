@@ -4,31 +4,38 @@
 <form [formGroup]="labelForm"  (ngSubmit)="onSubmit(labelForm)" novalidate>
 
   <div class="p-5">
-    <div class="form-group">
-      <label for="from">From</label>
-      <input name="from" formControlName="from" type="text" class="form-control" readonly>
-    </div>
-
-    <div class="form-group">
-        <label for="to">To</label>
-        <input name="to" formControlName="to" type="text" class="form-control">
+    <div class="row">
+      <div class="form-group col-6">
+        <label for="from">From</label>
+        <input name="from" formControlName="from" type="text" class="form-control" readonly>
       </div>
 
-      <div class="form-group">
+      <div class="form-group col-6">
+          <label for="to">To</label>
+          <input name="to" formControlName="to" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-6">
           <label for="purchaseOrder">PO#</label>
           <input name="purchaseOrder" formControlName="purchaseOrder" type="text" class="form-control">
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-6">
             <label for="dept">Dept</label>
             <input name="dept" formControlName="dept" type="text" class="form-control">
           </div>
 
-          <div class="form-group">
-            <label for="boxCount">Box Count</label>
-            <input #boxCountValue name="boxCount" formControlName="boxCount" type="text" class="form-control">
-            <button type="button" class="btn btn-primary" (click)="onBoxCountConfirm(boxCountValue)">Confirm</button>
-          </div>
+    </div>
+
+<div class="form-inline justify-content-center">
+  <div class="form-group">
+    <label for="boxCount">Box Count</label>
+    <input #boxCountValue name="boxCount" formControlName="boxCount" type="text" class="form-control ml-2">
+  </div>
+  <button type="button" class="btn btn-primary ml-2" (click)="onBoxCountConfirm(boxCountValue)">Confirm</button>
+
+</div>
 
   </div>
 
