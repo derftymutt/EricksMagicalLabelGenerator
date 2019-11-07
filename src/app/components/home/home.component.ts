@@ -31,14 +31,22 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public onBoxCountConfirm(): void {
-    const boxCount = this.labelForm.get('boxCount').value;
-    this.patchDetailsFormArray(boxCount);
+  public onBoxCountConfirm(boxCountInput: HTMLInputElement): void {
+    const boxCountInputValue = +boxCountInput.value;
+    const currentBoxCount = this.detailsFormArray.length;
+
+    if (boxCountInputValue > currentBoxCount) {
+      const additionalBoxesCount = +boxCountInput.value - currentBoxCount;
+      this.patchDetailsFormArray(additionalBoxesCount);
+    } else {
+      this.detailsFormArray.clear();
+      this.patchDetailsFormArray(boxCountInputValue);
+    }
   }
 
   public onNextBlank(): void {
     if (this.isAnotherBoxInCount()) {
-      this.activeDetailIndex++;
+      this.incrementActiveDetailIndex();
     }
   }
 
@@ -53,7 +61,7 @@ export class HomeComponent implements OnInit {
       nextFormGroup.get('totalUnits').patchValue(currentFormValues.get('totalUnits').value);
       nextFormGroup.get('university').patchValue(currentFormValues.get('university').value);
 
-      this.activeDetailIndex++;
+      this.incrementActiveDetailIndex();
     }
   }
 
@@ -61,6 +69,24 @@ export class HomeComponent implements OnInit {
     if (this.isPreviousBoxInCount()) {
       this.activeDetailIndex--;
     }
+  }
+
+  public onGoForwardOne(): void {
+    this.incrementActiveDetailIndex();
+  }
+
+  public isNextBoxValid(): boolean {
+    let result = false;
+
+    if (this.isAnotherBoxInCount()) {
+      const nextFormGroup = this.detailsFormArray.at(this.activeDetailIndex + 1) as FormGroup;
+
+      if (nextFormGroup) {
+        result = nextFormGroup.valid;
+      }
+    }
+
+    return result;
   }
 
   public onPrint(): void {
@@ -87,8 +113,12 @@ export class HomeComponent implements OnInit {
     this.activeDetailIndex = 0;
   }
 
+  private incrementActiveDetailIndex(): void {
+    this.activeDetailIndex++;
+  }
+
   private isAnotherBoxInCount(): boolean {
-    return this.activeDetailIndex < this.detailsFormArray.length - 1;
+    return this.activeDetailIndex < this.detailsFormArray.length;
   }
 
   private isPreviousBoxInCount(): boolean {
