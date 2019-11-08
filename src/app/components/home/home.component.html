@@ -1,8 +1,8 @@
-<form [formGroup]="labelForm" (ngSubmit)="onSubmit(labelForm)" novalidate>
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit(orderForm)" novalidate>
 
   <div class="p-5">
 
-    <h1 class="d-flex justify-content-center">Ericks Magical Label Generator</h1>
+    <h1 class="d-flex justify-content-center">Erick's Magical Label Generator</h1>
 
     <div class="row">
       <div class="form-group col-6">
@@ -36,17 +36,17 @@
       </div>
     </div>
 
-    <div formArrayName="details" class="mb-3">
+    <div formArrayName="boxDetails" class="mb-3">
 
-      <div *ngIf="labelForm.get('details')['controls'].length > 0" class="d-flex justify-content-end align-items-center">
+      <div *ngIf="orderForm.get('boxDetails')['controls'].length > 0" class="d-flex justify-content-end align-items-center">
         <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onGoBackOne()" [disabled]="activeDetailIndex === 0"><i class="material-icons">navigate_before</i></button>
-        <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onGoForwardOne()" [disabled]="!isNextBoxValid() && isAnotherBoxInCount()"><i class="material-icons">navigate_next</i></button>
+        <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onGoForwardOne()" [disabled]="isAnotherBoxInCount() && !isNextBoxValid()"><i class="material-icons">navigate_next</i></button>
         <div class="h2 ml-4">
-          {{ activeDetailIndex + 1 }}/{{labelForm.get('details')['controls'].length}}
+          {{ activeDetailIndex + 1 }}/{{orderForm.get('boxDetails')['controls'].length}}
         </div>
       </div>
 
-      <div *ngFor="let detail of labelForm.get('details')['controls']; let i = index" [formGroupName]="i">
+      <div *ngFor="let detail of orderForm.get('boxDetails')['controls']; let i = index" [formGroupName]="i">
         <div *ngIf="activeDetailIndex === i">
           <div class="row">
             <div class="form-group col-6">
@@ -78,12 +78,12 @@
 
       </div>
 
-      <div *ngIf="labelForm.get('details')['controls'].length > 0" class="d-flex justify-content-between">
+      <div *ngIf="orderForm.get('boxDetails')['controls'].length > 0" class="d-flex justify-content-between">
         <div>
           <button type="button" class="btn btn-primary" (click)="onNextBlank()">Next (blank)</button>
-          <button type="button" class="btn btn-success ml-2" (click)="onNextSameInfo()">Next (same info)</button>
+          <button type="button" class="btn btn-success ml-2" (click)="onNextSameInfo()">Next (copy current info)</button>
         </div>
-        <button type="button" class="btn btn-danger ml-2" (click)="onPrint()" [disabled]="!labelForm.valid">Print</button>
+        <button type="button" class="btn btn-danger ml-2" (click)="onPrint(orderForm)" [disabled]="!orderForm.valid">Print</button>
       </div>
 
     </div>

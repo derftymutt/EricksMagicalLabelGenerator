@@ -1,46 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
-  public labelForm: FormGroup;
+  public orderForm: FormGroup;
   public activeDetailIndex = null;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private orderService: OrderService, private router: Router) {}
 
   public ngOnInit(): void {
     this.buildForm();
   }
 
-  public get detailsFormArray(): FormArray {
-    return this.labelForm.get('details') as FormArray;
+  public get boxDetailsFormArray(): FormArray {
+    return this.orderForm.get('boxDetails') as FormArray;
   }
 
   public buildForm(): void {
-    this.labelForm = this.fb.group({
+    this.orderForm = this.fb.group({
       to: ['', Validators.required],
       from: ['TRAMEVER, INC.', Validators.required],
       purchaseOrder: ['', Validators.required],
       dept: ['', Validators.required],
       boxCount: ['', Validators.required],
-      details: this.fb.array([])
+      boxDetails: this.fb.array([])
     });
   }
 
   public onBoxCountConfirm(boxCountInput: HTMLInputElement): void {
     const boxCountInputValue = +boxCountInput.value;
-    const currentBoxCount = this.detailsFormArray.length;
+    const currentBoxCount = this.boxDetailsFormArray.length;
 
     if (boxCountInputValue > currentBoxCount) {
       const additionalBoxesCount = +boxCountInput.value - currentBoxCount;
-      this.patchDetailsFormArray(additionalBoxesCount);
+      this.patchBoxDetailsFormArray(additionalBoxesCount);
     } else {
-      this.detailsFormArray.clear();
-      this.patchDetailsFormArray(boxCountInputValue);
+      this.boxDetailsFormArray.clear();
+      this.patchBoxDetailsFormArray(boxCountInputValue);
     }
   }
 
@@ -52,8 +53,8 @@ export class HomeComponent implements OnInit {
 
   public onNextSameInfo(): void {
     if (this.isAnotherBoxInCount()) {
-      const currentFormValues = this.detailsFormArray.at(this.activeDetailIndex) as FormGroup;
-      const nextFormGroup = this.detailsFormArray.at(this.activeDetailIndex + 1) as FormGroup;
+      const currentFormValues = this.boxDetailsFormArray.at(this.activeDetailIndex) as FormGroup;
+      const nextFormGroup = this.boxDetailsFormArray.at(this.activeDetailIndex + 1) as FormGroup;
 
       nextFormGroup.get('venderStyleNumber').patchValue(currentFormValues.get('venderStyleNumber').value);
       nextFormGroup.get('sizeRatio').patchValue(currentFormValues.get('sizeRatio').value);
@@ -79,7 +80,7 @@ export class HomeComponent implements OnInit {
     let result = false;
 
     if (this.isAnotherBoxInCount()) {
-      const nextFormGroup = this.detailsFormArray.at(this.activeDetailIndex + 1) as FormGroup;
+      const nextFormGroup = this.boxDetailsFormArray.at(this.activeDetailIndex + 1) as FormGroup;
 
       if (nextFormGroup) {
         result = nextFormGroup.valid;
@@ -89,7 +90,9 @@ export class HomeComponent implements OnInit {
     return result;
   }
 
-  public onPrint(): void {
+  public onPrint(orderForm: FormGroup): void {
+
+    this.orderService.order = orderForm.value;
     this.router.navigate(['print']);
   }
 
@@ -97,9 +100,9 @@ export class HomeComponent implements OnInit {
     console.log('form submitted', form);
   }
 
-  private patchDetailsFormArray(boxCount: number): void {
+  private patchBoxDetailsFormArray(boxCount: number): void {
     for (let i = 0; i < boxCount; i++) {
-      this.detailsFormArray.push(
+      this.boxDetailsFormArray.push(
         this.fb.group({
           venderStyleNumber: ['', Validators.required],
           sizeRatio: ['', Validators.required],
@@ -114,11 +117,13 @@ export class HomeComponent implements OnInit {
   }
 
   private incrementActiveDetailIndex(): void {
-    this.activeDetailIndex++;
+    if (this.isAnotherBoxInCount()) {
+      this.activeDetailIndex++;
+    }
   }
 
   private isAnotherBoxInCount(): boolean {
-    return this.activeDetailIndex < this.detailsFormArray.length;
+    return this.activeDetailIndex < this.boxDetailsFormArray.length;
   }
 
   private isPreviousBoxInCount(): boolean {
