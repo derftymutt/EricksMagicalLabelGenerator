@@ -91,9 +91,12 @@ export class HomeComponent implements OnInit {
   }
 
   public onPrint(orderForm: FormGroup): void {
-
     this.orderService.order = orderForm.value;
     this.router.navigate(['print']);
+  }
+
+  public onBoxTypeSelect(event): void {
+    console.log(event);
   }
 
   public onSubmit(form: FormGroup): void {

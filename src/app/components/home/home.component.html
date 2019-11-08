@@ -26,7 +26,15 @@
       </div>
     </div>
 
-    <div class="row justify-content-start">
+    <div class="row">
+      <div class="form-group col-6">
+        <label for="boxCount">Box Type</label>
+        <select name="boxType" id="boxType" class="form-control" (change)="onBoxTypeSelect($event)">
+          <option value="-1">SELECT</option>
+          <option value="college">College</option>
+          <option value="no-college">No College</option>
+        </select>
+      </div>
       <div class="form-group col-6">
         <label for="boxCount">Box Count</label>
         <div class="d-flex">
