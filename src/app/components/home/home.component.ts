@@ -30,7 +30,8 @@ export class HomeComponent implements OnInit {
       purchaseOrder: ['', Validators.required],
       dept: ['', Validators.required],
       labelCount: ['', Validators.required],
-      labelDetails: this.fb.array([])
+      labelDetails: this.fb.array([]),
+      printFormat: [-1, Validators.required]
     });
   }
 
