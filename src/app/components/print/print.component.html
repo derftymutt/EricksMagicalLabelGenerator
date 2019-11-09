@@ -1,1 +1,13 @@
-PRINT WORKS!
+<div class="row mb-5">
+  <div *ngFor="let labelDetail of order.labelDetails" class="col-6">
+    <div>FROM: {{ order.from }}</div>
+    <div>TO: {{ order.to }}</div>
+    <div>PO#: {{ order.purchaseOrder }}</div>
+    <div>DEPT: {{ order.dept }}</div>
+    <div>COLOR: {{ labelDetail.color }}</div>
+    <div>SIZE RATIO: {{ labelDetail.sizeRatio }}</div>
+    <div>TOTAL UNITS: {{ labelDetail.totalUnits }}</div>
+    <div>UNIVERSITY: {{ labelDetail.university }}</div>
+    <div>VENDER STYLE #: {{ labelDetail.venderStyleNumber }}</div>
+  </div>
+</div>

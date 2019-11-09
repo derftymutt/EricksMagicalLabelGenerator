@@ -29,32 +29,32 @@
     <div class="row">
       <div class="form-group col-6">
         <label for="boxCount">Box Type</label>
-        <select name="boxType" id="boxType" class="form-control" (change)="onBoxTypeSelect($event)">
+        <select name="boxType" id="boxType" class="form-control" (change)="onBoxTypeSelect($event.target.value)">
           <option value="-1">SELECT</option>
-          <option value="college">College</option>
-          <option value="no-college">No College</option>
+          <option value="{{ labelTypes.University }}">University label</option>
+          <option value="{{ labelTypes.LabelTypeTwo }}">Label Type Two</option>
         </select>
       </div>
       <div class="form-group col-6">
-        <label for="boxCount">Box Count</label>
+        <label for="labelCount">Box Count</label>
         <div class="d-flex">
-          <input #boxCount name="boxCount" formControlName="boxCount" type="text" class="form-control">
-          <button type="button" class="btn btn-danger ml-2" (click)="onBoxCountConfirm(boxCount)">Confirm</button>
+          <input #labelCount name="labelCount" formControlName="labelCount" type="text" class="form-control">
+          <button type="button" class="btn btn-danger ml-2" (click)="onBoxCountConfirm(labelCount)">Confirm</button>
         </div>
       </div>
     </div>
 
-    <div formArrayName="boxDetails" class="mb-3">
+    <div formArrayName="labelDetails" class="mb-3">
 
-      <div *ngIf="orderForm.get('boxDetails')['controls'].length > 0" class="d-flex justify-content-end align-items-center">
+      <div *ngIf="orderForm.get('labelDetails')['controls'].length > 0" class="d-flex justify-content-end align-items-center">
         <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onGoBackOne()" [disabled]="activeDetailIndex === 0"><i class="material-icons">navigate_before</i></button>
         <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onGoForwardOne()" [disabled]="isAnotherBoxInCount() && !isNextBoxValid()"><i class="material-icons">navigate_next</i></button>
         <div class="h2 ml-4">
-          {{ activeDetailIndex + 1 }}/{{orderForm.get('boxDetails')['controls'].length}}
+          {{ activeDetailIndex + 1 }}/{{orderForm.get('labelDetails')['controls'].length}}
         </div>
       </div>
 
-      <div *ngFor="let detail of orderForm.get('boxDetails')['controls']; let i = index" [formGroupName]="i">
+      <div *ngFor="let detail of orderForm.get('labelDetails')['controls']; let i = index" [formGroupName]="i">
         <div *ngIf="activeDetailIndex === i">
           <div class="row">
             <div class="form-group col-6">
@@ -86,7 +86,7 @@
 
       </div>
 
-      <div *ngIf="orderForm.get('boxDetails')['controls'].length > 0" class="d-flex justify-content-between">
+      <div *ngIf="orderForm.get('labelDetails')['controls'].length > 0" class="d-flex justify-content-between">
         <div>
           <button type="button" class="btn btn-primary" (click)="onNextBlank()">Next (blank)</button>
           <button type="button" class="btn btn-success ml-2" (click)="onNextSameInfo()">Next (copy current info)</button>

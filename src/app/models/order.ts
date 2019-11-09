@@ -5,7 +5,6 @@ export interface Order {
   from: string;
   purchaseOrder: string;
   dept: string;
-  boxCount: number;
-  boxDetails: BoxDetail[];
-
+  labelCount: number;
+  labelDetails: BoxDetail[];
 }

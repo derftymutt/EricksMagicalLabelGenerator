@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order.service';
+import { LabelType } from 'src/app/models/label-type.enum';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { OrderService } from 'src/app/services/order.service';
 export class HomeComponent implements OnInit {
   public orderForm: FormGroup;
   public activeDetailIndex = null;
+  public labelTypes = LabelType;
 
   constructor(private fb: FormBuilder, private orderService: OrderService, private router: Router) {}
 
@@ -17,8 +19,8 @@ export class HomeComponent implements OnInit {
     this.buildForm();
   }
 
-  public get boxDetailsFormArray(): FormArray {
-    return this.orderForm.get('boxDetails') as FormArray;
+  public get labelDetailsFormArray(): FormArray {
+    return this.orderForm.get('labelDetails') as FormArray;
   }
 
   public buildForm(): void {
@@ -27,21 +29,21 @@ export class HomeComponent implements OnInit {
       from: ['TRAMEVER, INC.', Validators.required],
       purchaseOrder: ['', Validators.required],
       dept: ['', Validators.required],
-      boxCount: ['', Validators.required],
-      boxDetails: this.fb.array([])
+      labelCount: ['', Validators.required],
+      labelDetails: this.fb.array([])
     });
   }
 
   public onBoxCountConfirm(boxCountInput: HTMLInputElement): void {
     const boxCountInputValue = +boxCountInput.value;
-    const currentBoxCount = this.boxDetailsFormArray.length;
+    const currentBoxCount = this.labelDetailsFormArray.length;
 
     if (boxCountInputValue > currentBoxCount) {
       const additionalBoxesCount = +boxCountInput.value - currentBoxCount;
-      this.patchBoxDetailsFormArray(additionalBoxesCount);
+      this.patchlabelDetailsFormArray(additionalBoxesCount);
     } else {
-      this.boxDetailsFormArray.clear();
-      this.patchBoxDetailsFormArray(boxCountInputValue);
+      this.labelDetailsFormArray.clear();
+      this.patchlabelDetailsFormArray(boxCountInputValue);
     }
   }
 
@@ -53,8 +55,8 @@ export class HomeComponent implements OnInit {
 
   public onNextSameInfo(): void {
     if (this.isAnotherBoxInCount()) {
-      const currentFormValues = this.boxDetailsFormArray.at(this.activeDetailIndex) as FormGroup;
-      const nextFormGroup = this.boxDetailsFormArray.at(this.activeDetailIndex + 1) as FormGroup;
+      const currentFormValues = this.labelDetailsFormArray.at(this.activeDetailIndex) as FormGroup;
+      const nextFormGroup = this.labelDetailsFormArray.at(this.activeDetailIndex + 1) as FormGroup;
 
       nextFormGroup.get('venderStyleNumber').patchValue(currentFormValues.get('venderStyleNumber').value);
       nextFormGroup.get('sizeRatio').patchValue(currentFormValues.get('sizeRatio').value);
@@ -80,7 +82,7 @@ export class HomeComponent implements OnInit {
     let result = false;
 
     if (this.isAnotherBoxInCount()) {
-      const nextFormGroup = this.boxDetailsFormArray.at(this.activeDetailIndex + 1) as FormGroup;
+      const nextFormGroup = this.labelDetailsFormArray.at(this.activeDetailIndex + 1) as FormGroup;
 
       if (nextFormGroup) {
         result = nextFormGroup.valid;
@@ -95,17 +97,17 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['print']);
   }
 
-  public onBoxTypeSelect(event): void {
-    console.log(event);
+  public onBoxTypeSelect(labeltype: LabelType): void {
+    console.log(labeltype);
   }
 
   public onSubmit(form: FormGroup): void {
     console.log('form submitted', form);
   }
 
-  private patchBoxDetailsFormArray(boxCount: number): void {
+  private patchlabelDetailsFormArray(boxCount: number): void {
     for (let i = 0; i < boxCount; i++) {
-      this.boxDetailsFormArray.push(
+      this.labelDetailsFormArray.push(
         this.fb.group({
           venderStyleNumber: ['', Validators.required],
           sizeRatio: ['', Validators.required],
@@ -126,7 +128,7 @@ export class HomeComponent implements OnInit {
   }
 
   private isAnotherBoxInCount(): boolean {
-    return this.activeDetailIndex < this.boxDetailsFormArray.length;
+    return this.activeDetailIndex < this.labelDetailsFormArray.length;
   }
 
   private isPreviousBoxInCount(): boolean {

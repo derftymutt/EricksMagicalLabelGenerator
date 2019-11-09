@@ -13,7 +13,10 @@ export class PrintComponent implements OnInit {
   constructor(private orderService: OrderService, private router: Router) {}
 
   public ngOnInit(): void {
-
+    if (this.orderService.order) {
+      this.order = this.orderService.order;
+      this.print();
+    }
   }
 
   private print(): void {
