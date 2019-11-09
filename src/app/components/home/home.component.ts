@@ -74,10 +74,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  public onGoForwardOne(): void {
-    this.incrementActiveDetailIndex();
-  }
-
   public isNextBoxValid(): boolean {
     let result = false;
 
@@ -128,7 +124,7 @@ export class HomeComponent implements OnInit {
   }
 
   private isAnotherBoxInCount(): boolean {
-    return this.activeDetailIndex < this.labelDetailsFormArray.length;
+    return this.activeDetailIndex < this.labelDetailsFormArray.length - 1;
   }
 
   private isPreviousBoxInCount(): boolean {
