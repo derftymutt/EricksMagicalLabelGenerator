@@ -1,4 +1,5 @@
 export enum LabelType {
-  University = 1,
-  LabelTypeTwo = 2
+  Rue21Retail = 1,
+  Rue21ECOM = 2,
+  Gordmans = 3
 }
