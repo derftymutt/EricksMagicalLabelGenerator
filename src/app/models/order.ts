@@ -8,5 +8,5 @@ export interface Order {
   dept: string;
   labelCount: number;
   labelType: LabelType;
-  labelFields: LabelField[];
+  labelFields: Array<LabelField[]>;
 }

@@ -56,32 +56,12 @@
         </div>
       </div>
 
-      <div *ngFor="let detail of orderForm.get('labelDetails')['controls']; let i = index" [formGroupName]="i">
-        <div *ngIf="activeDetailIndex === i">
-          <div class="row">
-            <div class="form-group col-6">
-              <label for="venderStyleNumber">Vendor Style #</label>
-              <input name="venderStyleNumber" formControlName="venderStyleNumber" type="text" class="form-control">
-            </div>
-            <div class="form-group col-6">
-              <label for="sizeRatio">SZ/SZ Ratio</label>
-              <input name="sizeRatio" formControlName="sizeRatio" type="text" class="form-control">
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-6">
-              <label for="color">Color</label>
-              <input name="color" formControlName="color" type="text" class="form-control">
-            </div>
-            <div class="form-group col-6">
-              <label for="totalUnits">Total Units</label>
-              <input name="totalUnits" formControlName="totalUnits" type="text" class="form-control">
-            </div>
-          </div>
-          <div class="row justify-content-start">
-            <div class="form-group col-6">
-              <label for="university">University</label>
-              <input name="university" formControlName="university" type="text" class="form-control">
+      <div *ngFor="let detail of orderForm.get('labelDetails')['controls']; let i = index" [formArrayName]="i">
+        <div *ngIf="activeDetailIndex === i" class="row">
+          <div *ngFor="let field of orderForm.get('labelDetails')['controls'][i]['controls']; let fieldIndex = index" [formGroupName]="fieldIndex" class="col-6">
+            <div class="form-group">
+              <label for="name">{{field.get('name').value}}</label>
+              <input name="value" formControlName="value" type="text" class="form-control">
             </div>
           </div>
         </div>

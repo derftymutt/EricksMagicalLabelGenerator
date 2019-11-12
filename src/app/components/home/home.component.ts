@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   public orderForm: FormGroup;
   public activeDetailIndex = null;
   public labelTypes = LabelType;
+  private activeLabelType = null;
 
   constructor(private fb: FormBuilder, private orderService: OrderService, private router: Router) {}
 
@@ -56,6 +57,7 @@ export class HomeComponent implements OnInit {
 
   public onNextSameInfo(): void {
     if (this.isAnotherBoxInCount()) {
+      // TODO: Make this work
       const currentFormValues = this.labelDetailsFormArray.at(this.activeDetailIndex) as FormGroup;
       const nextFormGroup = this.labelDetailsFormArray.at(this.activeDetailIndex + 1) as FormGroup;
 
@@ -95,7 +97,7 @@ export class HomeComponent implements OnInit {
   }
 
   public onBoxTypeSelect(labeltype: LabelType): void {
-    console.log(labeltype);
+    this.activeLabelType = this.orderService.getLabelDetailsData(+labeltype);
   }
 
   public onSubmit(form: FormGroup): void {
@@ -103,19 +105,26 @@ export class HomeComponent implements OnInit {
   }
 
   private patchlabelDetailsFormArray(boxCount: number): void {
-    for (let i = 0; i < boxCount; i++) {
-      this.labelDetailsFormArray.push(
-        this.fb.group({
-          venderStyleNumber: ['', Validators.required],
-          sizeRatio: ['', Validators.required],
-          color: ['', Validators.required],
-          totalUnits: ['', Validators.required],
-          university: ['', Validators.required]
-        })
-      );
+    if (this.activeLabelType) {
+      for (let i = 0; i < boxCount; i++) {
+        this.labelDetailsFormArray.push(this.fb.array([]));
+        this.patchLabelFieldsFormArray(i);
+      }
     }
 
     this.activeDetailIndex = 0;
+  }
+
+  private patchLabelFieldsFormArray(i: number) {
+    const currentLabelDetailsLabelFieldsFormArray = this.labelDetailsFormArray.at(i) as FormArray;
+    this.activeLabelType.labelFields.forEach(field => {
+      currentLabelDetailsLabelFieldsFormArray.push(
+        this.fb.group({
+          name: [field.name],
+          value: [field.value]
+        })
+      );
+    });
   }
 
   private incrementActiveDetailIndex(): void {
