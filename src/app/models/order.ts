@@ -1,10 +1,12 @@
-import { BoxDetail } from './box-detail';
+import { LabelType } from './label-type.enum';
+import { LabelField } from './label-field';
 
 export interface Order {
   to: string;
   from: string;
-  purchaseOrder: string;
+  purchaseOrderNumber: string;
   dept: string;
   labelCount: number;
-  labelDetails: BoxDetail[];
+  labelType: LabelType;
+  labelFields: LabelField[];
 }

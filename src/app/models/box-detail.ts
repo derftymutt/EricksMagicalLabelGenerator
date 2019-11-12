@@ -5,3 +5,5 @@ export interface BoxDetail {
   totalUnits: number;
   university: string;
 }
+
+// TODO: MAKE OBSOLETE
