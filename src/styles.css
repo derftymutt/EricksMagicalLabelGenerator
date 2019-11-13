@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@media print {
+  @page {
+    size: letter portrait;
+    margin-top: 3.5in;
+  }
+
+  .break-after {
+    page-break-after: always;
+    color: red;
+  }
+
+  .half-page {
+    height: 750px;
+    overflow: hidden;
+  }
+}
