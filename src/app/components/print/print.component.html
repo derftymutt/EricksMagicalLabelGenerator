@@ -14,7 +14,25 @@
 
 <!-- https://stackoverflow.com/a/25248089 -->
 
-<div class="d-flex justify-content-around half-page">
+<div>FROM: {{ order.from }}</div>
+<div>TO: {{ order.to }}</div>
+<div>PO#: {{ order.purchaseOrderNumber }}</div>
+<div>DEPT: {{ order.dept }}</div>
+
+<div *ngFor="let labelFieldArray of order.labelFields; let i = index" class="d-flex justify-content-around">
+  <div>FROM: {{ order.from }}</div>
+  <div>TO: {{ order.to }}</div>
+  <div>PO#: {{ order.purchaseOrderNumber }}</div>
+  <div>DEPT: {{ order.dept }}</div>
+  <div *ngFor="let labelField of labelFieldArray">
+    <div>{{ labelField.name }}: {{ labelField.value }}</div>
+  </div>
+</div>
+
+
+
+
+<!-- <div class="d-flex justify-content-around half-page">
   <div>
     <div>FROM: </div>
     <div>TO: </div>
@@ -612,6 +630,6 @@
     <div>UNIVERSITY: </div>
     <div>VENDER STYLE #: </div>
   </div>
-</div>
+</div> -->
 
 

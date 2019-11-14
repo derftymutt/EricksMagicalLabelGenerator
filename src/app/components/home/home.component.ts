@@ -57,15 +57,13 @@ export class HomeComponent implements OnInit {
 
   public onNextSameInfo(): void {
     if (this.isAnotherBoxInCount()) {
-      // TODO: Make this work
-      const currentFormValues = this.labelDetailsFormArray.at(this.activeDetailIndex) as FormGroup;
-      const nextFormGroup = this.labelDetailsFormArray.at(this.activeDetailIndex + 1) as FormGroup;
+      const currentLabelDetailsFieldsFormArray = this.labelDetailsFormArray.at(this.activeDetailIndex) as FormArray;
+      const nextLabelDetailsFieldsFormArray = this.labelDetailsFormArray.at(this.activeDetailIndex + 1) as FormArray;
 
-      nextFormGroup.get('venderStyleNumber').patchValue(currentFormValues.get('venderStyleNumber').value);
-      nextFormGroup.get('sizeRatio').patchValue(currentFormValues.get('sizeRatio').value);
-      nextFormGroup.get('color').patchValue(currentFormValues.get('color').value);
-      nextFormGroup.get('totalUnits').patchValue(currentFormValues.get('totalUnits').value);
-      nextFormGroup.get('university').patchValue(currentFormValues.get('university').value);
+      nextLabelDetailsFieldsFormArray.controls.forEach((labelFieldControl, i) => {
+        const currentlabelFieldFormGroup =  currentLabelDetailsFieldsFormArray.at(i) as FormGroup;
+        labelFieldControl.get('value').setValue(currentlabelFieldFormGroup.get('value').value);
+      });
 
       this.incrementActiveDetailIndex();
     }

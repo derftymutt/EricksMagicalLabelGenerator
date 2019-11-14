@@ -14,8 +14,8 @@ export class PrintComponent implements OnInit {
 
   public ngOnInit(): void {
     if (this.orderService.order) {
-      // this.order = this.orderService.order;
-      this.print();
+      this.order = this.orderService.order;
+      // this.print();
     }
   }
 
