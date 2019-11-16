@@ -1,683 +1,97 @@
-<!-- <div class="row mb-5">
-  <div *ngFor="let labelDetail of order.labelFields" class="col-6" style="height: 300px;">
-    <div>FROM: {{ order.from }}</div>
-    <div>TO: {{ order.to }}</div>
-    <div>PO#: {{ order.purchaseOrderNumber }}</div>
-    <div>DEPT: {{ order.dept }}</div>
-    <div>COLOR: {{ labelDetail.color }}</div>
-    <div>SIZE RATIO: {{ labelDetail.sizeRatio }}</div>
-    <div>TOTAL UNITS: {{ labelDetail.totalUnits }}</div>
-    <div>UNIVERSITY: {{ labelDetail.university }}</div>
-    <div>VENDER STYLE #: {{ labelDetail.venderStyleNumber }}</div>
-  </div>
-</div> -->
 
 <!-- https://stackoverflow.com/a/25248089 -->
-
-
+<!-- https://stackoverflow.com/questions/45776796/how-to-divide-a-webpage-into-four-parts-using-flexbox -->
 
 <div class="page">
-  <div class="d-flex justify-content-around align-items-center">
-    <div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-    </div>
-    <div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-    </div>
-
-  </div>
-  <div class="d-flex justify-content-around align-items-center">
-    <div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-      <div>1</div>
-    </div>
-    <div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
-      <div>2</div>
+  <div class="label-container">
+    <div class="label">
+      <div>FROM: blah blah blah blah blah and some more blah</div>
+      <div>TO: blah blah blah blah blah and some more blah</div>
+      <div>PO#: blah blah blah blah blah and some more blah</div>
+      <div>DEPT: blah blah blah blah blah and some more blah</div>
+      <div>COLOR: blah blah blah blah blah and some more blah</div>
+      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
+      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
     </div>
   </div>
-</div>
-
-
-
-
-
-<!-- <div>FROM: {{ order.from }}</div>
-<div>TO: {{ order.to }}</div>
-<div>PO#: {{ order.purchaseOrderNumber }}</div>
-<div>DEPT: {{ order.dept }}</div>
-
-<div *ngFor="let labelFieldArray of order.labelFields; let i = index" class="d-flex justify-content-around">
-  <div>FROM: {{ order.from }}</div>
-  <div>TO: {{ order.to }}</div>
-  <div>PO#: {{ order.purchaseOrderNumber }}</div>
-  <div>DEPT: {{ order.dept }}</div>
-  <div *ngFor="let labelField of labelFieldArray">
-    <div>{{ labelField.name }}: {{ labelField.value }}</div>
+  <div class="label-container">
+    <div class="label">
+      <div>FROM: blah blah blah blah blah and some more blah</div>
+      <div>TO: blah blah blah blah blah and some more blah</div>
+      <div>PO#: blah blah blah blah blah and some more blah</div>
+      <div>DEPT: blah blah blah blah blah and some more blah</div>
+      <div>COLOR: blah blah blah blah blah and some more blah</div>
+      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
+      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
+    </div>
   </div>
-</div> -->
-
-
-
-
-<!-- <div class="d-flex justify-content-around half-page">
-  <div>
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
+  <div class="label-container">
+    <div class="label">
+      <div>FROM: blah blah blah blah blah and some more blah</div>
+      <div>TO: blah blah blah blah blah and some more blah</div>
+      <div>PO#: blah blah blah blah blah and some more blah</div>
+      <div>DEPT: blah blah blah blah blah and some more blah</div>
+      <div>COLOR: blah blah blah blah blah and some more blah</div>
+      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
+      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
+    </div>
   </div>
-  <div>
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
+  <div class="label-container">
+    <div class="label">
+      <div>FROM: blah blah blah blah blah and some more blah</div>
+      <div>TO: blah blah blah blah blah and some more blah</div>
+      <div>PO#: blah blah blah blah blah and some more blah</div>
+      <div>DEPT: blah blah blah blah blah and some more blah</div>
+      <div>COLOR: blah blah blah blah blah and some more blah</div>
+      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
+      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
+    </div>
   </div>
 </div>
 
-<div class="d-flex justify-content-around break-after">
-  <div>
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
+<div class="page">
+  <div class="label-container">
+    <div class="label">
+      <div>FROM: blah blah blah blah blah and some more blah</div>
+      <div>TO: blah blah blah blah blah and some more blah</div>
+      <div>PO#: blah blah blah blah blah and some more blah</div>
+      <div>DEPT: blah blah blah blah blah and some more blah</div>
+      <div>COLOR: blah blah blah blah blah and some more blah</div>
+      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
+      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
+    </div>
   </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
+  <div class="label-container">
+    <div class="label">
+      <div>FROM: blah blah blah blah blah and some more blah</div>
+      <div>TO: blah blah blah blah blah and some more blah</div>
+      <div>PO#: blah blah blah blah blah and some more blah</div>
+      <div>DEPT: blah blah blah blah blah and some more blah</div>
+      <div>COLOR: blah blah blah blah blah and some more blah</div>
+      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
+      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
+    </div>
   </div>
-</div>
-
-<div class="d-flex justify-content-around half-page">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
+  <div class="label-container">
+    <div class="label">
+      <div>FROM: blah blah blah blah blah and some more blah</div>
+      <div>TO: blah blah blah blah blah and some more blah</div>
+      <div>PO#: blah blah blah blah blah and some more blah</div>
+      <div>DEPT: blah blah blah blah blah and some more blah</div>
+      <div>COLOR: blah blah blah blah blah and some more blah</div>
+      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
+      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
+    </div>
   </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
+  <div class="label-container">
+    <div class="label">
+      <div>FROM: blah blah blah blah blah and some more blah</div>
+      <div>TO: blah blah blah blah blah and some more blah</div>
+      <div>PO#: blah blah blah blah blah and some more blah</div>
+      <div>DEPT: blah blah blah blah blah and some more blah</div>
+      <div>COLOR: blah blah blah blah blah and some more blah</div>
+      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
+      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
+    </div>
   </div>
 </div>
-
-<div class="d-flex justify-content-around break-after">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around half-page">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around break-after">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around half-page">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around break-after">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around half-page">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around break-after">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around half-page">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around break-after">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around half-page">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around break-after">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around half-page">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around break-after">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around half-page">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around break-after">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around half-page">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around break-after">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around half-page">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around break-after">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around half-page">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div>
-
-<div class="d-flex justify-content-around break-after">
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-  <div >
-    <div>FROM: </div>
-    <div>TO: </div>
-    <div>PO#: </div>
-    <div>DEPT:</div>
-    <div>COLOR: </div>
-    <div>SIZE RATIO: </div>
-    <div>TOTAL UNITS: </div>
-    <div>UNIVERSITY: </div>
-    <div>VENDER STYLE #: </div>
-  </div>
-</div> -->
