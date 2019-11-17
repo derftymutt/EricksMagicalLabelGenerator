@@ -14,6 +14,7 @@ body {
   flex-wrap: wrap;
   height: 100%;
   border: 2px solid yellow;
+  border-bottom: 4px solid pink;
 }
 
 .label-container {
@@ -26,8 +27,8 @@ body {
 }
 
 .label {
-  width: 75%;
-  height: 75%;
+  width: 85%;
+  height: 85%;
   border: 2px dotted violet;
 }
 
