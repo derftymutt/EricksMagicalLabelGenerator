@@ -14,14 +14,18 @@ export class HomeComponent implements OnInit {
   public labelTypes = LabelType;
   private activeLabelType = null;
 
-  constructor(private fb: FormBuilder, private orderService: OrderService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private orderService: OrderService,
+    private router: Router
+  ) {}
 
   public ngOnInit(): void {
     this.buildForm();
   }
 
-  public get labelDetailsFormArray(): FormArray {
-    return this.orderForm.get('labelDetails') as FormArray;
+  public get labelFieldsFormArray(): FormArray {
+    return this.orderForm.get('labelFields') as FormArray;
   }
 
   public buildForm(): void {
@@ -31,21 +35,21 @@ export class HomeComponent implements OnInit {
       purchaseOrder: ['', Validators.required],
       dept: ['', Validators.required],
       labelCount: ['', Validators.required],
-      labelDetails: this.fb.array([]),
+      labelFields: this.fb.array([]),
       printFormat: [-1, Validators.required]
     });
   }
 
   public onBoxCountConfirm(boxCountInput: HTMLInputElement): void {
     const boxCountInputValue = +boxCountInput.value;
-    const currentBoxCount = this.labelDetailsFormArray.length;
+    const currentBoxCount = this.labelFieldsFormArray.length;
 
     if (boxCountInputValue > currentBoxCount) {
       const additionalBoxesCount = +boxCountInput.value - currentBoxCount;
-      this.patchlabelDetailsFormArray(additionalBoxesCount);
+      this.patchlabelFieldsFormArray(additionalBoxesCount);
     } else {
-      this.labelDetailsFormArray.clear();
-      this.patchlabelDetailsFormArray(boxCountInputValue);
+      this.labelFieldsFormArray.clear();
+      this.patchlabelFieldsFormArray(boxCountInputValue);
     }
   }
 
@@ -57,13 +61,23 @@ export class HomeComponent implements OnInit {
 
   public onNextSameInfo(): void {
     if (this.isAnotherBoxInCount()) {
-      const currentLabelDetailsFieldsFormArray = this.labelDetailsFormArray.at(this.activeDetailIndex) as FormArray;
-      const nextLabelDetailsFieldsFormArray = this.labelDetailsFormArray.at(this.activeDetailIndex + 1) as FormArray;
+      const currentlabelFieldsFieldsFormArray = this.labelFieldsFormArray.at(
+        this.activeDetailIndex
+      ) as FormArray;
+      const nextlabelFieldsFieldsFormArray = this.labelFieldsFormArray.at(
+        this.activeDetailIndex + 1
+      ) as FormArray;
 
-      nextLabelDetailsFieldsFormArray.controls.forEach((labelFieldControl, i) => {
-        const currentlabelFieldFormGroup =  currentLabelDetailsFieldsFormArray.at(i) as FormGroup;
-        labelFieldControl.get('value').setValue(currentlabelFieldFormGroup.get('value').value);
-      });
+      nextlabelFieldsFieldsFormArray.controls.forEach(
+        (labelFieldControl, i) => {
+          const currentlabelFieldFormGroup = currentlabelFieldsFieldsFormArray.at(
+            i
+          ) as FormGroup;
+          labelFieldControl
+            .get('value')
+            .setValue(currentlabelFieldFormGroup.get('value').value);
+        }
+      );
 
       this.incrementActiveDetailIndex();
     }
@@ -79,7 +93,9 @@ export class HomeComponent implements OnInit {
     let result = false;
 
     if (this.isAnotherBoxInCount()) {
-      const nextFormGroup = this.labelDetailsFormArray.at(this.activeDetailIndex + 1) as FormGroup;
+      const nextFormGroup = this.labelFieldsFormArray.at(
+        this.activeDetailIndex + 1
+      ) as FormGroup;
 
       if (nextFormGroup) {
         result = nextFormGroup.valid;
@@ -95,17 +111,17 @@ export class HomeComponent implements OnInit {
   }
 
   public onBoxTypeSelect(labeltype: LabelType): void {
-    this.activeLabelType = this.orderService.getLabelDetailsData(+labeltype);
+    this.activeLabelType = this.orderService.getlabelFieldsData(+labeltype);
   }
 
   public onSubmit(form: FormGroup): void {
     console.log('form submitted', form);
   }
 
-  private patchlabelDetailsFormArray(boxCount: number): void {
+  private patchlabelFieldsFormArray(boxCount: number): void {
     if (this.activeLabelType) {
       for (let i = 0; i < boxCount; i++) {
-        this.labelDetailsFormArray.push(this.fb.array([]));
+        this.labelFieldsFormArray.push(this.fb.array([]));
         this.patchLabelFieldsFormArray(i);
       }
     }
@@ -114,9 +130,11 @@ export class HomeComponent implements OnInit {
   }
 
   private patchLabelFieldsFormArray(i: number) {
-    const currentLabelDetailsLabelFieldsFormArray = this.labelDetailsFormArray.at(i) as FormArray;
+    const currentlabelFieldsLabelFieldsFormArray = this.labelFieldsFormArray.at(
+      i
+    ) as FormArray;
     this.activeLabelType.labelFields.forEach(field => {
-      currentLabelDetailsLabelFieldsFormArray.push(
+      currentlabelFieldsLabelFieldsFormArray.push(
         this.fb.group({
           name: [field.name],
           value: [field.value]
@@ -132,7 +150,7 @@ export class HomeComponent implements OnInit {
   }
 
   private isAnotherBoxInCount(): boolean {
-    return this.activeDetailIndex < this.labelDetailsFormArray.length - 1;
+    return this.activeDetailIndex < this.labelFieldsFormArray.length - 1;
   }
 
   private isPreviousBoxInCount(): boolean {

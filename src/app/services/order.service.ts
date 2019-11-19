@@ -11,7 +11,7 @@ export class OrderService {
 
   constructor(private mockLabelData: MockLabelData) {}
 
-  public getLabelDetailsData(labelType: LabelType) {
+  public getlabelFieldsData(labelType: LabelType) {
     switch (labelType) {
       case LabelType.Rue21Retail:
         return this.mockLabelData.labels.rue21Retail;

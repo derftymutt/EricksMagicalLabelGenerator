@@ -4,7 +4,7 @@ import { LabelField } from './label-field';
 export interface Order {
   to: string;
   from: string;
-  purchaseOrderNumber: string;
+  purchaseOrder: string;
   dept: string;
   labelCount: number;
   labelType: LabelType;

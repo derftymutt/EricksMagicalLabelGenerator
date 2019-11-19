@@ -1,97 +1,21 @@
-
 <!-- https://stackoverflow.com/a/25248089 -->
 <!-- https://stackoverflow.com/questions/45776796/how-to-divide-a-webpage-into-four-parts-using-flexbox -->
 
-<div class="page">
-  <div class="label-container">
-    <div class="label">
-      <div>FROM: blah blah blah blah blah and some more blah</div>
-      <div>TO: blah blah blah blah blah and some more blah</div>
-      <div>PO#: blah blah blah blah blah and some more blah</div>
-      <div>DEPT: blah blah blah blah blah and some more blah</div>
-      <div>COLOR: blah blah blah blah blah and some more blah</div>
-      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
-      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
+<ng-container *ngIf="printData && printData.pages">
+  <div *ngFor="let page of printData.pages" class="page">
+    <div *ngFor="let label of page.labels" class="label-container">
+      <div class="label">
+        <div>FROM: {{ label.from }}</div>
+        <div>TO: {{ label.to }}</div>
+        <div>PO#: {{ label.purchaseOrder }}</div>
+        <div>DEPT: {{ label.dept }}</div>
+        <div *ngFor="let field of label.fields">
+          <div>{{ field.name }}: {{ field.value }}</div>
+        </div>
+        <div>CARTON {{ label.labelNumber }} OF {{ printData.labelCount }}</div>
+      </div>
     </div>
   </div>
-  <div class="label-container">
-    <div class="label">
-      <div>FROM: blah blah blah blah blah and some more blah</div>
-      <div>TO: blah blah blah blah blah and some more blah</div>
-      <div>PO#: blah blah blah blah blah and some more blah</div>
-      <div>DEPT: blah blah blah blah blah and some more blah</div>
-      <div>COLOR: blah blah blah blah blah and some more blah</div>
-      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
-      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
-    </div>
-  </div>
-  <div class="label-container">
-    <div class="label">
-      <div>FROM: blah blah blah blah blah and some more blah</div>
-      <div>TO: blah blah blah blah blah and some more blah</div>
-      <div>PO#: blah blah blah blah blah and some more blah</div>
-      <div>DEPT: blah blah blah blah blah and some more blah</div>
-      <div>COLOR: blah blah blah blah blah and some more blah</div>
-      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
-      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
-    </div>
-  </div>
-  <div class="label-container">
-    <div class="label">
-      <div>FROM: blah blah blah blah blah and some more blah</div>
-      <div>TO: blah blah blah blah blah and some more blah</div>
-      <div>PO#: blah blah blah blah blah and some more blah</div>
-      <div>DEPT: blah blah blah blah blah and some more blah</div>
-      <div>COLOR: blah blah blah blah blah and some more blah</div>
-      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
-      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
-    </div>
-  </div>
-</div>
+</ng-container>
 
-<div class="page">
-  <div class="label-container">
-    <div class="label">
-      <div>FROM: blah blah blah blah blah and some more blah</div>
-      <div>TO: blah blah blah blah blah and some more blah</div>
-      <div>PO#: blah blah blah blah blah and some more blah</div>
-      <div>DEPT: blah blah blah blah blah and some more blah</div>
-      <div>COLOR: blah blah blah blah blah and some more blah</div>
-      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
-      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
-    </div>
-  </div>
-  <div class="label-container">
-    <div class="label">
-      <div>FROM: blah blah blah blah blah and some more blah</div>
-      <div>TO: blah blah blah blah blah and some more blah</div>
-      <div>PO#: blah blah blah blah blah and some more blah</div>
-      <div>DEPT: blah blah blah blah blah and some more blah</div>
-      <div>COLOR: blah blah blah blah blah and some more blah</div>
-      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
-      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
-    </div>
-  </div>
-  <div class="label-container">
-    <div class="label">
-      <div>FROM: blah blah blah blah blah and some more blah</div>
-      <div>TO: blah blah blah blah blah and some more blah</div>
-      <div>PO#: blah blah blah blah blah and some more blah</div>
-      <div>DEPT: blah blah blah blah blah and some more blah</div>
-      <div>COLOR: blah blah blah blah blah and some more blah</div>
-      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
-      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
-    </div>
-  </div>
-  <div class="label-container">
-    <div class="label">
-      <div>FROM: blah blah blah blah blah and some more blah</div>
-      <div>TO: blah blah blah blah blah and some more blah</div>
-      <div>PO#: blah blah blah blah blah and some more blah</div>
-      <div>DEPT: blah blah blah blah blah and some more blah</div>
-      <div>COLOR: blah blah blah blah blah and some more blah</div>
-      <div>UNIVERSITY: blah blah blah blah blah and some more blah</div>
-      <div>SIZE RATIO: blah blah blah blah blah and some more blah</div>
-    </div>
-  </div>
-</div>
+
