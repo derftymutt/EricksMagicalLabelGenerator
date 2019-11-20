@@ -34,7 +34,7 @@ body {
 
 @media print {
   @page {
-    size: letter landscape;
+    size: letter portrait;
   }
 
   html,

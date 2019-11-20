@@ -1,27 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order.service';
 import { LabelType } from 'src/app/models/label-type.enum';
+import { CompanyService } from 'src/app/services/company.service';
+import { Subscription } from 'rxjs';
+import { Company } from 'src/app/models/company';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddCompanyModal } from '../add-company-modal/add-company-modal.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   public orderForm: FormGroup;
   public activeDetailIndex = null;
   public labelTypes = LabelType;
+  public companies: Company[] = [];
   private activeLabelType = null;
+  private companySubscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
     private orderService: OrderService,
-    private router: Router
-  ) {}
+    private companyService: CompanyService,
+    private router: Router,
+    private modalService: NgbModal
+  ) { }
 
   public ngOnInit(): void {
+    this.companyService.getCompanies();
+
+    this.companySubscription = this.companyService.getCompaniesUpdatedListener().subscribe(companies => {
+      this.companies = companies;
+      console.log(this.companies);
+    });
+
+
     this.buildForm();
+  }
+
+  public ngOnDestroy(): void {
+    if (this.companySubscription) {
+      this.companySubscription.unsubscribe();
+    }
+  }
+
+  onAddCompanyClick(): void {
+    this.modalService.open(AddCompanyModal);
+    this.companyService.addCompany();
   }
 
   public get labelFieldsFormArray(): FormArray {
