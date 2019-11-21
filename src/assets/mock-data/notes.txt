@@ -1,0 +1,8 @@
+NOSQL         SQL
+
+Documents --> Records
+Collections --> Tables
+
+Documents in Collections instead of Records in Tables
+
+mongodb password: Sv2c7wgtD2RlLyy8

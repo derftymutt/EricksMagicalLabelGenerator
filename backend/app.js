@@ -1,7 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+const Company = require('./models/company');
 
 const app = express();
+
+mongoose.connect('mongodb+srv://allen:Sv2c7wgtD2RlLyy8@ericks-magical-label-generator-r1f36.mongodb.net/emlg?retryWrites=true&w=majority')
+  .then(() => {
+    console.log('Connected to the database!');
+  })
+  .catch(() => {
+    console.log('Connection to database FAILED');
+  });
 
 app.use(bodyParser.json());
 
@@ -17,8 +28,13 @@ app.use((req, res, next) => {
 });
 
 app.post('/api/companies', (req, res, next) => {
-  const company = req.body;
-  console.log(company);
+  const company = new Company({
+    name: req.body.name,
+    address: req.body.address
+  });
+
+  company.save();
+
   res.status(201).json({
     message: 'success!!!!!'
   });

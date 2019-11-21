@@ -16,7 +16,7 @@ export class CompanyService {
 
     this.http.get<Company[]>('http://localhost:3000/api/companies').subscribe(companyData => {
       this.companies = companyData;
-      this.companiesUpdated.next([...this.companies])
+      this.companiesUpdated.next([...this.companies]);
     });
 
   }
@@ -28,12 +28,13 @@ export class CompanyService {
   public addCompany() {
     const companyData: Company = {
       name: 'my first company post',
-      address: 'some place special',
-      id: 9889
+      address: 'some place special'
     };
 
-    this.http.post('http://localhost:3000/api/companies', companyData).subscribe(data => {
-      console.log('post success', data);
+    this.http.post<Company>('http://localhost:3000/api/companies', companyData).subscribe(addedCompany => {
+      this.companies.push(addedCompany);
+      this.companiesUpdated.next([...this.companies]);
+      console.log('post success, new companies array', this.companies);
     });
   }
 
