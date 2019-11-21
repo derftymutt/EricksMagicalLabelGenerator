@@ -6,7 +6,7 @@ const Company = require('./models/company');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://allen:Sv2c7wgtD2RlLyy8@ericks-magical-label-generator-r1f36.mongodb.net/emlg?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://allen:Davhpa9NdWjQirdi@cluster0-jbaw4.mongodb.net/emlg?retryWrites=true&w=majority')
   .then(() => {
     console.log('Connected to the database!');
   })
