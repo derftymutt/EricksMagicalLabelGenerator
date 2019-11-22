@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Company } from '../models/company';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,31 +11,68 @@ export class CompanyService {
   private companies: Company[] = [];
   private companiesUpdated = new Subject<Company[]>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getCompanies(): void {
-
-    this.http.get<Company[]>('http://localhost:3000/api/companies').subscribe(companyData => {
-      this.companies = companyData;
-      this.companiesUpdated.next([...this.companies]);
-    });
-
+    this.http.get<any>('http://localhost:3000/api/companies')
+      .pipe(map((companyData) => {
+        return companyData.map(company => {
+          return {
+            name: company.name,
+            address: company.address,
+            id: company._id
+          };
+        });
+      }))
+      .subscribe(companies => {
+        this.companies = companies;
+        this.companiesUpdated.next([...this.companies]);
+      });
   }
 
   public getCompaniesUpdatedListener() {
     return this.companiesUpdated.asObservable();
   }
 
+  public getCompany(id: string): Company {
+    return { ...this.companies.find(company => company.id === id) };
+  }
+
   public addCompany() {
-    const companyData: Company = {
+    const newCompany: Company = {
       name: 'my first company post',
-      address: 'some place special'
+      address: {
+        street1: '5426 Range View Ave',
+        city: 'Los Angeles',
+        state: 'CA',
+        zip: '90042'
+      }
     };
 
-    this.http.post<Company>('http://localhost:3000/api/companies', companyData).subscribe(addedCompany => {
-      this.companies.push(addedCompany);
+    this.http.post<{ companyId: string }>('http://localhost:3000/api/companies', newCompany).subscribe(result => {
+      newCompany.id = result.companyId;
+      this.companies.push(newCompany);
       this.companiesUpdated.next([...this.companies]);
       console.log('post success, new companies array', this.companies);
+    });
+  }
+
+  public updateCompany(company: Company) {
+    this.http.put(`http://localhost:3000/api/companies/${company.id}`, company).subscribe(result => {
+      const updatedCompanies = [...this.companies];
+      const oldCompanyIndex = updatedCompanies.findIndex(c => c.id === company.id);
+      if (oldCompanyIndex > -1) {
+        updatedCompanies[oldCompanyIndex] = company;
+        this.companies = updatedCompanies;
+        this.companiesUpdated.next([...this.companies]);
+      }
+    });
+  }
+
+  public deleteCompany(id: string) {
+    this.http.delete(`http://localhost:3000/api/companies/${id}`).subscribe(() => {
+      this.companies = this.companies.filter(company => company.id !== id);
+      this.companiesUpdated.next([...this.companies]);
     });
   }
 

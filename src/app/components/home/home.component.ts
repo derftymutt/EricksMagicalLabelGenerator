@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.companySubscription = this.companyService.getCompaniesUpdatedListener().subscribe(companies => {
       this.companies = companies;
-      console.log(this.companies);
+      console.log('getCompaniesUpdatedListener', this.companies);
     });
 
 
@@ -50,6 +50,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   onAddCompanyClick(): void {
     this.modalService.open(AddCompanyModal);
     this.companyService.addCompany();
+  }
+
+  onDeleteCompany(): void {
+    this.companyService.deleteCompany(this.companies[0].id);
   }
 
   public get labelFieldsFormArray(): FormArray {

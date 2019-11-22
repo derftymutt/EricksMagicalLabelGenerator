@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const Company = require('./models/company');
+const companyRoutes = require('./routes/companies');
 
 const app = express();
 
@@ -27,34 +27,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/api/companies', (req, res, next) => {
-  const company = new Company({
-    name: req.body.name,
-    address: req.body.address
-  });
-
-  company.save();
-
-  res.status(201).json({
-    message: 'success!!!!!'
-  });
-});
-
-app.get('/api/companies', (req, res, next) => {
-
-  const companies = [
-    {
-      name: 'Company 1',
-      address: 'company 1 address',
-      id: 123
-    },
-    {
-      name: 'Company 2',
-      address: 'company 2 address',
-      id: 321
-    }
-  ]
-  res.status(200).json(companies);
-});
+app.use('/api/companies', companyRoutes);
 
 module.exports = app;

@@ -1,6 +1,8 @@
+import { Address } from './address';
+
 export interface Company {
-  id?: number;
+  id?: string;
   name: string;
-  address: string;
+  address: Address;
   labelTypeIds?: number[];
 }
