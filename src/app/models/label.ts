@@ -1,7 +1,8 @@
 import { LabelField } from './label-field';
+import { Address } from './address';
 
 export interface Label {
-  to: string;
+  to: Address;
   from: string;
   purchaseOrder: string;
   dept: string;

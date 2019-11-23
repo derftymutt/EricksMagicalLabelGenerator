@@ -38,20 +38,11 @@ export class CompanyService {
     return { ...this.companies.find(company => company.id === id) };
   }
 
-  public addCompany() {
-    const newCompany: Company = {
-      name: 'my first company post',
-      address: {
-        street1: '5426 Range View Ave',
-        city: 'Los Angeles',
-        state: 'CA',
-        zip: '90042'
-      }
-    };
+  public addCompany(company: Company) {
 
-    this.http.post<{ companyId: string }>('http://localhost:3000/api/companies', newCompany).subscribe(result => {
-      newCompany.id = result.companyId;
-      this.companies.push(newCompany);
+    this.http.post<{ companyId: string }>('http://localhost:3000/api/companies', company).subscribe(result => {
+      company.id = result.companyId;
+      this.companies.push(company);
       this.companiesUpdated.next([...this.companies]);
       console.log('post success, new companies array', this.companies);
     });

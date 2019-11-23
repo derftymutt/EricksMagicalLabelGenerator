@@ -10,13 +10,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
 import { PrintComponent } from './components/print/print.component';
 import { MockLabelData } from '../assets/mock-data/labels';
-import { AddCompanyModal } from './components/add-company-modal/add-company-modal.component';
+import { CompanyModal } from './components/company-modal/company-modal.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PrintComponent, AddCompanyModal],
+  declarations: [AppComponent, HomeComponent, PrintComponent, CompanyModal],
   imports: [BrowserModule, CommonModule, HttpClientModule, AppRoutingModule, ReactiveFormsModule, NgbModule],
   providers: [MockLabelData],
-  entryComponents: [AddCompanyModal],
+  entryComponents: [CompanyModal],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

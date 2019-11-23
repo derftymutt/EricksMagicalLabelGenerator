@@ -7,7 +7,8 @@ import { CompanyService } from 'src/app/services/company.service';
 import { Subscription } from 'rxjs';
 import { Company } from 'src/app/models/company';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddCompanyModal } from '../add-company-modal/add-company-modal.component';
+import { CompanyModal } from '../company-modal/company-modal.component';
+import { Order } from 'src/app/models/order';
 
 @Component({
   selector: 'app-home',
@@ -37,7 +38,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       console.log('getCompaniesUpdatedListener', this.companies);
     });
 
-
     this.buildForm();
   }
 
@@ -48,8 +48,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onAddCompanyClick(): void {
-    this.modalService.open(AddCompanyModal);
-    this.companyService.addCompany();
+    this.modalService.open(CompanyModal);
+  }
+
+  public onEditCompanyClick(): void {
+    const currentCompanyId = this.orderForm.get('to').value;
+    const currentCompany = this.companyService.getCompany(currentCompanyId);
+
+    if (currentCompany) {
+      const modalRef = this.modalService.open(CompanyModal);
+      modalRef.componentInstance.company = currentCompany;
+    }
   }
 
   onDeleteCompany(): void {
@@ -137,8 +146,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  public onPrint(orderForm: FormGroup): void {
-    this.orderService.order = orderForm.value;
+  private printOrder(order: Order): void {
+    this.orderService.order = order;
     this.router.navigate(['print']);
   }
 
@@ -147,7 +156,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit(form: FormGroup): void {
-    console.log('form submitted', form);
+    const formData = form.value;
+
+    const selectedCompany = this.companyService.getCompany(formData.to);
+
+    if (selectedCompany) {
+      formData.to = selectedCompany;
+      this.printOrder(formData);
+    }
   }
 
   private patchlabelFieldsFormArray(boxCount: number): void {
