@@ -5,6 +5,7 @@ import { Address } from './address';
 export interface Order {
   to: Address;
   from: string;
+  madeIn: string;
   purchaseOrder: string;
   dept: string;
   labelCount: number;

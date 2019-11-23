@@ -69,6 +69,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.orderForm = this.fb.group({
       to: ['', Validators.required],
       from: ['TRAMEVER, INC.', Validators.required],
+      madeIn: [''],
       purchaseOrder: ['', Validators.required],
       dept: ['', Validators.required],
       labelCount: ['', Validators.required],

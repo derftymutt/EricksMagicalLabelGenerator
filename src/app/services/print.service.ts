@@ -23,6 +23,7 @@ export class PrintService {
       const label: Label = {
         to: order.to,
         from: order.from,
+        madeIn: order.madeIn,
         purchaseOrder: order.purchaseOrder,
         dept: order.dept,
         fields: order.labelFields[index],
