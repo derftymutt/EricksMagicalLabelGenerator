@@ -61,10 +61,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  onDeleteCompany(): void {
-    this.companyService.deleteCompany(this.companies[0].id);
-  }
-
   public get labelFieldsFormArray(): FormArray {
     return this.orderForm.get('labelFields') as FormArray;
   }
