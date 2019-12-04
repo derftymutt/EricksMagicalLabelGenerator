@@ -1,12 +1,12 @@
 import { LabelField } from './label-field';
-import { Address } from './address';
+import { AddressLabelField } from './address-label-field';
 
 export interface Label {
-  to: Address;
-  from: string;
-  madeIn: string;
-  purchaseOrder: string;
-  dept: string;
+  to: AddressLabelField;
+  from: LabelField;
+  madeIn: LabelField;
+  purchaseOrder: LabelField;
+  dept: LabelField;
   fields: LabelField[];
   labelNumber: number;
 }

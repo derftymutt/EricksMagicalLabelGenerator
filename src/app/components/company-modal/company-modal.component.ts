@@ -8,7 +8,7 @@ import { Company } from 'src/app/models/company';
   selector: 'app-company-modal',
   templateUrl: './company-modal.component.html'
 })
-export class CompanyModal implements OnInit {
+export class CompanyModalComponent implements OnInit {
   @Input() company: Company;
   public companyForm: FormGroup;
   public isEditMode = false;

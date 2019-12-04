@@ -7,8 +7,9 @@ import { CompanyService } from 'src/app/services/company.service';
 import { Subscription } from 'rxjs';
 import { Company } from 'src/app/models/company';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CompanyModal } from '../company-modal/company-modal.component';
+import { CompanyModalComponent } from '../company-modal/company-modal.component';
 import { Order } from 'src/app/models/order';
+import { LabelTypeModalComponent } from '../label-type-modal/label-type-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -48,15 +49,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onAddCompanyClick(): void {
-    this.modalService.open(CompanyModal);
+    this.modalService.open(CompanyModalComponent);
   }
 
   public onEditCompanyClick(): void {
-    const currentCompanyId = this.orderForm.get('to').value;
+    const currentCompanyId = this.orderForm.get('to').value.value;
     const currentCompany = this.companyService.getCompany(currentCompanyId);
 
     if (currentCompany) {
-      const modalRef = this.modalService.open(CompanyModal);
+      const modalRef = this.modalService.open(CompanyModalComponent);
       modalRef.componentInstance.company = currentCompany;
     }
   }
@@ -67,11 +68,31 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public buildForm(): void {
     this.orderForm = this.fb.group({
-      to: ['', Validators.required],
-      from: ['TRAMEVER, INC.', Validators.required],
-      madeIn: [''],
-      purchaseOrder: ['', Validators.required],
-      dept: ['', Validators.required],
+      to: this.fb.group({
+        name: ['TO'],
+        value: [''],
+        isHidden: [false]
+      }),
+      from: this.fb.group({
+        name: ['FROM'],
+        value: ['TRAMEVER, INC'],
+        isHidden: [false]
+      }),
+      madeIn: this.fb.group({
+        name: ['Made In'],
+        value: [''],
+        isHidden: [false]
+      }),
+      purchaseOrder: this.fb.group({
+        name: ['Purchase Order'],
+        value: [''],
+        isHidden: [false]
+      }),
+      dept: this.fb.group({
+        name: ['Dept'],
+        value: [''],
+        isHidden: [false]
+      }),
       labelCount: ['', Validators.required],
       labelFields: this.fb.array([]),
       printFormat: [-1, Validators.required]
@@ -108,12 +129,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       nextlabelFieldsFieldsFormArray.controls.forEach(
         (labelFieldControl, i) => {
-          const currentlabelFieldFormGroup = currentlabelFieldsFieldsFormArray.at(
-            i
-          ) as FormGroup;
-          labelFieldControl
-            .get('value')
+          const currentlabelFieldFormGroup = currentlabelFieldsFieldsFormArray.at(i) as FormGroup;
+
+          labelFieldControl.get('value')
             .setValue(currentlabelFieldFormGroup.get('value').value);
+
+          labelFieldControl.get('isHidden')
+            .setValue(currentlabelFieldFormGroup.get('isHidden').value);
         }
       );
 
@@ -148,17 +170,25 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['print']);
   }
 
-  public onBoxTypeSelect(labeltype: LabelType): void {
+  public onLabelTypeSelect(labeltype: LabelType): void {
     this.activeLabelType = this.orderService.getlabelFieldsData(+labeltype);
+  }
+
+  public onEditLabelTypeClick(): void {
+    console.log('im editing label types');
+  }
+
+  public onAddLabelTypeClick(): void {
+    this.modalService.open(LabelTypeModalComponent);
   }
 
   public onSubmit(form: FormGroup): void {
     const formData = form.value;
 
-    const selectedCompany = this.companyService.getCompany(formData.to);
+    const selectedCompany = this.companyService.getCompany(formData.to.value);
 
     if (selectedCompany) {
-      formData.to = selectedCompany;
+      formData.to.value = selectedCompany;
       this.printOrder(formData);
     }
   }
@@ -182,7 +212,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       currentlabelFieldsLabelFieldsFormArray.push(
         this.fb.group({
           name: [field.name],
-          value: [field.value]
+          value: [field.value],
+          isHidden: [false]
         })
       );
     });
