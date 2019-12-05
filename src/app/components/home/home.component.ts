@@ -44,6 +44,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.buildForm();
   }
 
+  getLabels() {
+    this.labelTypeService.getLabelTypes();
+  }
+
   public ngOnDestroy(): void {
     if (this.companySubscription) {
       this.companySubscription.unsubscribe();
@@ -247,9 +251,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   private subscribeToLabelTypeUpdates(): void {
     this.labelTypeSubscription = this.labelTypeService.getLabelTypesUpdatedListener().subscribe(labelTypes => {
       this.labelTypes = labelTypes;
+      console.log('label types', this.labelTypes);
 
       if (this.activeLabelType) {
-        this.activeLabelType = labelTypes.find(l => l.id = this.activeLabelType.id);
+        this.activeLabelType = labelTypes.find(l => l.id === this.activeLabelType.id);
       } else if (this.labelTypes.length > 0) {
         this.activeLabelType = this.labelTypes[0];
       }

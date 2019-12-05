@@ -130,6 +130,7 @@
 
       </div>
 
+      <button type="button" (click)="getLabels()">GET LABELS</button>
       <div *ngIf="orderForm.get('labelFields')['controls'].length > 0" class="d-flex justify-content-end">
         <div class="form-group d-flex">
           <select name="printFormat" id="printFormat" class="form-control">

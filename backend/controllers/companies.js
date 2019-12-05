@@ -27,7 +27,7 @@ exports.updateCompany = (req, res, next) => {
   });
 
   Company.updateOne({ _id: req.params.id }, company).then(result => {
-    res.status(200).json('update successful');
+    res.status(200).json(result);
   });
 };
 

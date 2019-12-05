@@ -27,7 +27,12 @@ exports.updateLabelType = (req, res, next) => {
   });
 
   labelType.updateOne({ _id: req.params.id }, labelType).then(result => {
-    res.status(200).json('update successful');
+    console.log(result);
+    if (result.nModified > 0) {
+      res.status(200).json(result);
+    } else {
+      res.status(400).json({message: 'no changes'});
+    }
   });
 };
 
