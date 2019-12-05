@@ -13,7 +13,7 @@ export class CompanyModalComponent implements OnInit {
   public companyForm: FormGroup;
   public isEditMode = false;
 
-  constructor(private activeModal: NgbActiveModal, private fb: FormBuilder, private compnanyService: CompanyService) { }
+  constructor(private activeModal: NgbActiveModal, private fb: FormBuilder, private companyService: CompanyService) { }
 
   public ngOnInit(): void {
     if (this.company) {
@@ -28,16 +28,16 @@ export class CompanyModalComponent implements OnInit {
 
     if (this.isEditMode) {
       company.id = this.company.id;
-      this.compnanyService.updateCompany(company);
+      this.companyService.updateCompany(company);
     } else {
-      this.compnanyService.addCompany(company);
+      this.companyService.addCompany(company);
     }
 
     this.activeModal.close();
   }
 
   public onDelete(): void {
-    this.compnanyService.deleteCompany(this.company.id);
+    this.companyService.deleteCompany(this.company.id);
     this.activeModal.close();
   }
 

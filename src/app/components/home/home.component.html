@@ -77,11 +77,10 @@
 
         <label for="labelType">Label Type</label>
         <div class="d-flex">
-          <select name="labelType" id="labelType" class="form-control" (change)="onLabelTypeSelect($event.target.value)">
-            <option value="-1">SELECT</option>
-            <option value="{{ labelTypes.Rue21Retail }}">Rue212 Retail</option>
-            <option value="{{ labelTypes.Rue21ECOM }}">Rue21 ECOM</option>
-            <option value="{{ labelTypes.Gordmans }}">Gordmans</option>
+          <select class="form-control" [(ngModel)]="activeLabelType" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let labelType of labelTypes" [ngValue]="labelType">
+              {{ labelType.name }}
+            </option>
           </select>
           <button type="button" class="btn btn-success ml-2" (click)="onEditLabelTypeClick()">Edit</button>
           <button type="button" class="btn btn-info ml-2" (click)="onAddLabelTypeClick()">Add</button>

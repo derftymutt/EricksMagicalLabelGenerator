@@ -27,11 +27,12 @@
 
   </div>
 
-  <div class="modal-footer d-flex justify-content-between">
-    <!-- <button *ngIf="isEditMode" class="btn btn-danger" type="button" (click)="onDelete()">DELETE</button> -->
+  <div class="modal-footer" [ngClass]="{'justify-content-between': isEditMode, 'justify-content-end': !isEditMode}">
+    <button *ngIf="isEditMode" class="btn btn-danger" type="button" (click)="onDelete()">DELETE</button>
     <div>
       <button class="btn btn-light" type="button" (click)="onClose()">Close</button>
-      <button class="btn btn-success ml-2" type="submit" [disabled]="labelTypeForm.invalid">Add</button>
+      <button class="btn btn-success ml-2" type="submit"
+        [disabled]="labelTypeForm.invalid">{{ isEditMode ? 'Update' : 'Add' }}</button>
     </div>
   </div>
 

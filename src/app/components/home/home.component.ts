@@ -2,8 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderService } from 'src/app/services/order.service';
-import { LabelType } from 'src/app/models/label-type.enum';
+import { LabelType } from 'src/app/models/label-type';
 import { CompanyService } from 'src/app/services/company.service';
+import { LabelTypeService } from 'src/app/services/label-type.service';
 import { Subscription } from 'rxjs';
 import { Company } from 'src/app/models/company';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,26 +19,27 @@ import { LabelTypeModalComponent } from '../label-type-modal/label-type-modal.co
 export class HomeComponent implements OnInit, OnDestroy {
   public orderForm: FormGroup;
   public activeDetailIndex = null;
-  public labelTypes = LabelType;
+  public labelTypes: LabelType[] = [];
   public companies: Company[] = [];
-  private activeLabelType = null;
+  public activeLabelType: LabelType = null;
   private companySubscription: Subscription;
+  private labelTypeSubscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
     private orderService: OrderService,
     private companyService: CompanyService,
+    private labelTypeService: LabelTypeService,
     private router: Router,
     private modalService: NgbModal
   ) { }
 
   public ngOnInit(): void {
     this.companyService.getCompanies();
+    this.labelTypeService.getLabelTypes();
 
-    this.companySubscription = this.companyService.getCompaniesUpdatedListener().subscribe(companies => {
-      this.companies = companies;
-      console.log('getCompaniesUpdatedListener', this.companies);
-    });
+    this.subscribeToCompanyUpdates();
+    this.subscribeToLabelTypeUpdates();
 
     this.buildForm();
   }
@@ -46,9 +48,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.companySubscription) {
       this.companySubscription.unsubscribe();
     }
+
+    if (this.labelTypeSubscription) {
+      this.labelTypeSubscription.unsubscribe();
+    }
   }
 
-  onAddCompanyClick(): void {
+  public onAddCompanyClick(): void {
     this.modalService.open(CompanyModalComponent);
   }
 
@@ -170,12 +176,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['print']);
   }
 
-  public onLabelTypeSelect(labeltype: LabelType): void {
-    this.activeLabelType = this.orderService.getlabelFieldsData(+labeltype);
-  }
-
   public onEditLabelTypeClick(): void {
-    console.log('im editing label types');
+    if (this.activeLabelType) {
+      const modalRef = this.modalService.open(LabelTypeModalComponent);
+      modalRef.componentInstance.labelType = this.activeLabelType;
+    }
   }
 
   public onAddLabelTypeClick(): void {
@@ -208,11 +213,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     const currentlabelFieldsLabelFieldsFormArray = this.labelFieldsFormArray.at(
       i
     ) as FormArray;
-    this.activeLabelType.labelFields.forEach(field => {
+    this.activeLabelType.fields.forEach(field => {
       currentlabelFieldsLabelFieldsFormArray.push(
         this.fb.group({
           name: [field.name],
-          value: [field.value],
+          value: [''],
           isHidden: [false]
         })
       );
@@ -231,5 +236,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private isPreviousBoxInCount(): boolean {
     return this.activeDetailIndex - 1 > -1;
+  }
+
+  private subscribeToCompanyUpdates(): void {
+    this.companySubscription = this.companyService.getCompaniesUpdatedListener().subscribe(companies => {
+      this.companies = companies;
+    });
+  }
+
+  private subscribeToLabelTypeUpdates(): void {
+    this.labelTypeSubscription = this.labelTypeService.getLabelTypesUpdatedListener().subscribe(labelTypes => {
+      this.labelTypes = labelTypes;
+    });
   }
 }
