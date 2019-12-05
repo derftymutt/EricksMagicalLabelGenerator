@@ -7,6 +7,8 @@ import { Label } from '../models/label';
   providedIn: 'root'
 })
 export class PrintService {
+  public order: Order;
+
   public buildPages(order: Order): Page[] {
     const result = [];
 

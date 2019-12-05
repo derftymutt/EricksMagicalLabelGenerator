@@ -1,6 +1,6 @@
-import { LabelType } from './label-type.enum';
 import { LabelField } from './label-field';
 import { AddressLabelField } from './address-label-field';
+import { LabelType } from './label-type';
 
 export interface Order {
   to: AddressLabelField;

@@ -9,14 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
 import { PrintComponent } from './components/print/print.component';
-import { MockLabelData } from '../assets/mock-data/labels';
 import { CompanyModalComponent } from './components/company-modal/company-modal.component';
 import { LabelTypeModalComponent } from './components/label-type-modal/label-type-modal.component';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, PrintComponent, CompanyModalComponent, LabelTypeModalComponent],
   imports: [BrowserModule, FormsModule, CommonModule, HttpClientModule, AppRoutingModule, ReactiveFormsModule, NgbModule],
-  providers: [MockLabelData],
+  providers: [],
   entryComponents: [CompanyModalComponent, LabelTypeModalComponent],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { OrderService } from 'src/app/services/order.service';
 import { LabelType } from 'src/app/models/label-type';
 import { CompanyService } from 'src/app/services/company.service';
 import { LabelTypeService } from 'src/app/services/label-type.service';
@@ -11,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CompanyModalComponent } from '../company-modal/company-modal.component';
 import { Order } from 'src/app/models/order';
 import { LabelTypeModalComponent } from '../label-type-modal/label-type-modal.component';
+import { PrintService } from 'src/app/services/print.service';
 
 @Component({
   selector: 'app-home',
@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private orderService: OrderService,
     private companyService: CompanyService,
+    private printService: PrintService,
     private labelTypeService: LabelTypeService,
     private router: Router,
     private modalService: NgbModal
@@ -172,7 +172,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private printOrder(order: Order): void {
-    this.orderService.order = order;
+    this.printService.order = order;
     this.router.navigate(['print']);
   }
 
@@ -247,6 +247,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   private subscribeToLabelTypeUpdates(): void {
     this.labelTypeSubscription = this.labelTypeService.getLabelTypesUpdatedListener().subscribe(labelTypes => {
       this.labelTypes = labelTypes;
+
+      if (this.activeLabelType) {
+        this.activeLabelType = labelTypes.find(l => l.id = this.activeLabelType.id);
+      } else if (this.labelTypes.length > 0) {
+        this.activeLabelType = this.labelTypes[0];
+      }
     });
   }
 }
