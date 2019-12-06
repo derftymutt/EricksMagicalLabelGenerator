@@ -26,7 +26,7 @@ exports.updateLabelType = (req, res, next) => {
     fields: req.body.fields
   });
 
-  labelType.updateOne({ _id: req.params.id }, labelType).then(result => {
+  LabelType.updateOne({ _id: req.params.id }, labelType).then(result => {
     console.log(result);
     if (result.nModified > 0) {
       res.status(200).json(result);
