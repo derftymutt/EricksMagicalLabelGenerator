@@ -14,6 +14,8 @@ body {
   Rainbow Magical Animation
 ***********************************
 */
+
+/* https://stackoverflow.com/questions/54702124/rainbow-text-animation-using-only-css */
 .app-magical {
   display:inline-block;
   font-family: 'Leckerli One', cursive;
