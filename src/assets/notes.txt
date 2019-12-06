@@ -6,3 +6,7 @@ Collections --> Tables
 Documents in Collections instead of Records in Tables
 
 mongodb password: Davhpa9NdWjQirdi
+
+rainbows
+https://stackoverflow.com/questions/36793529/how-to-generate-rainbow-colored-text-in-javascript
+https://w3bits.com/rainbow-text/
