@@ -2,11 +2,14 @@
 
   <div class="container p-5">
 
-    <h1 class="d-flex justify-content-center app-title pb-5">Erick's <span class="app-magical px-3"> Magical </span> Label Generator</h1>
+    <h1 class="d-flex justify-content-center app-title pb-5">Erick's <span class="app-magical px-3"> Magical </span>
+      Label Generator</h1>
 
     <div class="row">
+
       <div formGroupName="from" class="form-group col-6">
         <div class="d-flex align-items-center">
+          <i class="material-icons app-cursor-default mr-2">edit</i>
           <input for="from" formControlName="name" class="form-control-plaintext">
           <div class="custom-control custom-checkbox d-flex justify-content-center">
             <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenFrom">
@@ -15,10 +18,11 @@
         </div>
         <input name="from" formControlName="value" type="text" class="form-control" readonly>
       </div>
-      <div class="form-group col-6">
 
+      <div class="form-group col-6">
         <div formGroupName="to">
           <div class="d-flex align-items-center">
+            <i class="material-icons app-cursor-default mr-2">edit</i>
             <input for="to" formControlName="name" class="form-control-plaintext">
             <div class="custom-control custom-checkbox d-flex justify-content-center">
               <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenTo">
@@ -36,11 +40,13 @@
           </div>
         </div>
       </div>
+
     </div>
 
     <div class="row">
       <div formGroupName="madeIn" class="form-group col-4">
         <div class="d-flex align-items-center">
+          <i class="material-icons app-cursor-default mr-2">edit</i>
           <input for="madeIn" formControlName="name" class="form-control-plaintext">
           <div class="custom-control custom-checkbox d-flex justify-content-center">
             <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenMadeIn">
@@ -51,6 +57,7 @@
       </div>
       <div formGroupName="purchaseOrder" class="form-group col-4">
         <div class="d-flex align-items-center">
+          <i class="material-icons app-cursor-default mr-2">edit</i>
           <input for="purchaseOrder" formControlName="name" class="form-control-plaintext">
           <div class="custom-control custom-checkbox d-flex justify-content-center">
             <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenPurchaseOrder">
@@ -61,6 +68,7 @@
       </div>
       <div formGroupName="dept" class="form-group col-4">
         <div class="d-flex align-items-center">
+          <i class="material-icons app-cursor-default mr-2">edit</i>
           <input for="dept" formControlName="name" class="form-control-plaintext">
           <div class="custom-control custom-checkbox d-flex justify-content-center">
             <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenDept">
@@ -130,7 +138,6 @@
 
       </div>
 
-      <button type="button" (click)="getLabels()">GET LABELS</button>
       <div *ngIf="orderForm.get('labelFields')['controls'].length > 0" class="d-flex justify-content-end">
         <div class="form-group d-flex">
           <select name="printFormat" id="printFormat" class="form-control">

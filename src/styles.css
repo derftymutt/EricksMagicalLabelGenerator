@@ -9,6 +9,14 @@ body {
   font-size: 60px;
 }
 
+.app-pointer {
+  cursor: pointer;
+}
+
+.app-cursor-default {
+  cursor: default;
+}
+
 /*
 ***********************************
   Rainbow Magical Animation

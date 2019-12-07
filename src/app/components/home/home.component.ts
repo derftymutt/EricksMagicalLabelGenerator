@@ -44,10 +44,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.buildForm();
   }
 
-  getLabels() {
-    this.labelTypeService.getLabelTypes();
-  }
-
   public ngOnDestroy(): void {
     if (this.companySubscription) {
       this.companySubscription.unsubscribe();
