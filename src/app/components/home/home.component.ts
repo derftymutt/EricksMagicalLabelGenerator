@@ -85,17 +85,17 @@ export class HomeComponent implements OnInit, OnDestroy {
         isHidden: [false]
       }),
       madeIn: this.fb.group({
-        name: ['Made In'],
+        name: ['MADE IN'],
         value: [''],
         isHidden: [false]
       }),
       purchaseOrder: this.fb.group({
-        name: ['Purchase Order'],
+        name: ['PO#'],
         value: [''],
         isHidden: [false]
       }),
       dept: this.fb.group({
-        name: ['Dept'],
+        name: ['DEPT'],
         value: [''],
         isHidden: [false]
       }),

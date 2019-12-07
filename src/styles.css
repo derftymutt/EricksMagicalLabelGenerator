@@ -5,7 +5,7 @@ body {
 }
 
 .app-title {
-  font-family: 'Leckerli One', cursive;
+  font-family: "Leckerli One", cursive;
   font-size: 60px;
 }
 
@@ -25,35 +25,90 @@ body {
 
 /* https://stackoverflow.com/questions/54702124/rainbow-text-animation-using-only-css */
 .app-magical {
-  display:inline-block;
-  font-family: 'Leckerli One', cursive;
+  display: inline-block;
+  font-family: "Leckerli One", cursive;
   padding-bottom: 2px;
   padding-right: 5px;
-  background: linear-gradient(90deg,#FF0000,#FF7F00,#FFFF00,#00FF00,#0000FF,#4B0082,#8B00FF);
+  background: linear-gradient(
+    90deg,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #8b00ff
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 400% 400%;
 
   -webkit-animation: rainbowanim 5s linear infinite;
-     -moz-animation: rainbowanim 5s linear infinite;
-          animation: rainbowanim 5s linear infinite;
+  -moz-animation: rainbowanim 5s linear infinite;
+  animation: rainbowanim 5s linear infinite;
 }
 
 @-webkit-keyframes rainbowanim {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 @-moz-keyframes rainbowanim {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 @keyframes rainbowanim {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.rainbow-wrapper {
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  background: radial-gradient(
+    rgb(255, 36, 0, 0.2),
+    rgb(232, 29, 29, 0.2),
+    rgb(232, 183, 29, 0.2),
+    rgb(227, 232, 29, 0.2),
+    rgb(29, 232, 64, 0.2),
+    rgb(29, 221, 232, 0.2),
+    rgb(29, 221, 232, 0.2),
+    rgb(221, 0, 243, 0.2),
+    rgb(221, 0, 243, 0.2)
+  );
+
+  background-size: 1800% 1800%;
+
+  -webkit-animation: rainbowanim 18s ease infinite;
+  -z-animation: rainbowanim 18s ease infinite;
+  -o-animation: rainbowanim 18s ease infinite;
+  animation: rainbowanim 18s ease infinite;
 }
 
 /*
