@@ -103,6 +103,8 @@ body {
     rgb(221, 0, 243, 0.2)
   );
 
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/radial-gradient */
+
   background-size: 1800% 1800%;
 
   -webkit-animation: rainbowanim 18s ease infinite;
