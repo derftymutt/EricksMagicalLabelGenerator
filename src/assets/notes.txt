@@ -16,3 +16,4 @@ TODO:
 
 1. Double labels (1/4 1/4, 2/4 2/4, etc)
 2. print formats (2 or 4 to a page)
+3. other label style with multiple entries per field
