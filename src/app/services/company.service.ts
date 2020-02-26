@@ -39,7 +39,6 @@ export class CompanyService {
   }
 
   public addCompany(company: Company) {
-
     this.http.post<{ companyId: string }>('http://localhost:3000/api/companies', company).subscribe(result => {
       company.id = result.companyId;
       this.companies.push(company);

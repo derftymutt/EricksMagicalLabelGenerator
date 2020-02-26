@@ -187,6 +187,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.modalService.open(LabelTypeModalComponent);
   }
 
+  public isAnotherBoxInCount(): boolean {
+    return this.activeDetailIndex < this.labelFieldsFormArray.length - 1;
+  }
+
   public onSubmit(form: FormGroup): void {
     const formData = form.value;
 
@@ -230,10 +234,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  private isAnotherBoxInCount(): boolean {
-    return this.activeDetailIndex < this.labelFieldsFormArray.length - 1;
-  }
-
   private isPreviousBoxInCount(): boolean {
     return this.activeDetailIndex - 1 > -1;
   }
@@ -247,10 +247,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   private subscribeToLabelTypeUpdates(): void {
     this.labelTypeSubscription = this.labelTypeService.getLabelTypesUpdatedListener().subscribe(labelTypes => {
       this.labelTypes = labelTypes;
-      console.log('label types', this.labelTypes);
 
       if (this.activeLabelType) {
         this.activeLabelType = labelTypes.find(l => l.id === this.activeLabelType.id);
+
       } else if (this.labelTypes.length > 0) {
         this.activeLabelType = this.labelTypes[0];
       }
