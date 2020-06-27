@@ -23,6 +23,13 @@ export class PrintComponent implements OnInit {
         labelCount: this.printService.order.labelCount
       };
 
+      if (this.printService.isDoubleLabels) {
+        this.printData = {
+          pages: this.printService.doubleLabels(this.printData.pages),
+          labelCount: this.printService.order.labelCount * 2
+        };
+      }
+
       // this.print();
     }
   }

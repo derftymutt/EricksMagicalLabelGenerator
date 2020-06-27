@@ -122,14 +122,14 @@ body {
   display: flex;
   flex-wrap: wrap;
   height: 100%;
-  border: 2px solid yellow;
-  border-bottom: 4px solid pink;
+  /* border: 2px solid yellow; */
+  /* border-bottom: 4px solid pink; */
 }
 
 .label-container {
   flex-basis: 50%;
   height: 50%;
-  border: 2px dashed lightgreen;
+  /* border: 2px dashed lightgreen; */
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -138,7 +138,7 @@ body {
 .label {
   width: 85%;
   height: 85%;
-  border: 2px dotted violet;
+  /* border: 2px dotted violet; */
 }
 
 @media print {
@@ -149,8 +149,8 @@ body {
   html,
   body {
     font-family: "ariel", sans-serif !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
+    font-size: 28px !important;
+    font-weight: 900 !important;
     text-transform: uppercase !important;
   }
 

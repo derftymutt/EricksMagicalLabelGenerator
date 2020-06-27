@@ -8,6 +8,7 @@ import { Label } from '../models/label';
 })
 export class PrintService {
   public order: Order;
+  public isDoubleLabels = false;
 
   public buildPages(order: Order): Page[] {
     const result = [];
@@ -45,5 +46,36 @@ export class PrintService {
     }
 
     return result;
+  }
+
+  public doubleLabels(pages: Page[]): Page[] {
+    const labelsPerPage = 4;
+    const doubledLabels = [];
+    let currentLabelCount = 0;
+
+    pages.forEach(page => {
+      page.labels.forEach(label => {
+        doubledLabels.push(label);
+        doubledLabels.push(label);
+      });
+    });
+
+    const pagesWithDoubledLabels = [];
+    let newPage: Page = new Page();
+
+    doubledLabels.forEach((lbl, index) => {
+      newPage.labels.push(lbl);
+      currentLabelCount++;
+
+      if (currentLabelCount === labelsPerPage) {
+        pagesWithDoubledLabels.push(newPage);
+        currentLabelCount = 0;
+        newPage = new Page();
+      } else if (index + 1 === doubledLabels.length) {
+        pagesWithDoubledLabels.push(newPage);
+      }
+    });
+
+    return pagesWithDoubledLabels;
   }
 }

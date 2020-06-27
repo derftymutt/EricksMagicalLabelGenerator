@@ -6,7 +6,7 @@
     <div *ngFor="let label of page.labels" class="label-container">
       <div class="label">
         <div *ngIf="!label.to.isHidden">{{ label.to.name }}: </div>
-        <div class="ml-4 mb-4">
+        <div class="ml-4">
           <div>{{ label.to.value.name}}</div>
           <div>{{ label.to.value.address.street1 }}</div>
           <div *ngIf="label.to.value.address.street2">{{ label.to.value.address.street2 }}</div>
@@ -15,7 +15,7 @@
         </div>
 
         <ng-container *ngIf="label.madeIn.value">
-          <div>
+          <div class="mb-4">
             <span *ngIf="!label.madeIn.isHidden">{{ label.madeIn.name}}: </span>
             {{ label.madeIn.value }}
           </div>

@@ -191,6 +191,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     return this.activeDetailIndex < this.labelFieldsFormArray.length - 1;
   }
 
+  public onDoubleLabelsClick(checked: boolean): void {
+    this.printService.isDoubleLabels = checked;
+  }
+
   public onSubmit(form: FormGroup): void {
     const formData = form.value;
 
