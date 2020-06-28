@@ -41,6 +41,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscribeToCompanyUpdates();
     this.subscribeToLabelTypeUpdates();
 
+    if (this.printService.order) {
+      this.activeLabelType = this.printService.order.labelType;
+    }
+
     this.buildForm();
   }
 
@@ -76,7 +80,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.orderForm = this.fb.group({
       to: this.fb.group({
         name: ['TO'],
-        value: [''],
+        value: [this.printService.order ? this.printService.order.to.value.id : ''],
         isHidden: [false]
       }),
       from: this.fb.group({
@@ -86,46 +90,58 @@ export class HomeComponent implements OnInit, OnDestroy {
       }),
       madeIn: this.fb.group({
         name: ['MADE IN'],
-        value: [''],
+        value: [this.printService.order ? this.printService.order.madeIn.value : ''],
         isHidden: [false]
       }),
       purchaseOrder: this.fb.group({
         name: ['PO#'],
-        value: [''],
+        value: [this.printService.order ? this.printService.order.purchaseOrder.value : ''],
         isHidden: [false]
       }),
       dept: this.fb.group({
         name: ['DEPT'],
-        value: [''],
+        value: [this.printService.order ? this.printService.order.dept.value : ''],
         isHidden: [false]
       }),
-      labelCount: ['', Validators.required],
+      labelCount: [this.printService.order ? this.printService.order.labelCount : '', Validators.required],
       labelFields: this.fb.array([]),
       printFormat: [-1, Validators.required]
     });
+
+    if (this.printService.order) {
+      this.addLabelFieldsFormArray(+this.printService.order.labelCount);
+    }
+
+    console.log(this.orderForm);
   }
 
-  public onBoxCountConfirm(boxCountInput: HTMLInputElement): void {
-    const boxCountInputValue = +boxCountInput.value;
-    const currentBoxCount = this.labelFieldsFormArray.length;
+  public onLabelCountConfirm(labelCountInput: HTMLInputElement): void {
+    const labelCountInputValue = +labelCountInput.value;
+    this.addLabelFieldsFormArray(labelCountInputValue);
+  }
 
-    if (boxCountInputValue > currentBoxCount) {
-      const additionalBoxesCount = +boxCountInput.value - currentBoxCount;
-      this.patchlabelFieldsFormArray(additionalBoxesCount);
-    } else {
-      this.labelFieldsFormArray.clear();
-      this.patchlabelFieldsFormArray(boxCountInputValue);
+  private addLabelFieldsFormArray(labelCount: number): void {
+    if (labelCount) {
+      const currentLabelCount = this.labelFieldsFormArray.length;
+
+      if (labelCount > currentLabelCount) {
+        const additionalLabelsCount = labelCount - currentLabelCount;
+        this.patchlabelFieldsFormArray(additionalLabelsCount);
+      } else {
+        this.labelFieldsFormArray.clear();
+        this.patchlabelFieldsFormArray(labelCount);
+      }
     }
   }
 
   public onNextBlank(): void {
-    if (this.isAnotherBoxInCount()) {
+    if (this.isAnotherLabelInCount()) {
       this.incrementActiveDetailIndex();
     }
   }
 
   public onNextSameInfo(): void {
-    if (this.isAnotherBoxInCount()) {
+    if (this.isAnotherLabelInCount()) {
       const currentlabelFieldsFieldsFormArray = this.labelFieldsFormArray.at(
         this.activeDetailIndex
       ) as FormArray;
@@ -150,15 +166,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   public onGoBackOne(): void {
-    if (this.isPreviousBoxInCount()) {
+    if (this.isPreviousLabelInCount()) {
       this.activeDetailIndex--;
     }
   }
 
-  public isNextBoxValid(): boolean {
+  public isNextLabelValid(): boolean {
     let result = false;
 
-    if (this.isAnotherBoxInCount()) {
+    if (this.isAnotherLabelInCount()) {
       const nextFormGroup = this.labelFieldsFormArray.at(
         this.activeDetailIndex + 1
       ) as FormGroup;
@@ -173,6 +189,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private printOrder(order: Order): void {
     this.printService.order = order;
+    this.printService.order.labelType = this.activeLabelType;
     this.router.navigate(['print']);
   }
 
@@ -187,7 +204,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.modalService.open(LabelTypeModalComponent);
   }
 
-  public isAnotherBoxInCount(): boolean {
+  public isAnotherLabelInCount(): boolean {
     return this.activeDetailIndex < this.labelFieldsFormArray.length - 1;
   }
 
@@ -206,9 +223,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  private patchlabelFieldsFormArray(boxCount: number): void {
+  private patchlabelFieldsFormArray(labelCount: number): void {
     if (this.activeLabelType) {
-      for (let i = 0; i < boxCount; i++) {
+      for (let i = 0; i < labelCount; i++) {
         this.labelFieldsFormArray.push(this.fb.array([]));
         this.patchLabelFieldsFormArray(i);
       }
@@ -221,24 +238,24 @@ export class HomeComponent implements OnInit, OnDestroy {
     const currentlabelFieldsLabelFieldsFormArray = this.labelFieldsFormArray.at(
       i
     ) as FormArray;
-    this.activeLabelType.fields.forEach(field => {
+    this.activeLabelType.fields.forEach((field, fieldIndex) => {
       currentlabelFieldsLabelFieldsFormArray.push(
         this.fb.group({
           name: [field.name],
-          value: [''],
-          isHidden: [false]
+          value: [this.printService.order ? this.printService.order.labelFields[i][fieldIndex].value : ''],
+          isHidden: [this.printService.order ? this.printService.order.labelFields[i][fieldIndex].isHidden :  false]
         })
       );
     });
   }
 
   private incrementActiveDetailIndex(): void {
-    if (this.isAnotherBoxInCount()) {
+    if (this.isAnotherLabelInCount()) {
       this.activeDetailIndex++;
     }
   }
 
-  private isPreviousBoxInCount(): boolean {
+  private isPreviousLabelInCount(): boolean {
     return this.activeDetailIndex - 1 > -1;
   }
 

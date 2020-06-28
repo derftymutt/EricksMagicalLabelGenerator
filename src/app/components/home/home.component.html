@@ -98,8 +98,8 @@
         <div class="form-group col-6">
           <label for="labelCount">Label Count</label>
           <div class="d-flex">
-            <input #labelCount name="labelCount" formControlName="labelCount" type="text" class="form-control">
-            <button type="button" class="btn btn-danger ml-2" (click)="onBoxCountConfirm(labelCount)">Confirm</button>
+            <input #labelCount name="labelCount" formControlName="labelCount" type="number" class="form-control">
+            <button type="button" class="btn btn-danger ml-2" (click)="onLabelCountConfirm(labelCount)">Confirm</button>
           </div>
         </div>
       </div>
@@ -111,9 +111,9 @@
           <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onGoBackOne()"
             [disabled]="activeDetailIndex === 0"><i class="material-icons">navigate_before</i></button>
           <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onNextBlank()"
-            [disabled]="!isAnotherBoxInCount()"><i class="material-icons">navigate_next</i></button>
+            [disabled]="!isAnotherLabelInCount()"><i class="material-icons">navigate_next</i></button>
           <button type="button" class="btn btn-info ml-2 d-flex align-items-center" (click)="onNextSameInfo()"
-            [disabled]="!isAnotherBoxInCount()"><i class="material-icons">navigate_next</i>Repeat</button>
+            [disabled]="!isAnotherLabelInCount()"><i class="material-icons">navigate_next</i>Repeat</button>
           <div class="h2 ml-4">
             {{ activeDetailIndex + 1 }}/{{orderForm.get('labelFields')['controls'].length}}
           </div>
