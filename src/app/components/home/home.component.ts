@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public labelTypes: LabelType[] = [];
   public companies: Company[] = [];
   public activeLabelType: LabelType = null;
+  public isRepeatManyLabels = false;
   private companySubscription: Subscription;
   private labelTypeSubscription: Subscription;
 
@@ -148,31 +149,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onNextSameInfo(): void {
-    if (this.isAnotherLabelInCount()) {
-      const currentlabelFieldsFieldsFormArray = this.labelFieldsFormArray.at(
-        this.activeDetailIndex
-      ) as FormArray;
-      const nextlabelFieldsFieldsFormArray = this.labelFieldsFormArray.at(
-        this.activeDetailIndex + 1
-      ) as FormArray;
+  public onRepeatLabel(): void {
+    this.repeatLabel();
+  }
 
-      nextlabelFieldsFieldsFormArray.controls.forEach(
-        (labelFieldControl, i) => {
-          const currentlabelFieldFormGroup = currentlabelFieldsFieldsFormArray.at(i) as FormGroup;
+  public onRepeatManyLabels(repeats: number): void {
+    this.isRepeatManyLabels = false;
+    const isPositiveNumber = Math.sign(repeats) === 1;
 
-          labelFieldControl.get('value')
-            .setValue(currentlabelFieldFormGroup.get('value').value);
-
-          labelFieldControl.get('isAfterValue')
-            .setValue(currentlabelFieldFormGroup.get('isAfterValue').value);
-
-          labelFieldControl.get('isHidden')
-            .setValue(currentlabelFieldFormGroup.get('isHidden').value);
-        }
-      );
-
-      this.incrementActiveDetailIndex();
+    if (isPositiveNumber) {
+      for (let index = 0; index < repeats; index++) {
+          this.repeatLabel();
+      }
     }
   }
 
@@ -235,6 +223,34 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (selectedCompany) {
       formData.to.value = selectedCompany;
       this.printOrder(formData);
+    }
+  }
+
+  private repeatLabel(): void {
+    if (this.isAnotherLabelInCount()) {
+      const currentlabelFieldsFieldsFormArray = this.labelFieldsFormArray.at(
+        this.activeDetailIndex
+      ) as FormArray;
+      const nextlabelFieldsFieldsFormArray = this.labelFieldsFormArray.at(
+        this.activeDetailIndex + 1
+      ) as FormArray;
+
+      nextlabelFieldsFieldsFormArray.controls.forEach(
+        (labelFieldControl, i) => {
+          const currentlabelFieldFormGroup = currentlabelFieldsFieldsFormArray.at(i) as FormGroup;
+
+          labelFieldControl.get('value')
+            .setValue(currentlabelFieldFormGroup.get('value').value);
+
+          labelFieldControl.get('isAfterValue')
+            .setValue(currentlabelFieldFormGroup.get('isAfterValue').value);
+
+          labelFieldControl.get('isHidden')
+            .setValue(currentlabelFieldFormGroup.get('isHidden').value);
+        }
+      );
+
+      this.incrementActiveDetailIndex();
     }
   }
 

@@ -111,8 +111,19 @@
             [disabled]="activeDetailIndex === 0"><i class="material-icons">navigate_before</i></button>
           <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onNextBlank()"
             [disabled]="!isAnotherLabelInCount()"><i class="material-icons">navigate_next</i></button>
-          <button type="button" class="btn btn-info ml-2 d-flex align-items-center" (click)="onNextSameInfo()"
+          <button type="button" class="btn btn-info ml-2 d-flex align-items-center" (click)="onRepeatLabel()"
             [disabled]="!isAnotherLabelInCount()"><i class="material-icons">navigate_next</i>Repeat</button>
+          <button *ngIf="!isRepeatManyLabels" type="button" class="btn btn-info ml-2 d-flex align-items-center"
+            (click)="isRepeatManyLabels = !isRepeatManyLabels" [disabled]="!isAnotherLabelInCount()"><i
+              class="material-icons">navigate_next</i>Repeat Many</button>
+          <div *ngIf="isRepeatManyLabels" class="form-inline ml-2">
+            <div class="form-group">
+              <input #repeatManyValue class="form-control" type="number" placeholder="pero cuantos?!?">
+            </div>
+            <button class="btn btn-info d-flex align-items-center ml-1" type="button" (click)="onRepeatManyLabels(repeatManyValue.value)">
+              <i class="material-icons">done</i>
+            </button>
+          </div>
           <div class="h2 ml-4">
             {{ activeDetailIndex + 1 }}/{{orderForm.get('labelFields')['controls'].length}}
           </div>
