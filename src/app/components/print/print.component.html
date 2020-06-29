@@ -6,7 +6,7 @@
     <div *ngFor="let label of page.labels" class="label-container">
       <div class="label">
         <div *ngIf="!label.to.isHidden">{{ label.to.name }}: </div>
-        <div class="ml-4">
+        <div *ngIf="label.to.value.name" class="ml-4">
           <div>{{ label.to.value.name}}</div>
           <div>{{ label.to.value.address.street1 }}</div>
           <div *ngIf="label.to.value.address.street2">{{ label.to.value.address.street2 }}</div>
@@ -45,8 +45,9 @@
         <div *ngFor="let field of label.fields">
           <ng-container *ngIf="field.value">
             <div>
-              <span *ngIf="!field.isHidden">{{ field.name}}: </span>
+              <span *ngIf="!field.isHidden && !field.isAfterValue">{{ field.name}}: </span>
               {{ field.value }}
+              <span *ngIf="!field.isHidden && field.isAfterValue"> {{ field.name}}</span>
             </div>
           </ng-container>
         </div>

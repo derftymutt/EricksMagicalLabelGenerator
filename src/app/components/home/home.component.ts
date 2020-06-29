@@ -25,6 +25,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   private companySubscription: Subscription;
   private labelTypeSubscription: Subscription;
 
+  public get labelFieldsFormArray(): FormArray {
+    return this.orderForm.get('labelFields') as FormArray;
+  }
+
   constructor(
     private fb: FormBuilder,
     private companyService: CompanyService,
@@ -72,14 +76,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  public get labelFieldsFormArray(): FormArray {
-    return this.orderForm.get('labelFields') as FormArray;
-  }
-
   public buildForm(): void {
     this.orderForm = this.fb.group({
       to: this.fb.group({
-        name: ['TO'],
+        name: ['SHIP TO'],
         value: [this.printService.order ? this.printService.order.to.value.id : ''],
         isHidden: [false]
       }),
@@ -155,6 +155,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
           labelFieldControl.get('value')
             .setValue(currentlabelFieldFormGroup.get('value').value);
+
+          labelFieldControl.get('isAfterValue')
+            .setValue(currentlabelFieldFormGroup.get('isAfterValue').value);
 
           labelFieldControl.get('isHidden')
             .setValue(currentlabelFieldFormGroup.get('isHidden').value);
@@ -243,7 +246,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.fb.group({
           name: [field.name],
           value: [this.printService.order ? this.printService.order.labelFields[i][fieldIndex].value : ''],
-          isHidden: [this.printService.order ? this.printService.order.labelFields[i][fieldIndex].isHidden :  false]
+          isHidden: [this.printService.order ? this.printService.order.labelFields[i][fieldIndex].isHidden : false],
+          isAfterValue: [this.printService.order ? this.printService.order.labelFields[i][fieldIndex].isAfterValue : false]
         })
       );
     });

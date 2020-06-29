@@ -1,6 +1,5 @@
-<form [formGroup]="orderForm" (ngSubmit)="onSubmit(orderForm)" novalidate>
-
- <div class="rainbow-wrapper">
+<form class="h-100" [formGroup]="orderForm" (ngSubmit)="onSubmit(orderForm)" novalidate>
+  <div class="rainbow-wrapper">
     <div class="container p-5">
 
       <h1 class="d-flex justify-content-center app-title pb-5">Erick's <span class="app-magical px-3"> Magical </span>
@@ -17,7 +16,7 @@
               <label class="custom-control-label" for="isHiddenFrom">hide</label>
             </div>
           </div>
-          <input name="from" formControlName="value" type="text" class="form-control" readonly>
+          <input name="from" formControlName="value" type="text" class="form-control">
         </div>
 
         <div class="form-group col-6">
@@ -126,10 +125,18 @@
               <div class="form-group">
                 <div class="d-flex justify-content-between">
                   <label for="name">{{field.get('name').value}}</label>
-                  <div class="custom-control custom-checkbox d-flex justify-content-center">
-                    <input type="checkbox" class="custom-control-input" formControlName="isHidden"
-                      id="{{'isHidden' + fieldIndex}}">
-                    <label class="custom-control-label" for="{{'isHidden' + fieldIndex}}">hide</label>
+                  <div class="d-flex">
+                    <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
+                      <input type="checkbox" class="custom-control-input" formControlName="isHidden"
+                        id="{{'isHidden' + fieldIndex}}">
+                      <label class="custom-control-label" for="{{'isHidden' + fieldIndex}}">hide</label>
+                    </div>
+
+                    <div class="custom-control custom-checkbox d-flex justify-content-center">
+                      <input type="checkbox" class="custom-control-input" formControlName="isAfterValue"
+                        id="{{'isAfterValue' + fieldIndex}}">
+                      <label class="custom-control-label" for="{{'isAfterValue' + fieldIndex}}">end</label>
+                    </div>
                   </div>
                 </div>
                 <input name="value" formControlName="value" type="text" class="form-control">
@@ -147,7 +154,8 @@
               <option value="2">4 per page</option>
             </select> -->
             <div class="custom-control custom-checkbox d-flex justify-content-center">
-              <input type="checkbox" class="custom-control-input" id="doubleLabels" (change)="onDoubleLabelsClick($event.target.checked)">
+              <input type="checkbox" class="custom-control-input" id="doubleLabels"
+                (change)="onDoubleLabelsClick($event.target.checked)">
               <label class="custom-control-label" for="doubleLabels">Double Labels</label>
             </div>
             <button type="submit" class="btn btn-danger ml-2" [disabled]="!orderForm.valid">Print</button>
@@ -157,6 +165,6 @@
       </div>
 
     </div>
- </div>
 
+  </div>
 </form>
