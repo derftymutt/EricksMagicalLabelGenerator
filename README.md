@@ -5,6 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 How to run:
 server: run `npm run start:server`
 client: run `ng serve`
+test commit
 
 ## Development server
 
