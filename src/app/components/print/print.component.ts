@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Order } from '../../models/order';
 import { PrintService } from '../../services/print.service';
 import { PrintData } from '../../models/print-data';
 
@@ -15,6 +14,10 @@ export class PrintComponent implements OnInit {
     private printService: PrintService,
     private router: Router
   ) {}
+
+  public get isCartonCountOnTop(): boolean {
+    return this.printService.isCartonCountOnTop;
+  }
 
   public ngOnInit(): void {
     if (this.printService.order) {

@@ -29,6 +29,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     return this.orderForm.get('labelFields') as FormArray;
   }
 
+  public get isCartonCountOnTop(): boolean {
+    return this.printService.isCartonCountOnTop;
+  }
+
+  public get isDoubleLabels(): boolean {
+    return this.printService.isDoubleLabels;
+  }
+
   constructor(
     private fb: FormBuilder,
     private companyService: CompanyService,
@@ -213,6 +221,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public onDoubleLabelsClick(checked: boolean): void {
     this.printService.isDoubleLabels = checked;
+  }
+
+  public onCartonCountOnTopClick(checked: boolean): void {
+    this.printService.isCartonCountOnTop = checked;
   }
 
   public onSubmit(form: FormGroup): void {

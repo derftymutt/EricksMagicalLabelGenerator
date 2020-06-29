@@ -9,6 +9,7 @@ import { Label } from '../models/label';
 export class PrintService {
   public order: Order;
   public isDoubleLabels = false;
+  public isCartonCountOnTop = false;
 
   public buildPages(order: Order): Page[] {
     const result = [];

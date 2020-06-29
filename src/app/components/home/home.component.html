@@ -154,7 +154,12 @@
               <option value="2">4 per page</option>
             </select> -->
             <div class="custom-control custom-checkbox d-flex justify-content-center">
-              <input type="checkbox" class="custom-control-input" id="doubleLabels"
+              <input type="checkbox" class="custom-control-input" id="cartonCountOnTop" [checked]="isCartonCountOnTop"
+                (change)="onCartonCountOnTopClick($event.target.checked)">
+              <label class="custom-control-label" for="cartonCountOnTop">Carton count on top</label>
+            </div>
+            <div class="custom-control custom-checkbox d-flex justify-content-center ml-2">
+              <input type="checkbox" class="custom-control-input" id="doubleLabels" [checked]="isDoubleLabels"
                 (change)="onDoubleLabelsClick($event.target.checked)">
               <label class="custom-control-label" for="doubleLabels">Double Labels</label>
             </div>

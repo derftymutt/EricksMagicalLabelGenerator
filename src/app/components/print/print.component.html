@@ -5,6 +5,7 @@
   <div *ngFor="let page of printData.pages" class="page">
     <div *ngFor="let label of page.labels" class="label-container">
       <div class="label">
+        <div *ngIf="isCartonCountOnTop">CARTON {{ label.labelNumber }} OF {{ printData.labelCount }}</div>
         <div *ngIf="!label.to.isHidden">{{ label.to.name }}: </div>
         <div *ngIf="label.to.value.name" class="ml-4">
           <div>{{ label.to.value.name}}</div>
@@ -52,7 +53,7 @@
           </ng-container>
         </div>
 
-        <div>CARTON {{ label.labelNumber }} OF {{ printData.labelCount }}</div>
+        <div *ngIf="!isCartonCountOnTop">CARTON {{ label.labelNumber }} OF {{ printData.labelCount }}</div>
 
       </div>
     </div>
