@@ -19,5 +19,17 @@
       "es2018",
       "dom"
     ]
+  },
+  "angularCompilerOptions": {
+    "strictInputTypes": true,
+    "strictAttributeTypes": true,
+    "strictNullInputTypes": true,
+    "strictSafeNavigationTypes": true,
+    "strictDomLocalRefTypes": true,
+    "strictOutputEventTypes": true,
+    "strictDomEventTypes": false,
+    "strictContextGenerics": true,
+    "strictLiteralTypes": true,
+    "strictInjectionParameters": true
   }
 }
