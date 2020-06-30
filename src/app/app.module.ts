@@ -7,16 +7,33 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HomeComponent } from './components/home/home.component';
+import { OrdersComponent } from './components/orders/orders.component';
 import { PrintComponent } from './components/print/print.component';
 import { CompanyModalComponent } from './components/company-modal/company-modal.component';
 import { LabelTypeModalComponent } from './components/label-type-modal/label-type-modal.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, PrintComponent, CompanyModalComponent, LabelTypeModalComponent],
-  imports: [BrowserModule, FormsModule, CommonModule, HttpClientModule, AppRoutingModule, ReactiveFormsModule, NgbModule],
+  declarations: [
+    AppComponent,
+    OrdersComponent,
+    PrintComponent,
+    CompanyModalComponent,
+    LabelTypeModalComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    CommonModule,
+    HttpClientModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    NgbModule
+  ],
   providers: [],
-  entryComponents: [CompanyModalComponent, LabelTypeModalComponent],
+  entryComponents: [
+    CompanyModalComponent,
+    LabelTypeModalComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

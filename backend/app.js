@@ -7,7 +7,10 @@ const labelTypeRoutes = require('./routes/label-types');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://allen:Davhpa9NdWjQirdi@cluster0-jbaw4.mongodb.net/emlg?retryWrites=true&w=majority')
+mongoose.connect(`mongodb+srv://allen:${process.env.MONGO_ATLAS_PW}@cluster0-jbaw4.mongodb.net/emlg?retryWrites=true&w=majority`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => {
     console.log('Connected to the database!');
   })

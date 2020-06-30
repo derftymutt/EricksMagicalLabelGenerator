@@ -3,6 +3,9 @@ import { Subject } from 'rxjs';
 import { Company } from '../models/company';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+
+const BACKEND_URL = environment.apiUrl + '/companies';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +17,7 @@ export class CompanyService {
   constructor(private http: HttpClient) { }
 
   public getCompanies(): void {
-    this.http.get<any>('http://localhost:3000/api/companies')
+    this.http.get<any>(BACKEND_URL)
       .pipe(map((companyData) => {
         return companyData.map(company => {
           return {
@@ -39,7 +42,7 @@ export class CompanyService {
   }
 
   public addCompany(company: Company) {
-    this.http.post<{ companyId: string }>('http://localhost:3000/api/companies', company).subscribe(result => {
+    this.http.post<{ companyId: string }>(BACKEND_URL, company).subscribe(result => {
       company.id = result.companyId;
       this.companies.push(company);
       this.companiesUpdated.next([...this.companies]);
@@ -48,7 +51,7 @@ export class CompanyService {
   }
 
   public updateCompany(company: Company) {
-    this.http.put(`http://localhost:3000/api/companies/${company.id}`, company).subscribe(result => {
+    this.http.put(`${BACKEND_URL}/${company.id}`, company).subscribe(result => {
       const updatedCompanies = [...this.companies];
       const oldCompanyIndex = updatedCompanies.findIndex(c => c.id === company.id);
       if (oldCompanyIndex > -1) {
@@ -60,7 +63,7 @@ export class CompanyService {
   }
 
   public deleteCompany(id: string) {
-    this.http.delete(`http://localhost:3000/api/companies/${id}`).subscribe(() => {
+    this.http.delete(`${BACKEND_URL}/${id}`).subscribe(() => {
       this.companies = this.companies.filter(company => company.id !== id);
       this.companiesUpdated.next([...this.companies]);
     });

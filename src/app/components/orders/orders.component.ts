@@ -13,10 +13,10 @@ import { LabelTypeModalComponent } from '../label-type-modal/label-type-modal.co
 import { PrintService } from 'src/app/services/print.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html'
+  selector: 'app-orders',
+  templateUrl: './orders.component.html'
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class OrdersComponent implements OnInit, OnDestroy {
   public orderForm: FormGroup;
   public activeDetailIndex = null;
   public labelTypes: LabelType[] = [];

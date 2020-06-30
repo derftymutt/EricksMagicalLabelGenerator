@@ -3,6 +3,9 @@ import { LabelType } from '../models/label-type';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+
+const BACKEND_URL = environment.apiUrl + '/label-types';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +17,7 @@ export class LabelTypeService {
   constructor(private http: HttpClient) { }
 
   public getLabelTypes(): void {
-    this.http.get<any>('http://localhost:3000/api/label-types')
+    this.http.get<any>(BACKEND_URL)
       .pipe(map((labelTypesData) => {
         return labelTypesData.map(labelType => {
           return {
@@ -40,7 +43,7 @@ export class LabelTypeService {
 
   public addLabelType(labelType: LabelType) {
 
-    this.http.post<{ labelTypeId: string }>('http://localhost:3000/api/label-types', labelType).subscribe(result => {
+    this.http.post<{ labelTypeId: string }>(BACKEND_URL, labelType).subscribe(result => {
       labelType.id = result.labelTypeId;
       this.labelTypes.push(labelType);
       this.labelTypesUpdated.next([...this.labelTypes]);
@@ -49,7 +52,7 @@ export class LabelTypeService {
   }
 
   public updateLabelType(labelType: LabelType) {
-    this.http.put(`http://localhost:3000/api/label-types/${labelType.id}`, labelType).subscribe(result => {
+    this.http.put(`${BACKEND_URL}/${labelType.id}`, labelType).subscribe(result => {
       const updatedLabelTypes = [...this.labelTypes];
       const oldLabelTypeIndex = updatedLabelTypes.findIndex(l => l.id === labelType.id);
       if (oldLabelTypeIndex > -1) {
@@ -61,7 +64,7 @@ export class LabelTypeService {
   }
 
   public deleteLabelType(id: string) {
-    this.http.delete(`http://localhost:3000/api/label-types/${id}`).subscribe(() => {
+    this.http.delete(`${BACKEND_URL}/${id}`).subscribe(() => {
       this.labelTypes = this.labelTypes.filter(labelType => labelType.id !== id);
       this.labelTypesUpdated.next([...this.labelTypes]);
     });
