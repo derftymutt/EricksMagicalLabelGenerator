@@ -5,8 +5,6 @@ Collections --> Tables
 
 Documents in Collections instead of Records in Tables
 
-mongodb password: Davhpa9NdWjQirdi
-
 rainbows
 https://stackoverflow.com/questions/36793529/how-to-generate-rainbow-colored-text-in-javascript
 https://w3bits.com/rainbow-text/
@@ -14,6 +12,6 @@ https://w3bits.com/rainbow-text/
 
 TODO:
 
-1. Double labels (1/4 1/4, 2/4 2/4, etc)
+1. Double labels (1/4 1/4, 2/4 2/4, etc) DONE
 2. print formats (2 or 4 to a page)
 3. other label style with multiple entries per field

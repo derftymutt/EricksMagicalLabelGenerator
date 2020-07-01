@@ -2,9 +2,21 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
 
-How to run:
+## How to run:
 server: run `npm run start:server`
 client: run `ng serve`
+
+## how to Deploy to AWS
+### Server
+1. zip backend folder contents
+2. in AWS Elastic Beanstalk, find ericks-magical-label-generator application
+3. click into it and click 'Update and deploy', add zip file, incrememt version
+
+### Client
+1. run `ng build --prod` to make new version of app which will be located in the 'dist' folder
+2. in AWS S3 find ericks-magical-label-generator bucket
+3. select and delete all contents
+4. upload 'dist' folder contents (at the moment 'assets' folder is not needed, as it only contains notes.txt)
 
 ## Development server
 
