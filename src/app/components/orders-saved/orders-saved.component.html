@@ -1,0 +1,31 @@
+<div class="rainbow-wrapper">
+  <div class="container p-3 ">
+    <table *ngIf="orders && orders.length > 0; else nadaMiCiela" class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Company</th>
+          <th scope="col">PO#</th>
+          <th scope="col">Date</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders; index as i" class="app-pointer" [routerLink]="['../', order.id]">
+          <td>{{ i + 1 }}</td>
+          <td>{{ order.title }}</td>
+          <td>{{ order.labelType.name }}</td>
+          <td>{{ order.purchaseOrder.value }}</td>
+          <td>some date</td>
+          <td>
+            <button class="btn btn-danger" (click)="onDeleteOrder(order.id); $event.stopPropagation()">DELETE</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #nadaMiCiela>
+      NO HAY NADA GUARDADA MI CIELA
+    </ng-template>
+  </div>
+</div>

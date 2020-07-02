@@ -1,0 +1,23 @@
+<form [formGroup]="saveOrderForm" (ngSubmit)="onSubmit(saveOrderForm)" novalidate>
+  <div class="modal-header">
+    <h4 class="modal-title">Save Order</h4>
+    <button type="button" class="close" aria-label="Close" (click)="onClose()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input name="title" formControlName="title" type="text" class="form-control" maxlength="25">
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div>
+      <button class="btn btn-light" type="button" (click)="onClose()">Close</button>
+      <button *ngIf="isEditMode" class="btn btn-success ml-2" type="submit" [disabled]="saveOrderForm.invalid">Update</button>
+      <button class="btn btn-danger ml-2" type="submit" [disabled]="saveOrderForm.invalid">Save</button>
+    </div>
+  </div>
+</form>

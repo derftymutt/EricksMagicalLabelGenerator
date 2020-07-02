@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LabelType } from 'src/app/models/label-type';
 import { CompanyService } from 'src/app/services/company.service';
 import { LabelTypeService } from 'src/app/services/label-type.service';
@@ -11,12 +11,14 @@ import { CompanyModalComponent } from '../company-modal/company-modal.component'
 import { Order } from 'src/app/models/order';
 import { LabelTypeModalComponent } from '../label-type-modal/label-type-modal.component';
 import { PrintService } from 'src/app/services/print.service';
+import { SaveOrderModalComponent } from '../save-order-modal/save-order-modal.component';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html'
 })
 export class OrdersComponent implements OnInit, OnDestroy {
+  public order: Order;
   public orderForm: FormGroup;
   public activeDetailIndex = null;
   public labelTypes: LabelType[] = [];
@@ -44,6 +46,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     private printService: PrintService,
     private labelTypeService: LabelTypeService,
     private router: Router,
+    private route: ActivatedRoute,
     private modalService: NgbModal
   ) { }
 
@@ -54,10 +57,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.subscribeToCompanyUpdates();
     this.subscribeToLabelTypeUpdates();
 
-    if (this.printService.order) {
-      this.activeLabelType = this.printService.order.labelType;
-    }
-
+    this.initOrder();
     this.buildForm();
   }
 
@@ -89,7 +89,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.orderForm = this.fb.group({
       to: this.fb.group({
         name: ['SHIP TO'],
-        value: [this.printService.order ? this.printService.order.to.value.id : ''],
+        value: [this.order && this.order.to.value ? this.order.to.value.id : -1],
         isHidden: [false]
       }),
       from: this.fb.group({
@@ -99,29 +99,31 @@ export class OrdersComponent implements OnInit, OnDestroy {
       }),
       madeIn: this.fb.group({
         name: ['MADE IN'],
-        value: [this.printService.order ? this.printService.order.madeIn.value : ''],
+        value: [this.order ? this.order.madeIn.value : ''],
         isHidden: [false]
       }),
       purchaseOrder: this.fb.group({
         name: ['PO#'],
-        value: [this.printService.order ? this.printService.order.purchaseOrder.value : ''],
+        value: [this.order ? this.order.purchaseOrder.value : ''],
         isHidden: [false]
       }),
       dept: this.fb.group({
         name: ['DEPT'],
-        value: [this.printService.order ? this.printService.order.dept.value : ''],
+        value: [this.order ? this.order.dept.value : ''],
         isHidden: [false]
       }),
-      labelCount: [this.printService.order ? this.printService.order.labelCount : '', Validators.required],
+      labelCount: [this.order ? this.order.labelCount : '', Validators.required],
       labelFields: this.fb.array([]),
       printFormat: [-1, Validators.required]
     });
 
-    if (this.printService.order) {
-      this.addLabelFieldsFormArray(+this.printService.order.labelCount);
-    }
+    if (this.order) {
+      this.addLabelFieldsFormArray(+this.order.labelCount);
 
-    console.log(this.orderForm);
+      if (this.order.to.value) {
+        this.orderForm.get('to').get('value').setValue(this.order.to.value.id, { onlySelf: true });
+      }
+    }
   }
 
   public onLabelCountConfirm(labelCountInput: HTMLInputElement): void {
@@ -215,15 +217,37 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.printService.isCartonCountOnTop = checked;
   }
 
-  public onSubmit(form: FormGroup): void {
-    const formData = form.value;
+  public onSaveOrder(orderForm: FormGroup): void {
+    const order: Order = this.prepareOrder(orderForm);
+    const modalRef = this.modalService.open(SaveOrderModalComponent);
 
+    modalRef.componentInstance.order = order;
+
+    modalRef.result.then(savedOrder => {
+      if (savedOrder) {
+        // TODO: toastr? try a different one....
+      }
+    }, error => {
+      console.error('save order error', error);
+    });
+  }
+
+  public onPrint(form: FormGroup): void {
+    const order: Order = this.prepareOrder(form);
+    this.printOrder(order);
+  }
+
+  private prepareOrder(orderform: FormGroup): Order {
+    const formData = orderform.value;
     const selectedCompany = this.companyService.getCompany(formData.to.value);
 
     if (selectedCompany) {
       formData.to.value = selectedCompany;
-      this.printOrder(formData);
     }
+
+    formData.labelType = this.activeLabelType;
+
+    return formData;
   }
 
   private repeatLabel(): void {
@@ -276,9 +300,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
       currentlabelFieldsLabelFieldsFormArray.push(
         this.fb.group({
           name: [field.name],
-          value: [this.printService.order ? this.printService.order.labelFields[i][fieldIndex].value : ''],
-          isHidden: [this.printService.order ? this.printService.order.labelFields[i][fieldIndex].isHidden : false],
-          isAfterValue: [this.printService.order ? this.printService.order.labelFields[i][fieldIndex].isAfterValue : false]
+          value: [this.order ? this.order.labelFields[i][fieldIndex].value : ''],
+          isHidden: [this.order ? this.order.labelFields[i][fieldIndex].isHidden : false],
+          isAfterValue: [this.order ? this.order.labelFields[i][fieldIndex].isAfterValue : false]
         })
       );
     });
@@ -311,5 +335,19 @@ export class OrdersComponent implements OnInit, OnDestroy {
         this.activeLabelType = this.labelTypes[0];
       }
     });
+  }
+
+  private initOrder(): void {
+    if (this.route.snapshot.data.order) {
+      this.order = this.route.snapshot.data.order;
+    } else if (this.printService.order) {
+      this.order = this.printService.order;
+    } else {
+      this.order = null;
+    }
+
+    if (this.order) {
+      this.activeLabelType = this.order.labelType;
+    }
   }
 }
