@@ -104,7 +104,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       }),
       purchaseOrder: this.fb.group({
         name: ['PO#'],
-        value: [this.order ? this.order.purchaseOrder.value : ''],
+        value: [this.order ? this.order.purchaseOrder.value : '', Validators.required],
         isHidden: [false]
       }),
       dept: this.fb.group({

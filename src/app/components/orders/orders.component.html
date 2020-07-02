@@ -63,7 +63,7 @@
           <label class="custom-control-label" for="isHiddenPurchaseOrder">hide</label>
         </div>
       </div>
-      <input name="purchaseOrder" formControlName="value" type="text" class="form-control">
+      <input name="purchaseOrder" formControlName="value" type="text" class="form-control" [ngClass]="{'is-invalid': orderForm.get('purchaseOrder.value').invalid }">
     </div>
     <div formGroupName="dept" class="form-group col-4">
       <div class="d-flex align-items-center">
@@ -174,7 +174,7 @@
             (change)="onDoubleLabelsClick($event.target.checked)">
           <label class="custom-control-label" for="doubleLabels">Double Labels</label>
         </div>
-        <button class="btn btn-danger ml-2" type="button" (click)="onSaveOrder(orderForm)">Save order</button>
+        <button class="btn btn-danger ml-2" type="button" [disabled]="!orderForm.valid" (click)="onSaveOrder(orderForm)">Save order</button>
         <button type="submit" class="btn btn-danger ml-2" [disabled]="!orderForm.valid">Print</button>
       </div>
     </div>
