@@ -135,7 +135,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
       if (labelCount > currentLabelCount) {
         const additionalLabelsCount = labelCount - currentLabelCount;
-        this.patchlabelFieldsFormArray(additionalLabelsCount);
+        this.patchlabelFieldsFormArray(additionalLabelsCount, currentLabelCount);
       } else {
         this.labelFieldsFormArray.clear();
         this.patchlabelFieldsFormArray(labelCount);
@@ -159,7 +159,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
     if (isPositiveNumber) {
       for (let index = 0; index < repeats; index++) {
-          this.repeatLabel();
+        this.repeatLabel();
       }
     }
   }
@@ -254,15 +254,18 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
   }
 
-  private patchlabelFieldsFormArray(labelCount: number): void {
+  private patchlabelFieldsFormArray(labelCount: number, startingIndex: number = 0): void {
     if (this.activeLabelType) {
-      for (let i = 0; i < labelCount; i++) {
+      const labelCountFromStartingIndex = labelCount + startingIndex;
+
+      for (let i = startingIndex; i < labelCountFromStartingIndex; i++) {
         this.labelFieldsFormArray.push(this.fb.array([]));
         this.patchLabelFieldsFormArray(i);
       }
     }
 
-    this.activeDetailIndex = 0;
+    this.activeDetailIndex =
+      (this.activeDetailIndex && this.activeDetailIndex < this.labelFieldsFormArray.length) ? this.activeDetailIndex : 0;
   }
 
   private patchLabelFieldsFormArray(i: number) {
