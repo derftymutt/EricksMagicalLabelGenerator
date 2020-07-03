@@ -31,6 +31,8 @@ export class OrderService {
           return {
             id: order._id,
             title: order.title,
+            createdAt: order.createdAt,
+            updatedAt: order.updatedAt,
             to: order.to,
             from: order.from,
             madeIn: order.madeIn,

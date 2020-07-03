@@ -53,6 +53,6 @@ const orderSchema = mongoose.Schema({
       isAfterValue: {type: String }
     }]
   ]
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Order', orderSchema);

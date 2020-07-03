@@ -5,6 +5,8 @@ import { LabelType } from './label-type';
 export interface Order {
   id?: string;
   title?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
   to: AddressLabelField;
   from: LabelField;
   madeIn: LabelField;

@@ -17,7 +17,7 @@
           <td>{{ order.title }}</td>
           <td>{{ order.labelType.name }}</td>
           <td>{{ order.purchaseOrder.value }}</td>
-          <td>some date</td>
+          <td>{{ order.createdAt | date:'M/dd/yyyy HH:mm' }}</td>
           <td>
             <button class="btn btn-danger" (click)="onDeleteOrder(order.id); $event.stopPropagation()">DELETE</button>
           </td>
