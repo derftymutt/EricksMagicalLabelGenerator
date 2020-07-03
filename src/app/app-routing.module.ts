@@ -13,7 +13,7 @@ const routes: Routes = [
     { path: ':id', component: OrdersComponent, resolve: { order: OrderResolver} },
   ]},
   { path: 'print', component: PrintComponent },
-  { path: '', redirectTo: '/orders', pathMatch: 'full'},
+  { path: '', redirectTo: '/orders/new', pathMatch: 'full'},
   { path: '**', component: MainComponent }
 ];
 
