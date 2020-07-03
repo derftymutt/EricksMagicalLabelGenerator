@@ -11,14 +11,21 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { PrintComponent } from './components/print/print.component';
 import { CompanyModalComponent } from './components/company-modal/company-modal.component';
 import { LabelTypeModalComponent } from './components/label-type-modal/label-type-modal.component';
+import { SaveOrderModalComponent } from './components/save-order-modal/save-order-modal.component';
+import { MainComponent } from './components/main/main.component';
+import { OrdersSavedComponent } from './components/orders-saved/orders-saved.component';
+import { OrderResolver } from './services/order.resolver';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainComponent,
     OrdersComponent,
+    OrdersSavedComponent,
     PrintComponent,
     CompanyModalComponent,
-    LabelTypeModalComponent
+    LabelTypeModalComponent,
+    SaveOrderModalComponent
   ],
   imports: [
     BrowserModule,
@@ -29,10 +36,11 @@ import { LabelTypeModalComponent } from './components/label-type-modal/label-typ
     ReactiveFormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [OrderResolver],
   entryComponents: [
     CompanyModalComponent,
-    LabelTypeModalComponent
+    LabelTypeModalComponent,
+    SaveOrderModalComponent
   ],
   bootstrap: [AppComponent]
 })

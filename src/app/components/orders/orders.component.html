@@ -1,185 +1,182 @@
-<form class="h-100" [formGroup]="orderForm" (ngSubmit)="onSubmit(orderForm)" novalidate>
-  <div class="rainbow-wrapper">
-    <div class="container p-5">
+<form class="h-100" [formGroup]="orderForm" (ngSubmit)="onPrint(orderForm)" novalidate>
 
-      <h1 class="d-flex justify-content-center app-title pb-5">Erick's <span class="app-magical px-3"> Magical </span>
-        Label Generator</h1>
+  <h1 class="d-flex justify-content-center app-title pb-5">Erick's <span class="app-magical px-3"> Magical </span>
+    Label Generator</h1>
 
-      <div class="row">
+  <div class="row">
 
-        <div formGroupName="from" class="form-group col-6">
-          <div class="d-flex align-items-center">
-            <i class="material-icons app-cursor-default mr-2">edit</i>
-            <input for="from" formControlName="name" class="form-control-plaintext">
-            <div class="custom-control custom-checkbox d-flex justify-content-center">
-              <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenFrom">
-              <label class="custom-control-label" for="isHiddenFrom">hide</label>
-            </div>
-          </div>
-          <input name="from" formControlName="value" type="text" class="form-control">
+    <div formGroupName="from" class="form-group col-6">
+      <div class="d-flex align-items-center">
+        <i class="material-icons app-cursor-default mr-2">edit</i>
+        <input for="from" formControlName="name" class="form-control-plaintext">
+        <div class="custom-control custom-checkbox d-flex justify-content-center">
+          <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenFrom">
+          <label class="custom-control-label" for="isHiddenFrom">hide</label>
         </div>
-
-        <div class="form-group col-6">
-          <div formGroupName="to">
-            <div class="d-flex align-items-center">
-              <i class="material-icons app-cursor-default mr-2">edit</i>
-              <input for="to" formControlName="name" class="form-control-plaintext">
-              <div class="custom-control custom-checkbox d-flex justify-content-center">
-                <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenTo">
-                <label class="custom-control-label" for="isHiddenTo">hide</label>
-              </div>
-            </div>
-            <div class="d-flex">
-              <select class="form-control" formControlName="value">
-                <option *ngFor="let company of companies" [value]="company.id">
-                  {{ company.name }}
-                </option>
-              </select>
-              <button type="button" class="btn btn-success ml-2" (click)="onEditCompanyClick()">Edit</button>
-              <button type="button" class="btn btn-info ml-2" (click)="onAddCompanyClick()">Add</button>
-            </div>
-          </div>
-        </div>
-
       </div>
+      <input name="from" formControlName="value" type="text" class="form-control">
+    </div>
 
-      <div class="row">
-        <div formGroupName="madeIn" class="form-group col-4">
-          <div class="d-flex align-items-center">
-            <i class="material-icons app-cursor-default mr-2">edit</i>
-            <input for="madeIn" formControlName="name" class="form-control-plaintext">
-            <div class="custom-control custom-checkbox d-flex justify-content-center">
-              <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenMadeIn">
-              <label class="custom-control-label" for="isHiddenMadeIn">hide</label>
-            </div>
+    <div class="form-group col-6">
+      <div formGroupName="to">
+        <div class="d-flex align-items-center">
+          <i class="material-icons app-cursor-default mr-2">edit</i>
+          <input for="to" formControlName="name" class="form-control-plaintext">
+          <div class="custom-control custom-checkbox d-flex justify-content-center">
+            <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenTo">
+            <label class="custom-control-label" for="isHiddenTo">hide</label>
           </div>
-          <input name="madeIn" formControlName="value" type="text" class="form-control">
         </div>
-        <div formGroupName="purchaseOrder" class="form-group col-4">
-          <div class="d-flex align-items-center">
-            <i class="material-icons app-cursor-default mr-2">edit</i>
-            <input for="purchaseOrder" formControlName="name" class="form-control-plaintext">
-            <div class="custom-control custom-checkbox d-flex justify-content-center">
-              <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenPurchaseOrder">
-              <label class="custom-control-label" for="isHiddenPurchaseOrder">hide</label>
-            </div>
-          </div>
-          <input name="purchaseOrder" formControlName="value" type="text" class="form-control">
+        <div class="d-flex">
+          <select class="form-control" formControlName="value">
+            <option value="-1">SELECT COMPANY, OR DON'T</option>
+            <option *ngFor="let company of companies" [value]="company.id">
+              {{ company.name }}
+            </option>
+          </select>
+          <button type="button" class="btn btn-success ml-2" (click)="onEditCompanyClick()">Edit</button>
+          <button type="button" class="btn btn-info ml-2" (click)="onAddCompanyClick()">Add</button>
         </div>
-        <div formGroupName="dept" class="form-group col-4">
-          <div class="d-flex align-items-center">
-            <i class="material-icons app-cursor-default mr-2">edit</i>
-            <input for="dept" formControlName="name" class="form-control-plaintext">
-            <div class="custom-control custom-checkbox d-flex justify-content-center">
-              <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenDept">
-              <label class="custom-control-label" for="isHiddenDept">hide</label>
-            </div>
-          </div>
+      </div>
+    </div>
 
-          <input name="dept" formControlName="value" type="text" class="form-control">
+  </div>
+
+  <div class="row">
+    <div formGroupName="madeIn" class="form-group col-4">
+      <div class="d-flex align-items-center">
+        <i class="material-icons app-cursor-default mr-2">edit</i>
+        <input for="madeIn" formControlName="name" class="form-control-plaintext">
+        <div class="custom-control custom-checkbox d-flex justify-content-center">
+          <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenMadeIn">
+          <label class="custom-control-label" for="isHiddenMadeIn">hide</label>
+        </div>
+      </div>
+      <input name="madeIn" formControlName="value" type="text" class="form-control">
+    </div>
+    <div formGroupName="purchaseOrder" class="form-group col-4">
+      <div class="d-flex align-items-center">
+        <i class="material-icons app-cursor-default mr-2">edit</i>
+        <input for="purchaseOrder" formControlName="name" class="form-control-plaintext">
+        <div class="custom-control custom-checkbox d-flex justify-content-center">
+          <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenPurchaseOrder">
+          <label class="custom-control-label" for="isHiddenPurchaseOrder">hide</label>
+        </div>
+      </div>
+      <input name="purchaseOrder" formControlName="value" type="text" class="form-control" [ngClass]="{'is-invalid': orderForm.get('purchaseOrder.value').invalid }">
+    </div>
+    <div formGroupName="dept" class="form-group col-4">
+      <div class="d-flex align-items-center">
+        <i class="material-icons app-cursor-default mr-2">edit</i>
+        <input for="dept" formControlName="name" class="form-control-plaintext">
+        <div class="custom-control custom-checkbox d-flex justify-content-center">
+          <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenDept">
+          <label class="custom-control-label" for="isHiddenDept">hide</label>
         </div>
       </div>
 
-      <div class="row">
-        <div class="form-group col-6">
+      <input name="dept" formControlName="value" type="text" class="form-control">
+    </div>
+  </div>
 
-          <label for="labelType">Label Type</label>
-          <div class="d-flex">
-            <select class="form-control" [(ngModel)]="activeLabelType" [ngModelOptions]="{standalone: true}">
-              <option *ngFor="let labelType of labelTypes" [ngValue]="labelType">
-                {{ labelType.name }}
-              </option>
-            </select>
-            <button type="button" class="btn btn-success ml-2" (click)="onEditLabelTypeClick()">Edit</button>
-            <button type="button" class="btn btn-info ml-2" (click)="onAddLabelTypeClick()">Add</button>
-          </div>
-        </div>
-        <div class="form-group col-6">
-          <label for="labelCount">Label Count</label>
-          <div class="d-flex">
-            <input #labelCount name="labelCount" formControlName="labelCount" type="number" class="form-control">
-            <button type="button" class="btn btn-danger ml-2" (click)="onLabelCountConfirm(labelCount)">Confirm</button>
-          </div>
-        </div>
+  <div class="row">
+    <div class="form-group col-6">
+
+      <label for="labelType">Label Type</label>
+      <div class="d-flex">
+        <select class="form-control" [(ngModel)]="activeLabelType" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let labelType of labelTypes" [ngValue]="labelType">
+            {{ labelType.name }}
+          </option>
+        </select>
+        <button type="button" class="btn btn-success ml-2" (click)="onEditLabelTypeClick()">Edit</button>
+        <button type="button" class="btn btn-info ml-2" (click)="onAddLabelTypeClick()">Add</button>
       </div>
+    </div>
+    <div class="form-group col-6">
+      <label for="labelCount">Label Count</label>
+      <div class="d-flex">
+        <input #labelCount name="labelCount" formControlName="labelCount" type="number" class="form-control">
+        <button type="button" class="btn btn-danger ml-2" (click)="onLabelCountConfirm(labelCount)">Confirm</button>
+      </div>
+    </div>
+  </div>
 
-      <div formArrayName="labelFields" class="mb-3">
+  <div formArrayName="labelFields" class="mb-3">
 
-        <div *ngIf="orderForm.get('labelFields')['controls'].length > 0"
-          class="d-flex justify-content-end align-items-center">
-          <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onGoBackOne()"
-            [disabled]="activeDetailIndex === 0"><i class="material-icons">navigate_before</i></button>
-          <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onNextBlank()"
-            [disabled]="!isAnotherLabelInCount()"><i class="material-icons">navigate_next</i></button>
-          <button type="button" class="btn btn-info ml-2 d-flex align-items-center" (click)="onRepeatLabel()"
-            [disabled]="!isAnotherLabelInCount()"><i class="material-icons">navigate_next</i>Repeat</button>
-          <button *ngIf="!isRepeatManyLabels" type="button" class="btn btn-info ml-2 d-flex align-items-center"
-            (click)="isRepeatManyLabels = !isRepeatManyLabels" [disabled]="!isAnotherLabelInCount()"><i
-              class="material-icons">navigate_next</i>Repeat Many</button>
-          <div *ngIf="isRepeatManyLabels" class="form-inline ml-2">
-            <div class="form-group">
-              <input #repeatManyValue class="form-control" type="number" placeholder="pero cuantos?!?">
-            </div>
-            <button class="btn btn-info d-flex align-items-center ml-1" type="button" (click)="onRepeatManyLabels(repeatManyValue.value)">
-              <i class="material-icons">done</i>
-            </button>
-          </div>
-          <div class="h2 ml-4">
-            {{ activeDetailIndex + 1 }}/{{orderForm.get('labelFields')['controls'].length}}
-          </div>
+    <div *ngIf="orderForm.get('labelFields')['controls'].length > 0"
+      class="d-flex justify-content-end align-items-center">
+      <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onGoBackOne()"
+        [disabled]="activeDetailIndex === 0"><i class="material-icons">navigate_before</i></button>
+      <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onNextBlank()"
+        [disabled]="!isAnotherLabelInCount()"><i class="material-icons">navigate_next</i></button>
+      <button type="button" class="btn btn-info ml-2 d-flex align-items-center" (click)="onRepeatLabel()"
+        [disabled]="!isAnotherLabelInCount()"><i class="material-icons">navigate_next</i>Repeat</button>
+      <button *ngIf="!isRepeatManyLabels" type="button" class="btn btn-info ml-2 d-flex align-items-center"
+        (click)="isRepeatManyLabels = !isRepeatManyLabels" [disabled]="!isAnotherLabelInCount()"><i
+          class="material-icons">navigate_next</i>Repeat Many</button>
+      <div *ngIf="isRepeatManyLabels" class="form-inline ml-2">
+        <div class="form-group">
+          <input #repeatManyValue class="form-control" type="number" placeholder="pero cuantos?!?">
         </div>
+        <button class="btn btn-info d-flex align-items-center ml-1" type="button"
+          (click)="onRepeatManyLabels(repeatManyValue.value)">
+          <i class="material-icons">done</i>
+        </button>
+      </div>
+      <div class="h2 ml-4">
+        {{ activeDetailIndex + 1 }}/{{orderForm.get('labelFields')['controls'].length}}
+      </div>
+    </div>
 
-        <div *ngFor="let detail of orderForm.get('labelFields')['controls']; let i = index" [formArrayName]="i">
-          <div *ngIf="activeDetailIndex === i" class="row">
-            <div *ngFor="let field of orderForm.get('labelFields')['controls'][i]['controls']; let fieldIndex = index"
-              [formGroupName]="fieldIndex" class="col-6">
-              <div class="form-group">
-                <div class="d-flex justify-content-between">
-                  <label for="name">{{field.get('name').value}}</label>
-                  <div class="d-flex">
-                    <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
-                      <input type="checkbox" class="custom-control-input" formControlName="isHidden"
-                        id="{{'isHidden' + fieldIndex}}">
-                      <label class="custom-control-label" for="{{'isHidden' + fieldIndex}}">hide</label>
-                    </div>
-
-                    <div class="custom-control custom-checkbox d-flex justify-content-center">
-                      <input type="checkbox" class="custom-control-input" formControlName="isAfterValue"
-                        id="{{'isAfterValue' + fieldIndex}}">
-                      <label class="custom-control-label" for="{{'isAfterValue' + fieldIndex}}">end</label>
-                    </div>
-                  </div>
+    <div *ngFor="let detail of orderForm.get('labelFields')['controls']; let i = index" [formArrayName]="i">
+      <div *ngIf="activeDetailIndex === i" class="row">
+        <div *ngFor="let field of orderForm.get('labelFields')['controls'][i]['controls']; let fieldIndex = index"
+          [formGroupName]="fieldIndex" class="col-6">
+          <div class="form-group">
+            <div class="d-flex justify-content-between">
+              <label for="name">{{field.get('name').value}}</label>
+              <div class="d-flex">
+                <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
+                  <input type="checkbox" class="custom-control-input" formControlName="isHidden"
+                    id="{{'isHidden' + fieldIndex}}">
+                  <label class="custom-control-label" for="{{'isHidden' + fieldIndex}}">hide</label>
                 </div>
-                <input name="value" formControlName="value" type="text" class="form-control">
+
+                <div class="custom-control custom-checkbox d-flex justify-content-center">
+                  <input type="checkbox" class="custom-control-input" formControlName="isAfterValue"
+                    id="{{'isAfterValue' + fieldIndex}}">
+                  <label class="custom-control-label" for="{{'isAfterValue' + fieldIndex}}">end</label>
+                </div>
               </div>
             </div>
+            <input name="value" formControlName="value" type="text" class="form-control">
           </div>
-
         </div>
+      </div>
 
-        <div *ngIf="orderForm.get('labelFields')['controls'].length > 0" class="d-flex justify-content-end">
-          <div class="form-group d-flex align-items-center">
-            <!-- <select name="printFormat" id="printFormat" class="form-control">
+    </div>
+
+    <div *ngIf="orderForm.get('labelFields')['controls'].length > 0" class="d-flex justify-content-end">
+      <div class="form-group d-flex align-items-center">
+        <!-- <select name="printFormat" id="printFormat" class="form-control">
               <option value="-1">SELECT FORMAT</option>
               <option value="1">2 per page</option>
               <option value="2">4 per page</option>
             </select> -->
-            <div class="custom-control custom-checkbox d-flex justify-content-center">
-              <input type="checkbox" class="custom-control-input" id="cartonCountOnTop" [checked]="isCartonCountOnTop"
-                (change)="onCartonCountOnTopClick($event.target.checked)">
-              <label class="custom-control-label" for="cartonCountOnTop">Carton count on top</label>
-            </div>
-            <div class="custom-control custom-checkbox d-flex justify-content-center ml-2">
-              <input type="checkbox" class="custom-control-input" id="doubleLabels" [checked]="isDoubleLabels"
-                (change)="onDoubleLabelsClick($event.target.checked)">
-              <label class="custom-control-label" for="doubleLabels">Double Labels</label>
-            </div>
-            <button type="submit" class="btn btn-danger ml-2" [disabled]="!orderForm.valid">Print</button>
-          </div>
+        <div class="custom-control custom-checkbox d-flex justify-content-center">
+          <input type="checkbox" class="custom-control-input" id="cartonCountOnTop" [checked]="isCartonCountOnTop"
+            (change)="onCartonCountOnTopClick($event.target.checked)">
+          <label class="custom-control-label" for="cartonCountOnTop">Carton count on top</label>
         </div>
-
+        <div class="custom-control custom-checkbox d-flex justify-content-center ml-2">
+          <input type="checkbox" class="custom-control-input" id="doubleLabels" [checked]="isDoubleLabels"
+            (change)="onDoubleLabelsClick($event.target.checked)">
+          <label class="custom-control-label" for="doubleLabels">Double Labels</label>
+        </div>
+        <button class="btn btn-danger ml-2" type="button" [disabled]="!orderForm.valid" (click)="onSaveOrder(orderForm)">Save order</button>
+        <button type="submit" class="btn btn-danger ml-2" [disabled]="!orderForm.valid">Print</button>
       </div>
-
     </div>
 
   </div>
