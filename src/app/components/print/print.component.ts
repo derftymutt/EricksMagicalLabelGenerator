@@ -9,6 +9,7 @@ import { PrintData } from '../../models/print-data';
 })
 export class PrintComponent implements OnInit {
   public printData: PrintData;
+  public isSmallfont: boolean;
 
   constructor(
     private printService: PrintService,
@@ -33,6 +34,7 @@ export class PrintComponent implements OnInit {
         };
       }
 
+      this.isSmallfont = this.printService.isSmallFont();
       // this.print();
     }
   }

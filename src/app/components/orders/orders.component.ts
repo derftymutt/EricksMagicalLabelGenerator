@@ -94,7 +94,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       }),
       from: this.fb.group({
         name: ['FROM'],
-        value: ['TRAMEVER, INC'],
+        value: [this.order && (this.order.from.value || this.order.from.value === '') ? this.order.from.value : 'TRAMEVER, INC'],
         isHidden: [this.order ? this.order.from.isHidden : false]
       }),
       madeIn: this.fb.group({

@@ -10,6 +10,10 @@ body {
   color: #FF00FF
 }
 
+.print-font-small {
+  font-size: 20px !important;;
+}
+
 .app-title {
   font-family: "Leckerli One", cursive;
   font-size: 60px;
@@ -179,6 +183,10 @@ body {
     font-size: 28px !important;
     font-weight: 900 !important;
     text-transform: uppercase !important;
+  }
+
+  .print-font-small {
+    font-size: 20px !important;;
   }
 
   .page {

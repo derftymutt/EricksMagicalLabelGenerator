@@ -29,7 +29,7 @@
         </div>
         <div class="d-flex">
           <select class="form-control" formControlName="value">
-            <option value="-1">SELECT COMPANY, OR DON'T</option>
+            <option value="-1">NO COMPANY ADDRESS</option>
             <option *ngFor="let company of companies" [value]="company.id">
               {{ company.name }}
             </option>
