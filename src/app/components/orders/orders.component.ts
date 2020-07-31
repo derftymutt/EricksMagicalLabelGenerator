@@ -90,27 +90,27 @@ export class OrdersComponent implements OnInit, OnDestroy {
       to: this.fb.group({
         name: ['SHIP TO'],
         value: [this.order && this.order.to.value ? this.order.to.value.id : -1],
-        isHidden: [false]
+        isHidden: [this.order ? this.order.to.isHidden : false]
       }),
       from: this.fb.group({
         name: ['FROM'],
         value: ['TRAMEVER, INC'],
-        isHidden: [false]
+        isHidden: [this.order ? this.order.from.isHidden : false]
       }),
       madeIn: this.fb.group({
         name: ['MADE IN'],
         value: [this.order ? this.order.madeIn.value : ''],
-        isHidden: [false]
+        isHidden: [this.order ? this.order.madeIn.isHidden : false]
       }),
       purchaseOrder: this.fb.group({
         name: ['PO#'],
         value: [this.order ? this.order.purchaseOrder.value : '', Validators.required],
-        isHidden: [false]
+        isHidden: [this.order ? this.order.purchaseOrder.isHidden : false]
       }),
       dept: this.fb.group({
         name: ['DEPT'],
         value: [this.order ? this.order.dept.value : ''],
-        isHidden: [false]
+        isHidden: [this.order ? this.order.dept.isHidden : false]
       }),
       labelCount: [this.order ? this.order.labelCount : '', Validators.required],
       labelFields: this.fb.array([]),
