@@ -3,4 +3,5 @@ export interface LabelField {
   value: string;
   isHidden: boolean;
   isAfterValue: boolean;
+  isSpaceAbove: boolean;
 }

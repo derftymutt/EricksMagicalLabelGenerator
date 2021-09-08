@@ -109,12 +109,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
       purchaseOrder: this.fb.group({
         name: ['PO#'],
         value: [this.order ? this.order.purchaseOrder.value : '', Validators.required],
-        isHidden: [this.order ? this.order.purchaseOrder.isHidden : false]
+        isHidden: [this.order ? this.order.purchaseOrder.isHidden : false],
+        isSpaceAbove: [this.order ? this.order.purchaseOrder.isSpaceAbove : false]
       }),
       dept: this.fb.group({
         name: ['DEPT'],
         value: [this.order ? this.order.dept.value : ''],
-        isHidden: [this.order ? this.order.dept.isHidden : false]
+        isHidden: [this.order ? this.order.dept.isHidden : false],
+        isSpaceAbove: [this.order ? this.order.dept.isSpaceAbove : false]
       }),
       labelCount: [this.order ? this.order.labelCount : '', Validators.required],
       labelFields: this.fb.array([]),
@@ -309,6 +311,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
         this.fb.group({
           name: [field.name],
           value: [this.order ? this.order.labelFields[i][fieldIndex].value : ''],
+          isSpaceAbove: [this.order ? this.order.labelFields[i][fieldIndex].isSpaceAbove : false],
           isHidden: [this.order ? this.order.labelFields[i][fieldIndex].isHidden : false],
           isAfterValue: [this.order ? this.order.labelFields[i][fieldIndex].isAfterValue : false]
         })

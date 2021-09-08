@@ -53,14 +53,14 @@
         </ng-container>
 
         <ng-container *ngIf="label.purchaseOrder.value">
-          <div>
+          <div [class.mt-3]="label.purchaseOrder.isSpaceAbove">
             <span *ngIf="!label.purchaseOrder.isHidden">{{ label.purchaseOrder.name}}: </span>
             {{ label.purchaseOrder.value }}
           </div>
         </ng-container>
 
         <ng-container *ngIf="label.dept.value">
-          <div>
+          <div [class.mt-3]="label.dept.isSpaceAbove">
             <span *ngIf="!label.dept.isHidden">{{ label.dept.name}}: </span>
             {{ label.dept.value }}
           </div>
@@ -68,7 +68,7 @@
 
         <div *ngFor="let field of label.fields">
           <ng-container *ngIf="field.value">
-            <div>
+            <div [class.mt-3]="field.isSpaceAbove">
               <span *ngIf="!field.isHidden && !field.isAfterValue">{{ field.name}}: </span>
               {{ field.value }}
               <span *ngIf="!field.isHidden && field.isAfterValue"> {{ field.name}}</span>

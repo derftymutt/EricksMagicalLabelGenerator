@@ -9,8 +9,9 @@
       <div class="d-flex align-items-center">
         <i class="material-icons app-cursor-default mr-2">edit</i>
         <input for="from" formControlName="name" class="form-control-plaintext">
-        <div class="custom-control custom-checkbox d-flex justify-content-center mr-2" >
-          <input type="checkbox" class="custom-control-input" id="fromFirst" [checked]="isFromFirst" (change)="onFromFirstClick($event.target.checked)">
+        <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
+          <input type="checkbox" class="custom-control-input" id="fromFirst" [checked]="isFromFirst"
+            (change)="onFromFirstClick($event.target.checked)">
           <label class="custom-control-label" for="fromFirst">1st</label>
         </div>
         <div class="custom-control custom-checkbox d-flex justify-content-center">
@@ -62,20 +63,34 @@
       <div class="d-flex align-items-center">
         <i class="material-icons app-cursor-default mr-2">edit</i>
         <input for="purchaseOrder" formControlName="name" class="form-control-plaintext">
-        <div class="custom-control custom-checkbox d-flex justify-content-center">
-          <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenPurchaseOrder">
-          <label class="custom-control-label" for="isHiddenPurchaseOrder">hide</label>
+        <div class="d-flex">
+          <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
+            <input type="checkbox" class="custom-control-input" formControlName="isSpaceAbove"
+              id="isSpaceAbovePurchaseOrder">
+            <label class="custom-control-label" for="isSpaceAbovePurchaseOrder">&#8593;</label>
+          </div>
+          <div class="custom-control custom-checkbox d-flex justify-content-center">
+            <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenPurchaseOrder">
+            <label class="custom-control-label" for="isHiddenPurchaseOrder">hide</label>
+          </div>
         </div>
       </div>
-      <input name="purchaseOrder" formControlName="value" type="text" class="form-control" [ngClass]="{'is-invalid': orderForm.get('purchaseOrder.value').invalid }">
+      <input name="purchaseOrder" formControlName="value" type="text" class="form-control"
+        [ngClass]="{'is-invalid': orderForm.get('purchaseOrder.value').invalid }">
     </div>
     <div formGroupName="dept" class="form-group col-4">
       <div class="d-flex align-items-center">
         <i class="material-icons app-cursor-default mr-2">edit</i>
         <input for="dept" formControlName="name" class="form-control-plaintext">
-        <div class="custom-control custom-checkbox d-flex justify-content-center">
-          <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenDept">
-          <label class="custom-control-label" for="isHiddenDept">hide</label>
+        <div class="d-flex">
+          <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
+            <input type="checkbox" class="custom-control-input" formControlName="isSpaceAbove" id="isSpaceAboveDept">
+            <label class="custom-control-label" for="isSpaceAboveDept">&#8593;</label>
+          </div>
+          <div class="custom-control custom-checkbox d-flex justify-content-center">
+            <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenDept">
+            <label class="custom-control-label" for="isHiddenDept">hide</label>
+          </div>
         </div>
       </div>
 
@@ -142,6 +157,12 @@
               <label for="name">{{field.get('name').value}}</label>
               <div class="d-flex">
                 <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
+                  <input type="checkbox" class="custom-control-input" formControlName="isSpaceAbove"
+                    id="{{'isSpaceAbove' + fieldIndex}}">
+                  <label class="custom-control-label" for="{{'isSpaceAbove' + fieldIndex}}">&#8593;</label>
+                </div>
+
+                <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
                   <input type="checkbox" class="custom-control-input" formControlName="isHidden"
                     id="{{'isHidden' + fieldIndex}}">
                   <label class="custom-control-label" for="{{'isHidden' + fieldIndex}}">hide</label>
@@ -178,7 +199,8 @@
             (change)="onDoubleLabelsClick($event.target.checked)">
           <label class="custom-control-label" for="doubleLabels">Double Labels</label>
         </div>
-        <button class="btn btn-danger ml-2" type="button" [disabled]="!orderForm.valid" (click)="onSaveOrder(orderForm)">Save order</button>
+        <button class="btn btn-danger ml-2" type="button" [disabled]="!orderForm.valid"
+          (click)="onSaveOrder(orderForm)">Save order</button>
         <button type="submit" class="btn btn-danger ml-2" [disabled]="!orderForm.valid">Print</button>
       </div>
     </div>
