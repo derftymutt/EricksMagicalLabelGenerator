@@ -21,22 +21,22 @@ const orderSchema = mongoose.Schema({
   from: {
     name: { type: String },
     value: { type: String },
-    isHidden: { type: String }
+    isHidden: { type: Boolean }
   },
   dept: {
     name: { type: String },
     value: { type: String },
-    isHidden: { type: String }
+    isHidden: { type: Boolean }
   },
   madeIn: {
     name: { type: String },
     value: { type: String },
-    isHidden: { type: String }
+    isHidden: { type: Boolean }
   },
   purchaseOrder: {
     name: { type: String, required: true  },
     value: { type: String, required: true  },
-    isHidden: { type: String }
+    isHidden: { type: Boolean }
   },
   labelType: {
     id: { type: String, required: true },
@@ -49,8 +49,9 @@ const orderSchema = mongoose.Schema({
     [{
       name: { type: String, required: true },
       value: { type: String },
-      isHidden: { type: String },
-      isAfterValue: {type: String }
+      isHidden: { type: Boolean },
+      isAfterValue: { type: Boolean },
+      isSpaceAbove: { type: Boolean }
     }]
   ]
 }, { timestamps: true });
