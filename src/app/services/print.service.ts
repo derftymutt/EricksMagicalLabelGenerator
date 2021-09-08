@@ -85,8 +85,18 @@ export class PrintService {
     let result = false;
     const lineLimit = 15;
     let lineCount = 0;
+    let isWinnersMerchants = false;
 
+    // quick fix to handle need for small font for WINNERS MERCHANTS INTERNATIONAL LP
     if (this.order) {
+      isWinnersMerchants = this.order.to.value.name.toLocaleLowerCase().includes('winner');
+
+      if (isWinnersMerchants) {
+        result = true;
+      }
+    }
+
+    if (!isWinnersMerchants && this.order) {
       if (!this.order.to.isHidden) { lineCount++; }
 
       if (Object.keys(this.order.to.value).length > 0) {
