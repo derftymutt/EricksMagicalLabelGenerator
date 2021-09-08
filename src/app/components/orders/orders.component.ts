@@ -40,6 +40,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
     return this.printService.isDoubleLabels;
   }
 
+  public get isFromFirst(): boolean {
+    return this.printService.isFromFirst;
+  }
+
   constructor(
     private fb: FormBuilder,
     private companyService: CompanyService,
@@ -217,6 +221,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.printService.isCartonCountOnTop = checked;
   }
 
+  public onFromFirstClick(checked: boolean): void {
+    this.printService.isFromFirst = checked;
+  }
+
   public onSaveOrder(orderForm: FormGroup): void {
     const order: Order = this.prepareOrder(orderForm);
     const modalRef = this.modalService.open(SaveOrderModalComponent);
@@ -338,9 +346,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   private initOrder(): void {
-    if (this.route.snapshot.data.order) {
+    if (this.route?.snapshot?.data?.order) {
       this.order = this.route.snapshot.data.order;
-    } else if (this.printService.order) {
+    } else if (this.printService?.order) {
       this.order = this.printService.order;
     } else {
       this.order = null;

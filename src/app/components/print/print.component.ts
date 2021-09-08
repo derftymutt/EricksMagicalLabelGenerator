@@ -20,6 +20,10 @@ export class PrintComponent implements OnInit {
     return this.printService.isCartonCountOnTop;
   }
 
+  public get isFromFirst(): boolean {
+    return this.printService.isFromFirst;
+  }
+
   public ngOnInit(): void {
     if (this.printService.order) {
       this.printData = {

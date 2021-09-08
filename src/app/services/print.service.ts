@@ -10,6 +10,7 @@ export class PrintService {
   public order: Order;
   public isDoubleLabels = false;
   public isCartonCountOnTop = false;
+  public isFromFirst = false;
 
   public buildPages(order: Order): Page[] {
     const result = [];
