@@ -11,6 +11,7 @@ export class PrintService {
   public isDoubleLabels = false;
   public isCartonCountOnTop = false;
   public isFromFirst = false;
+  public isShowTrameverAddress = false;
 
   public buildPages(order: Order): Page[] {
     const result = [];
@@ -93,6 +94,7 @@ export class PrintService {
 
       if (isWinnersMerchants) {
         result = true;
+        this.isShowTrameverAddress = true;
       }
     }
 
