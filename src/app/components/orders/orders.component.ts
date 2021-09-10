@@ -276,6 +276,9 @@ export class OrdersComponent implements OnInit, OnDestroy {
           labelFieldControl.get('value')
             .setValue(currentlabelFieldFormGroup.get('value').value);
 
+          labelFieldControl.get('isSpaceAbove')
+            .setValue(currentlabelFieldFormGroup.get('isSpaceAbove').value);
+
           labelFieldControl.get('isAfterValue')
             .setValue(currentlabelFieldFormGroup.get('isAfterValue').value);
 
