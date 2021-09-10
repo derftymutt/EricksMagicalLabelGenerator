@@ -44,6 +44,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
     return this.printService.isFromFirst;
   }
 
+  public get isShowFromAddress(): boolean {
+    return this.printService.isShowFromAddress
+  }
+
   constructor(
     private fb: FormBuilder,
     private companyService: CompanyService,
@@ -227,6 +231,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.printService.isFromFirst = checked;
   }
 
+  public onFromAddressClick(checked: boolean): void {
+    this.printService.isShowFromAddress = checked;
+  }
+
   public onSaveOrder(orderForm: FormGroup): void {
     const order: Order = this.prepareOrder(orderForm);
     const modalRef = this.modalService.open(SaveOrderModalComponent);
@@ -313,10 +321,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
       currentlabelFieldsLabelFieldsFormArray.push(
         this.fb.group({
           name: [field.name],
-          value: [this.order ? this.order.labelFields[i][fieldIndex].value : ''],
-          isSpaceAbove: [this.order ? this.order.labelFields[i][fieldIndex].isSpaceAbove : false],
-          isHidden: [this.order ? this.order.labelFields[i][fieldIndex].isHidden : false],
-          isAfterValue: [this.order ? this.order.labelFields[i][fieldIndex].isAfterValue : false]
+          value: [this.order ? this.order.labelFields[i][fieldIndex]?.value : ''],
+          isSpaceAbove: [this.order ? this.order.labelFields[i][fieldIndex]?.isSpaceAbove : false],
+          isHidden: [this.order ? this.order.labelFields[i][fieldIndex]?.isHidden : false],
+          isAfterValue: [this.order ? this.order.labelFields[i][fieldIndex]?.isAfterValue : false]
         })
       );
     });

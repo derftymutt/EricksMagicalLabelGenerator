@@ -24,8 +24,8 @@ export class PrintComponent implements OnInit {
     return this.printService.isFromFirst;
   }
 
-  public get isShowTrameverAddress(): boolean {
-    return this.printService.isShowTrameverAddress;
+  public get isShowFromAddress(): boolean {
+    return this.printService.isShowFromAddress;
   }
 
   public ngOnInit(): void {

@@ -10,6 +10,11 @@
         <i class="material-icons app-cursor-default mr-2">edit</i>
         <input for="from" formControlName="name" class="form-control-plaintext">
         <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
+          <input type="checkbox" class="custom-control-input" id="fromAddress" [checked]="isShowFromAddress"
+            (change)="onFromAddressClick($event.target.checked)">
+          <label class="custom-control-label" for="fromAddress">Address</label>
+        </div>
+        <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
           <input type="checkbox" class="custom-control-input" id="fromFirst" [checked]="isFromFirst"
             (change)="onFromFirstClick($event.target.checked)">
           <label class="custom-control-label" for="fromFirst">1st</label>
