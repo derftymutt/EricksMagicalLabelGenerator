@@ -32,6 +32,12 @@
         </ng-template>
 
         <ng-container *ngIf="!isFromFirst; else toSecondBlock">
+          <ng-container *ngIf="label.madeIn.value">
+            <div class="mb-4">
+              <span *ngIf="!label.madeIn.isHidden">{{ label.madeIn.name}}: </span>
+              {{ label.madeIn.value }}
+            </div>
+          </ng-container>
           <ng-container *ngIf="label.from.value">
             <div>
               <span *ngIf="!label.from.isHidden">{{ label.from.name}}: </span>
@@ -55,7 +61,7 @@
           </div>
         </ng-template>
 
-        <ng-container *ngIf="label.madeIn.value">
+        <ng-container *ngIf="isFromFirst && label.madeIn.value">
           <div class="mb-4">
             <span *ngIf="!label.madeIn.isHidden">{{ label.madeIn.name}}: </span>
             {{ label.madeIn.value }}
