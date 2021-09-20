@@ -90,7 +90,7 @@ export class PrintService {
 
     // quick fix to handle need for small font for WINNERS MERCHANTS INTERNATIONAL LP
     if (this.order) {
-      isWinnersMerchants = this.order.to.value.name.toLocaleLowerCase().includes('winner');
+      isWinnersMerchants = this.order.to?.value?.name?.toLocaleLowerCase().includes('winner');
 
       if (isWinnersMerchants) {
         result = true;
