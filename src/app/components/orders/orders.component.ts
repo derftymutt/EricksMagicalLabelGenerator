@@ -12,6 +12,7 @@ import { Order } from 'src/app/models/order';
 import { LabelTypeModalComponent } from '../label-type-modal/label-type-modal.component';
 import { PrintService } from 'src/app/services/print.service';
 import { SaveOrderModalComponent } from '../save-order-modal/save-order-modal.component';
+import { LabelsPerPageType } from 'src/app/models/labels-per-page-type';
 
 @Component({
   selector: 'app-orders',
@@ -25,6 +26,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   public companies: Company[] = [];
   public activeLabelType: LabelType = null;
   public isRepeatManyLabels = false;
+  public labelsPerPage = LabelsPerPageType;
   private companySubscription: Subscription;
   private labelTypeSubscription: Subscription;
 
@@ -124,7 +126,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       }),
       labelCount: [this.order ? this.order.labelCount : '', Validators.required],
       labelFields: this.fb.array([]),
-      printFormat: [-1, Validators.required]
+      labelsPerPage: [this.labelsPerPage.Four, Validators.required]
     });
 
     if (this.order) {
