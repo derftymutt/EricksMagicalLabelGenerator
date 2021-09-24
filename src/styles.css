@@ -149,18 +149,24 @@ body {
   Print Component Styles
 ***********************************
 */
-.page {
+.page-four-labels {
   display: flex;
   flex-wrap: wrap;
   height: 100%;
-  /* border: 2px solid yellow; */
-  /* border-bottom: 4px solid pink; */
+  border: 2px solid yellow;
+  border-bottom: 4px solid pink;
+}
+
+.page-two-labels {
+  height: 100%;
+  border: 2px solid yellow;
+  border-bottom: 4px solid pink;
 }
 
 .label-container {
   flex-basis: 50%;
   height: 50%;
-  /* border: 2px dashed lightgreen; */
+  border: 2px dashed lightgreen;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -169,7 +175,7 @@ body {
 .label {
   width: 85%;
   height: 85%;
-  /* border: 2px dotted violet; */
+  border: 2px dotted violet;
 }
 
 @media print {

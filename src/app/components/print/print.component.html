@@ -2,17 +2,13 @@
 <!-- https://stackoverflow.com/questions/45776796/how-to-divide-a-webpage-into-four-parts-using-flexbox -->
 
 <ng-container *ngIf="printData && printData.pages">
-  <div *ngFor="let page of printData.pages" class="page">
-    <div *ngFor="let label of page.labels" class="label-container">
 
-      <app-print-page-four-labels *ngIf="printData.metaData.labelsPerPage === labelsPerPage.Four" [label]="label"
-        [printMetaData]="printData.metaData">
-      </app-print-page-four-labels>
+  <app-print-page-four-labels *ngIf="printData.metaData.labelsPerPage === labelsPerPage.Four" [label]="label"
+    [printData]="printData">
+  </app-print-page-four-labels>
 
-      <app-print-page-two-labels *ngIf="printData.metaData.labelsPerPage === labelsPerPage.Two" [label]="label"
-        [printMetaData]="printData.metaData">
-      </app-print-page-two-labels>
+  <app-print-page-two-labels *ngIf="printData.metaData.labelsPerPage === labelsPerPage.Two" [label]="label"
+    [printData]="printData">
+  </app-print-page-two-labels>
 
-    </div>
-  </div>
 </ng-container>

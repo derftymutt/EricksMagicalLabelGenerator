@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Label } from 'src/app/models/label';
-import { PrintMetaData } from 'src/app/models/print-meta-data';
+import { PrintData } from 'src/app/models/print-data';
 
 @Component({
   selector: 'app-print-page-two-labels',
@@ -8,5 +8,5 @@ import { PrintMetaData } from 'src/app/models/print-meta-data';
 })
 export class PrintPageTwoLabelsComponent {
   @Input() public label: Label;
-  @Input() public printMetaData: PrintMetaData;
+  @Input() public printData: PrintData;
 }
