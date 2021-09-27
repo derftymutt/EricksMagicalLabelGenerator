@@ -126,7 +126,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       }),
       labelCount: [this.order ? this.order.labelCount : '', Validators.required],
       labelFields: this.fb.array([]),
-      labelsPerPage: [this.labelsPerPage.Four, Validators.required]
+      labelsPerPage: [this.order ? this.order.labelsPerPage : this.labelsPerPage.Four, Validators.required]
     });
 
     if (this.order) {
