@@ -21,9 +21,8 @@ export class PrintService {
     const orderLabelCount = +order.labelCount;
 
     for (let index = 0; index < orderLabelCount; index++) {
-      // TODO: make labelcount dynamic
       if (labelsPerPageCount === 0) {
-        page.labelCount = 4;
+        page.labelCount = order.labelsPerPage;
       }
 
       const label: Label = {

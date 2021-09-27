@@ -1,7 +1,7 @@
 import { Page } from './page';
+import { PrintMetaData } from './print-meta-data';
 
 export interface PrintData {
   pages: Page[];
-  labelCount: number;
-  metaData?: any;
+  metaData: PrintMetaData
 }

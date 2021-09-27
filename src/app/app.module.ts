@@ -15,6 +15,9 @@ import { SaveOrderModalComponent } from './components/save-order-modal/save-orde
 import { MainComponent } from './components/main/main.component';
 import { OrdersSavedComponent } from './components/orders-saved/orders-saved.component';
 import { OrderResolver } from './services/order.resolver';
+import { EnumKeysPipe } from './pipes/enum-keys.pipe';
+import { PrintPageFourLabelsComponent } from './components/print-page-four-labels/print-page-four-labels.component';
+import { PrintPageTwoLabelsComponent } from './components/print-page-two-labels/print-page-two-labels.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +26,12 @@ import { OrderResolver } from './services/order.resolver';
     OrdersComponent,
     OrdersSavedComponent,
     PrintComponent,
+    PrintPageFourLabelsComponent,
+    PrintPageTwoLabelsComponent,
     CompanyModalComponent,
     LabelTypeModalComponent,
-    SaveOrderModalComponent
+    SaveOrderModalComponent,
+    EnumKeysPipe
   ],
   imports: [
     BrowserModule,

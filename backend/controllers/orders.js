@@ -4,6 +4,7 @@ exports.createOrder = (req, res, next) => {
   const order = new Order({
     title: req.body.title,
     labelCount: req.body.labelCount,
+    labelsPerPage: req.body.labelsPerPage,
     to: req.body.to,
     from: req.body.from,
     dept: req.body.dept,

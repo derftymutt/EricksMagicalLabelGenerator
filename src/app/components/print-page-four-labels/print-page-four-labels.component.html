@@ -1,0 +1,101 @@
+<div *ngFor="let page of printData.pages" class="page-four-labels">
+  <div *ngFor="let label of page.labels" class="label-container">
+
+    <div class="label d-flex flex-column justify-content-between" [class.print-font-small]="printData.metaData.isSmallFont">
+      <div *ngIf="printData.metaData.isCartonCountOnTop">CARTON &nbsp;<u>{{ label.labelNumber }}</u> OF &nbsp;<u>{{
+          printData.metaData.labelCount
+          }}</u></div>
+
+      <ng-container *ngIf="printData.metaData.isFromFirst; else toFirstBlock">
+        <ng-container *ngIf="label.from.value">
+          <div>
+            <span *ngIf="!label.from.isHidden">{{ label.from.name}}: </span>
+            {{ label.from.value }}
+          </div>
+          <div *ngIf="printData.metaData.isShowFromAddress" class="ml-4">
+            <div>1935 East 55 Street</div>
+            <div>Vernon CA 90058</div>
+            <div>United States</div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-template #toFirstBlock>
+        <div *ngIf="!label.to.isHidden && label.to.value.name">{{ label.to.name }}: </div>
+        <div *ngIf="label.to.value.name" class="ml-4">
+          <div>{{ label.to.value.name}}</div>
+          <div>{{ label.to.value.address.street1 }}</div>
+          <div *ngIf="label.to.value.address.street2">{{ label.to.value.address.street2 }}</div>
+          <div>{{ label.to.value.address.city }}, {{ label.to.value.address.state }} {{ label.to.value.address.zip }}
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-container *ngIf="!printData.metaData.isFromFirst; else toSecondBlock">
+        <ng-container *ngIf="label.madeIn.value">
+          <div class="mb-4">
+            <span *ngIf="!label.madeIn.isHidden">{{ label.madeIn.name}}: </span>
+            {{ label.madeIn.value }}
+          </div>
+        </ng-container>
+        <ng-container *ngIf="label.from.value">
+          <div>
+            <span *ngIf="!label.from.isHidden">{{ label.from.name}}: </span>
+            {{ label.from.value }}
+          </div>
+          <div *ngIf="isShowFromAddress" class="ml-4">
+            <div>1935 East 55 Street</div>
+            <div>Vernon CA 90058</div>
+            <div>United States</div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-template #toSecondBlock>
+        <div *ngIf="!label.to.isHidden && label.to.value.name">{{ label.to.name }}: </div>
+        <div *ngIf="label.to.value.name" class="ml-4">
+          <div>{{ label.to.value.name}}</div>
+          <div>{{ label.to.value.address.street1 }}</div>
+          <div *ngIf="label.to.value.address.street2">{{ label.to.value.address.street2 }}</div>
+          <div>{{ label.to.value.address.city }}, {{ label.to.value.address.state }} {{ label.to.value.address.zip }}
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-container *ngIf="printData.metaData.isFromFirst && label.madeIn.value">
+        <div class="mb-4">
+          <span *ngIf="!label.madeIn.isHidden">{{ label.madeIn.name}}: </span>
+          {{ label.madeIn.value }}
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="label.purchaseOrder.value">
+        <div [class.mt-3]="label.purchaseOrder.isSpaceAbove">
+          <span *ngIf="!label.purchaseOrder.isHidden">{{ label.purchaseOrder.name}}: </span>
+          {{ label.purchaseOrder.value }}
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="label.dept.value">
+        <div [class.mt-3]="label.dept.isSpaceAbove">
+          <span *ngIf="!label.dept.isHidden">{{ label.dept.name}}: </span>
+          {{ label.dept.value }}
+        </div>
+      </ng-container>
+
+      <div *ngFor="let field of label.fields">
+        <ng-container *ngIf="field.value">
+          <div [class.mt-3]="field.isSpaceAbove">
+            <span *ngIf="!field.isHidden && !field.isAfterValue">{{ field.name}}: </span>
+            {{ field.value }}
+            <span *ngIf="!field.isHidden && field.isAfterValue"> {{ field.name}}</span>
+          </div>
+        </ng-container>
+      </div>
+
+      <div *ngIf="!printData.metaData.isCartonCountOnTop">CARTON &nbsp;<u>{{ label.labelNumber }}</u> OF &nbsp;<u>{{
+          printData.metaData.labelCount }}</u>
+      </div>
+    </div>
+
+
+  </div>
+</div>

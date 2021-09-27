@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PrintService } from '../../services/print.service';
 import { PrintData } from '../../models/print-data';
+import { LabelsPerPageType } from 'src/app/models/labels-per-page-type';
 
 @Component({
   selector: 'app-print',
@@ -9,40 +10,41 @@ import { PrintData } from '../../models/print-data';
 })
 export class PrintComponent implements OnInit {
   public printData: PrintData;
-  public isSmallfont: boolean;
+  public labelsPerPage = LabelsPerPageType
 
   constructor(
     private printService: PrintService,
     private router: Router
   ) {}
 
-  public get isCartonCountOnTop(): boolean {
-    return this.printService.isCartonCountOnTop;
-  }
-
-  public get isFromFirst(): boolean {
-    return this.printService.isFromFirst;
-  }
-
-  public get isShowFromAddress(): boolean {
-    return this.printService.isShowFromAddress;
-  }
-
   public ngOnInit(): void {
     if (this.printService.order) {
       this.printData = {
         pages: this.printService.buildPages(this.printService.order),
-        labelCount: this.printService.order.labelCount
+        metaData: {
+          labelCount: this.printService.order.labelCount,
+          labelsPerPage: this.printService.order.labelsPerPage,
+          isCartonCountOnTop: this.printService.isCartonCountOnTop,
+          isFromFirst: this.printService.isFromFirst,
+          isShowFromAddress: this.printService.isShowFromAddress,
+          isSmallFont: this.printService.isSmallFont()
+        }
       };
 
       if (this.printService.isDoubleLabels) {
         this.printData = {
           pages: this.printService.doubleLabels(this.printData.pages),
-          labelCount: this.printService.order.labelCount
+          metaData: {
+            labelCount: this.printService.order.labelCount,
+            labelsPerPage: this.printService.order.labelsPerPage,
+            isCartonCountOnTop: this.printService.isCartonCountOnTop,
+            isFromFirst: this.printService.isFromFirst,
+            isShowFromAddress: this.printService.isShowFromAddress,
+            isSmallFont: this.printService.isSmallFont()
+          }
         };
       }
 
-      this.isSmallfont = this.printService.isSmallFont();
       // this.print();
     }
   }

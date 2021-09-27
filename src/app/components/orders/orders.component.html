@@ -186,29 +186,28 @@
       </div>
 
     </div>
-
-    <div *ngIf="orderForm.get('labelFields')['controls'].length > 0" class="d-flex justify-content-end">
-      <div class="form-group d-flex align-items-center">
-        <!-- <select name="printFormat" id="printFormat" class="form-control">
-              <option value="-1">SELECT FORMAT</option>
-              <option value="1">2 per page</option>
-              <option value="2">4 per page</option>
-            </select> -->
-        <div class="custom-control custom-checkbox d-flex justify-content-center">
-          <input type="checkbox" class="custom-control-input" id="cartonCountOnTop" [checked]="isCartonCountOnTop"
-            (change)="onCartonCountOnTopClick($event.target.checked)">
-          <label class="custom-control-label" for="cartonCountOnTop">Carton count on top</label>
-        </div>
-        <div class="custom-control custom-checkbox d-flex justify-content-center ml-2">
-          <input type="checkbox" class="custom-control-input" id="doubleLabels" [checked]="isDoubleLabels"
-            (change)="onDoubleLabelsClick($event.target.checked)">
-          <label class="custom-control-label" for="doubleLabels">Double Labels</label>
-        </div>
-        <button class="btn btn-danger ml-2" type="button" [disabled]="!orderForm.valid"
-          (click)="onSaveOrder(orderForm)">Save order</button>
-        <button type="submit" class="btn btn-danger ml-2" [disabled]="!orderForm.valid">Print</button>
-      </div>
-    </div>
-
   </div>
+  <div *ngIf="orderForm.get('labelFields')['controls'].length > 0">
+    <div class="form-group d-flex align-items-center justify-content-end">
+      <select formControlName="labelsPerPage" class="form-control w-25 mr-2">
+        <option *ngFor="let perPageType of labelsPerPage | enumKeys" [ngValue]="+perPageType.key">
+            {{ perPageType.value }} per page
+          </option>
+      </select>
+      <div class="custom-control custom-checkbox d-flex justify-content-center">
+        <input type="checkbox" class="custom-control-input" id="cartonCountOnTop" [checked]="isCartonCountOnTop"
+          (change)="onCartonCountOnTopClick($event.target.checked)">
+        <label class="custom-control-label" for="cartonCountOnTop">Carton count on top</label>
+      </div>
+      <div class="custom-control custom-checkbox d-flex justify-content-center ml-2">
+        <input type="checkbox" class="custom-control-input" id="doubleLabels" [checked]="isDoubleLabels"
+          (change)="onDoubleLabelsClick($event.target.checked)">
+        <label class="custom-control-label" for="doubleLabels">Double Labels</label>
+      </div>
+      <button class="btn btn-danger ml-2" type="button" [disabled]="!orderForm.valid"
+        (click)="onSaveOrder(orderForm)">Save order</button>
+      <button type="submit" class="btn btn-danger ml-2" [disabled]="!orderForm.valid">Print</button>
+    </div>
+  </div>
+
 </form>
