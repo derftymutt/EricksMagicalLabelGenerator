@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const orderSchema = mongoose.Schema({
   title: { type: String, required: true },
   labelCount: { type: Number, required: true },
+  labelsPerPage: { type: Number, required: true },
   to: {
     name: { type: String },
     value: {
