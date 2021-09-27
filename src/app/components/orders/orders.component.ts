@@ -149,10 +149,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
       if (labelCount > currentLabelCount) {
         const additionalLabelsCount = labelCount - currentLabelCount;
-        this.patchlabelFieldsFormArray(additionalLabelsCount, currentLabelCount);
+        this.HandlePatchlabelFieldsFormArray(additionalLabelsCount, currentLabelCount);
       } else {
         this.labelFieldsFormArray.clear();
-        this.patchlabelFieldsFormArray(labelCount);
+        this.HandlePatchlabelFieldsFormArray(labelCount);
       }
     }
   }
@@ -301,7 +301,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
   }
 
-  private patchlabelFieldsFormArray(labelCount: number, startingIndex: number = 0): void {
+  private HandlePatchlabelFieldsFormArray(labelCount: number, startingIndex: number = 0): void {
     if (this.activeLabelType) {
       const labelCountFromStartingIndex = labelCount + startingIndex;
 
@@ -323,10 +323,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
       currentlabelFieldsLabelFieldsFormArray.push(
         this.fb.group({
           name: [field.name],
-          value: [this.order ? this.order.labelFields[i][fieldIndex]?.value : ''],
-          isSpaceAbove: [this.order ? this.order.labelFields[i][fieldIndex]?.isSpaceAbove : false],
-          isHidden: [this.order ? this.order.labelFields[i][fieldIndex]?.isHidden : false],
-          isAfterValue: [this.order ? this.order.labelFields[i][fieldIndex]?.isAfterValue : false]
+          value: [Array.isArray(this.order?.labelFields) && Array.isArray(this.order?.labelFields[i]) ? this.order.labelFields[i][fieldIndex]?.value : ''],
+          isSpaceAbove: [Array.isArray(this.order?.labelFields) && Array.isArray(this.order?.labelFields[i]) ? this.order.labelFields[i][fieldIndex]?.isSpaceAbove : false],
+          isHidden: [Array.isArray(this.order?.labelFields) && Array.isArray(this.order?.labelFields[i]) ? this.order.labelFields[i][fieldIndex]?.isHidden : false],
+          isAfterValue: [Array.isArray(this.order?.labelFields) && Array.isArray(this.order?.labelFields[i]) ? this.order.labelFields[i][fieldIndex]?.isAfterValue : false]
         })
       );
     });
