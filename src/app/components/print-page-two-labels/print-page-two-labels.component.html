@@ -4,8 +4,9 @@
     <div class="label d-flex flex-column justify-content-between"
       [class.print-font-small]="printData.metaData.isSmallFont">
 
-      <div class="d-flex justify-content-between">
-        <div *ngIf="label.from.value">
+
+      <div class="row justify-content-between">
+        <div class="col-4" *ngIf="label.from.value">
           <div>
             <span *ngIf="!label.from.isHidden">{{ label.from.name}}: </span>
             {{ label.from.value }}
@@ -13,11 +14,11 @@
           <div *ngIf="printData.metaData.isShowFromAddress">
             <div>1935 East 55 Street</div>
             <div>Vernon CA 90058</div>
-            <div>United States</div>
+            <!-- <div>United States</div> -->
           </div>
         </div>
 
-        <div>
+        <div class="col-4">
           <div *ngIf="!label.to.isHidden && label.to.value.name">{{ label.to.name }}: {{ label.to.value.name}}</div>
           <div *ngIf="label.to.value.name">
             <div>{{ label.to.value.address.street1 }}</div>
