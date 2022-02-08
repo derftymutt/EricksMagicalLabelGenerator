@@ -11,10 +11,13 @@
             <span *ngIf="!label.from.isHidden">{{ label.from.name}}: </span>
             {{ label.from.value }}
           </div>
-          <div *ngIf="printData.metaData.isShowFromAddress">
+          <div *ngIf="printData.metaData.isShowFromVernonAddress && !printData.metaData.isShowFromSanDiegoAddress">
             <div>1935 East 55 Street</div>
             <div>Vernon CA 90058</div>
-            <!-- <div>United States</div> -->
+          </div>
+          <div *ngIf="printData.metaData.isShowFromSanDiegoAddress && !printData.metaData.isShowFromVernonAddress">
+            <div>2275 Michael Faraday Dr.</div>
+            <div>San Diego CA 92154</div>
           </div>
         </div>
 

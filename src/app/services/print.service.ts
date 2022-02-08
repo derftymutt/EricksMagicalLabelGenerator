@@ -11,7 +11,8 @@ export class PrintService {
   public isDoubleLabels = false;
   public isCartonCountOnTop = false;
   public isFromFirst = false;
-  public isShowFromAddress = false;
+  public isShowFromVernonAddress = false;
+  public isShowFromSanDiegoAddress = false;
 
   public buildPages(order: Order): Page[] {
     const result = [];
