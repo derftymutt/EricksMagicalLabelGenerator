@@ -46,8 +46,12 @@ export class OrdersComponent implements OnInit, OnDestroy {
     return this.printService.isFromFirst;
   }
 
-  public get isShowFromAddress(): boolean {
-    return this.printService.isShowFromAddress
+  public get isShowFromVernonAddress(): boolean {
+    return this.printService.isShowFromVernonAddress
+  }
+
+  public get isShowFromSanDiegoAddress(): boolean {
+    return this.printService.isShowFromSanDiegoAddress
   }
 
   constructor(
@@ -233,8 +237,12 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.printService.isFromFirst = checked;
   }
 
-  public onFromAddressClick(checked: boolean): void {
-    this.printService.isShowFromAddress = checked;
+  public onFromVernonAddressClick(checked: boolean): void {
+    this.printService.isShowFromVernonAddress = checked;
+  }
+
+  public onFromSanDiegoAddressClick(checked: boolean): void {
+    this.printService.isShowFromSanDiegoAddress = checked;
   }
 
   public onSaveOrder(orderForm: FormGroup): void {

@@ -26,7 +26,8 @@ export class PrintComponent implements OnInit {
           labelsPerPage: this.printService.order.labelsPerPage,
           isCartonCountOnTop: this.printService.isCartonCountOnTop,
           isFromFirst: this.printService.isFromFirst,
-          isShowFromAddress: this.printService.isShowFromAddress,
+          isShowFromVernonAddress: this.printService.isShowFromVernonAddress,
+          isShowFromSanDiegoAddress: this.printService.isShowFromSanDiegoAddress,
           isSmallFont: this.printService.isSmallFont()
         }
       };
@@ -39,7 +40,8 @@ export class PrintComponent implements OnInit {
             labelsPerPage: this.printService.order.labelsPerPage,
             isCartonCountOnTop: this.printService.isCartonCountOnTop,
             isFromFirst: this.printService.isFromFirst,
-            isShowFromAddress: this.printService.isShowFromAddress,
+            isShowFromVernonAddress: this.printService.isShowFromVernonAddress,
+            isShowFromSanDiegoAddress: this.printService.isShowFromSanDiegoAddress,
             isSmallFont: this.printService.isSmallFont()
           }
         };
