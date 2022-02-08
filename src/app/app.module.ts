@@ -20,34 +20,29 @@ import { PrintPageFourLabelsComponent } from './components/print-page-four-label
 import { PrintPageTwoLabelsComponent } from './components/print-page-two-labels/print-page-two-labels.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MainComponent,
-    OrdersComponent,
-    OrdersSavedComponent,
-    PrintComponent,
-    PrintPageFourLabelsComponent,
-    PrintPageTwoLabelsComponent,
-    CompanyModalComponent,
-    LabelTypeModalComponent,
-    SaveOrderModalComponent,
-    EnumKeysPipe
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    CommonModule,
-    HttpClientModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    NgbModule
-  ],
-  providers: [OrderResolver],
-  entryComponents: [
-    CompanyModalComponent,
-    LabelTypeModalComponent,
-    SaveOrderModalComponent
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MainComponent,
+        OrdersComponent,
+        OrdersSavedComponent,
+        PrintComponent,
+        PrintPageFourLabelsComponent,
+        PrintPageTwoLabelsComponent,
+        CompanyModalComponent,
+        LabelTypeModalComponent,
+        SaveOrderModalComponent,
+        EnumKeysPipe
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        CommonModule,
+        HttpClientModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        NgbModule
+    ],
+    providers: [OrderResolver],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
