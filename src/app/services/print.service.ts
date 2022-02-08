@@ -98,20 +98,47 @@ export class PrintService {
     }
 
     if (!isWinnersMerchants && this.order) {
-      if (!this.order.to.isHidden) { lineCount++; }
-
-      if (Object.keys(this.order.to.value).length > 0) {
-        if (!this.order.to.isHidden) { lineCount++; }
-        if (this.order.to.value.name) { lineCount++; }
-        if (this.order.to.value.address.street1) { lineCount++; }
-        if (this.order.to.value.address.street2) { lineCount++; }
-        if (this.order.to.value.address.city) { lineCount++; }
+      if (!this.order.to.isHidden) {
+        lineCount++;
       }
 
-      if (this.order.madeIn.value) { lineCount++; }
-      if (this.order.from.value) { lineCount++; }
-      if (this.order.purchaseOrder.value) { lineCount++; }
-      if (this.order.dept.value) { lineCount++; }
+      if (Object.keys(this.order.to.value).length > 0) {
+        if (!this.order.to.isHidden) {
+          lineCount++;
+        }
+
+        if (this.order.to.value.name) {
+          lineCount++;
+        }
+
+        if (this.order.to.value.address.street1) {
+          lineCount++;
+        }
+
+        if (this.order.to.value.address.street2) {
+          lineCount++;
+        }
+
+        if (this.order.to.value.address.city) {
+          lineCount++;
+        }
+      }
+
+      if (this.order.madeIn.value) {
+        lineCount++;
+      }
+
+      if (this.order.from.value) {
+        lineCount++;
+      }
+
+      if (this.order.purchaseOrder.value) {
+        lineCount++;
+      }
+
+      if (this.order.dept.value) {
+        lineCount++;
+      }
 
       if (this.order.labelFields.length > 0) {
         const fieldCount = this.order.labelFields[0].length;

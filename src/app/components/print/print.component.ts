@@ -10,7 +10,7 @@ import { LabelsPerPageType } from 'src/app/models/labels-per-page-type';
 })
 export class PrintComponent implements OnInit {
   public printData: PrintData;
-  public labelsPerPage = LabelsPerPageType
+  public labelsPerPage = LabelsPerPageType;
 
   constructor(
     private printService: PrintService,
