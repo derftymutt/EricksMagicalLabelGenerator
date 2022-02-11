@@ -18,6 +18,7 @@ import { OrderResolver } from './services/order.resolver';
 import { EnumKeysPipe } from './pipes/enum-keys.pipe';
 import { PrintPageFourLabelsComponent } from './components/print-page-four-labels/print-page-four-labels.component';
 import { PrintPageTwoLabelsComponent } from './components/print-page-two-labels/print-page-two-labels.component';
+import { PrintPageOneLabelComponent } from './components/print-page-one-label/print-page-one-label.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { PrintPageTwoLabelsComponent } from './components/print-page-two-labels/
         PrintComponent,
         PrintPageFourLabelsComponent,
         PrintPageTwoLabelsComponent,
+        PrintPageOneLabelComponent,
         CompanyModalComponent,
         LabelTypeModalComponent,
         SaveOrderModalComponent,
