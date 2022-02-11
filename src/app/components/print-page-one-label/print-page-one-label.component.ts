@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Label } from 'src/app/models/label';
 import { PrintData } from 'src/app/models/print-data';
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-print-page-one-label',
@@ -9,4 +10,8 @@ import { PrintData } from 'src/app/models/print-data';
 export class PrintPageOneLabelComponent {
   @Input() public label: Label;
   @Input() public printData: PrintData;
+
+  public onMakePdf() {
+
+  }
 }
