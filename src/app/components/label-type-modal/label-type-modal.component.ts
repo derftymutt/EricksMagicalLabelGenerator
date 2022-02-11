@@ -9,7 +9,7 @@ import { LabelType } from 'src/app/models/label-type';
   templateUrl: './label-type-modal.component.html'
 })
 export class LabelTypeModalComponent implements OnInit {
-  @Input() labelType: LabelType;
+  @Input() public labelType: LabelType;
   public labelTypeForm: FormGroup;
   public isEditMode = false;
 

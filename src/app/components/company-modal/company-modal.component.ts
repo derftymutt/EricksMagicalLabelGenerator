@@ -9,7 +9,7 @@ import { Company } from 'src/app/models/company';
   templateUrl: './company-modal.component.html'
 })
 export class CompanyModalComponent implements OnInit {
-  @Input() company: Company;
+  @Input() public company: Company;
   public companyForm: FormGroup;
   public isEditMode = false;
 

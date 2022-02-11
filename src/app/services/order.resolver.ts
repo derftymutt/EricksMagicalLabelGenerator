@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class OrderResolver implements Resolve<Order> {
   constructor(private orderService: OrderService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Order> {
+  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Order> {
     const id = route.params.id;
 
     return this.orderService.getOrder(id);

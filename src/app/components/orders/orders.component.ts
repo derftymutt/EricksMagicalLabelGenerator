@@ -47,11 +47,11 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   public get isShowFromVernonAddress(): boolean {
-    return this.printService.isShowFromVernonAddress
+    return this.printService.isShowFromVernonAddress;
   }
 
   public get isShowFromSanDiegoAddress(): boolean {
-    return this.printService.isShowFromSanDiegoAddress
+    return this.printService.isShowFromSanDiegoAddress;
   }
 
   constructor(
