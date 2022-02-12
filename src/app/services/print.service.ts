@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Order } from '../models/order';
 import { Page } from '../models/page';
 import { Label } from '../models/label';
+import { PrintData } from '../models/print-data';
 
 @Injectable({
   providedIn: 'root'
@@ -51,12 +52,11 @@ export class PrintService {
     return result;
   }
 
-  public doubleLabels(pages: Page[]): Page[] {
-    const labelsPerPage = 4;
+  public doubleLabels(printData: PrintData): Page[] {
     const doubledLabels = [];
     let currentLabelCount = 0;
 
-    pages.forEach(page => {
+    printData.pages?.forEach(page => {
       page.labels.forEach(label => {
         doubledLabels.push(label);
         doubledLabels.push(label);
@@ -70,7 +70,7 @@ export class PrintService {
       newPage.labels.push(lbl);
       currentLabelCount++;
 
-      if (currentLabelCount === labelsPerPage) {
+      if (currentLabelCount === printData.metaData.labelsPerPage) {
         pagesWithDoubledLabels.push(newPage);
         currentLabelCount = 0;
         newPage = new Page();

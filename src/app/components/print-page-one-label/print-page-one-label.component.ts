@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Label } from 'src/app/models/label';
 import { PrintData } from 'src/app/models/print-data';
 import * as html2pdf from 'html2pdf.js';
@@ -7,13 +7,21 @@ import * as html2pdf from 'html2pdf.js';
   selector: 'app-print-page-one-label',
   templateUrl: './print-page-one-label.component.html'
 })
-export class PrintPageOneLabelComponent {
+export class PrintPageOneLabelComponent implements OnInit {
   @Input() public label: Label;
   @Input() public printData: PrintData;
   @ViewChild('pdfContainer', { static: true }) public pdfContainer: ElementRef;
 
-  public onMakePdf() {
-    // const element = document.getElementById('element-to-print');
-    html2pdf(this.pdfContainer.nativeElement);
+  public ngOnInit(): void {
+    this.makePdf();
+  }
+
+  public makePdf() {
+    const options = {
+      filename: 'tramever-labels.pdf',
+      jsPDF: { unit: 'in', format: [6, 4], orientation: 'portrait' }
+    };
+
+    html2pdf().set(options).from(this.pdfContainer.nativeElement).save();
   }
 }

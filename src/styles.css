@@ -178,6 +178,16 @@ body {
   /* border: 2px dotted violet; */
 }
 
+.label-four-by-six {
+  width: 384px;
+  height: 576px
+}
+
+.font-bold-uppercase {
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+}
+
 @media print {
   @page {
     size: letter portrait;
@@ -198,8 +208,4 @@ body {
   .page {
     page-break-after: always;
   }
-}
-
-.page {
-  page-break-after: always;
 }
