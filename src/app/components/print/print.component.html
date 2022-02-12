@@ -11,4 +11,8 @@
     [printData]="printData">
   </app-print-page-two-labels>
 
+  <app-print-page-one-label *ngIf="printData.metaData.labelsPerPage === labelsPerPage.One" [label]="label"
+    [printData]="printData">
+  </app-print-page-one-label>
+
 </ng-container>
