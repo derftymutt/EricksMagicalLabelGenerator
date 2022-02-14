@@ -6,7 +6,6 @@ import { PdfOptions } from '../models/pdf-options';
   providedIn: 'root'
 })
 export class PdfService {
-
   public makePdf(pdfOptions: PdfOptions, htmlContainer: HTMLElement): void {
     if (pdfOptions == null || htmlContainer == null) {
       console.error('makePdf called with invalid data');
