@@ -1,7 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Label } from 'src/app/models/label';
 import { PrintData } from 'src/app/models/print-data';
-import * as html2pdf from 'html2pdf.js';
 import { PdfService } from 'src/app/services/pdf.service';
 import { PdfOptions } from 'src/app/models/pdf-options';
 
@@ -17,10 +16,10 @@ export class PrintPageOneLabelComponent implements OnInit {
   public constructor(private pdfService: PdfService) {}
 
   public ngOnInit(): void {
-    // this.makePdf();
+    this.makePdf();
   }
 
-  public onMakePdf() {
+  public makePdf() {
     const options: PdfOptions = {
       filename: 'tramever-labels.pdf',
       jsPDF: { unit: 'in', format: [6, 4], orientation: 'portrait' }
