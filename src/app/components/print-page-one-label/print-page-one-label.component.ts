@@ -16,7 +16,9 @@ export class PrintPageOneLabelComponent implements OnInit {
   public constructor(private pdfService: PdfService) {}
 
   public ngOnInit(): void {
-    this.makePdf();
+    setTimeout(() => {
+      this.makePdf();
+    }, 1000);
   }
 
   public makePdf() {
