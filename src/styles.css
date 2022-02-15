@@ -163,6 +163,13 @@ body {
   /* border-bottom: 4px solid pink; */
 }
 
+.page-one-label {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .label-container {
   flex-basis: 50%;
   height: 50%;
@@ -172,9 +179,24 @@ body {
   align-items: center;
 }
 
+.label-container-four-by-six {
+  width: 384px;
+  height: 576px;
+  /* border: 2px dashed lightgreen; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .label {
   width: 85%;
   height: 85%;
+  /* border: 2px dotted violet; */
+}
+
+.label-fuller-bleed {
+  width: 95%;
+  height: 95%;
   /* border: 2px dotted violet; */
 }
 
