@@ -16,11 +16,10 @@ export class PrintPageOneLabelComponent implements OnInit {
   public constructor(private pdfService: PdfService) {}
 
   public ngOnInit(): void {
-    setTimeout(() => {
-      this.makePdf();
-    }, 1000);
+    // this.makePdf();
   }
 
+  // not working, #pdfcontainer commented out, see comment in template
   public makePdf() {
     const options: PdfOptions = {
       filename: 'tramever-labels.pdf',
