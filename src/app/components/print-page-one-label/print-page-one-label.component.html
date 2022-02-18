@@ -1,9 +1,9 @@
 <!-- <div #pdfContainer> -->
   <!-- replace .page-one-label with .page for pdf, .label-container-four-by-six with .label-container, label-fuller-bleed with .label -->
   <div *ngFor="let page of printData.pages" class="font-bold-uppercase page-one-label">
-    <div *ngFor="let label of page.labels" class="label-container-four-by-six">
+    <div *ngFor="let label of page.labels" class="label-container">
 
-      <div class="label-fuller-bleed d-flex flex-column justify-content-between print-font-smaller">
+      <div class="label d-flex flex-column justify-content-between">
         <div *ngIf="printData.metaData.isCartonCountOnTop">CARTON &nbsp;<u>{{ label.labelNumber }}</u> OF &nbsp;<u>{{
             printData.metaData.labelCount
             }}</u></div>

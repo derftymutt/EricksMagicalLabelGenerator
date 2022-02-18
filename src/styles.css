@@ -165,9 +165,6 @@ body {
 
 .page-one-label {
   height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .label-container {
