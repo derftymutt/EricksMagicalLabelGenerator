@@ -31,9 +31,9 @@
         <div *ngIf="!label.to.isHidden && label.to.value.name">{{ label.to.name }}: </div>
         <div *ngIf="label.to.value.name" class="ml-4">
           <div>{{ label.to.value.name}}</div>
-          <div>{{ label.to.value.address.street1 }}</div>
+          <div *ngIf="label.to.value.address.street1">{{ label.to.value.address.street1 }}</div>
           <div *ngIf="label.to.value.address.street2">{{ label.to.value.address.street2 }}</div>
-          <div>{{ label.to.value.address.city }}, {{ label.to.value.address.state }} {{ label.to.value.address.zip }}
+          <div *ngIf="label.to.value.address.city">{{ label.to.value.address.city }}, {{ label.to.value.address.state }} {{ label.to.value.address.zip }}
           </div>
         </div>
       </ng-template>
@@ -68,9 +68,9 @@
         <div *ngIf="!label.to.isHidden && label.to.value.name">{{ label.to.name }}: </div>
         <div *ngIf="label.to.value.name" class="ml-4">
           <div>{{ label.to.value.name}}</div>
-          <div>{{ label.to.value.address.street1 }}</div>
+          <div *ngIf="label.to.value.address.street1">{{ label.to.value.address.street1 }}</div>
           <div *ngIf="label.to.value.address.street2">{{ label.to.value.address.street2 }}</div>
-          <div>{{ label.to.value.address.city }}, {{ label.to.value.address.state }} {{ label.to.value.address.zip }}
+          <div *ngIf="label.to.value.address.city">{{ label.to.value.address.city }}, {{ label.to.value.address.state }} {{ label.to.value.address.zip }}
           </div>
         </div>
       </ng-template>

@@ -9,7 +9,8 @@
 
     <div class="form-group">
       <label for="name">Name</label>
-      <input name="name" formControlName="name" type="text" class="form-control">
+      <input name="name" formControlName="name" type="text" class="form-control"
+        [ngClass]="{'is-invalid': companyForm.get('name').invalid}">
     </div>
 
     <div formGroupName="address">
@@ -43,8 +44,8 @@
     <button *ngIf="isEditMode" class="btn btn-danger" type="button" (click)="onDelete()">DELETE</button>
     <div>
       <button class="btn btn-light" type="button" (click)="onClose()">Close</button>
-      <button class="btn btn-success ml-2" type="submit"
-        [disabled]="companyForm.invalid">{{ isEditMode ? 'Update' : 'Add' }}</button>
+      <button class="btn btn-success ml-2" type="submit" [disabled]="companyForm.invalid">{{ isEditMode ? 'Update' :
+        'Add' }}</button>
     </div>
   </div>
 
