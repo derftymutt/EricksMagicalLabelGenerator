@@ -49,15 +49,12 @@ export class CompanyModalComponent implements OnInit {
     this.companyForm = this.fb.group({
       name: [this.company ? this.company.name : '', Validators.required],
       address: this.fb.group({
-        street1: [this.company ? this.company.address.street1 : '', Validators.required],
+        street1: [this.company ? this.company.address.street1 : ''],
         street2: [this.company ? this.company.address.street2 : ''],
-        city: [this.company ? this.company.address.city : '', Validators.required],
-        state: [this.company ? this.company.address.state : '', Validators.required],
-        zip: [this.company ? this.company.address.zip : '', Validators.required]
+        city: [this.company ? this.company.address.city : ''],
+        state: [this.company ? this.company.address.state : ''],
+        zip: [this.company ? this.company.address.zip : '']
       })
     });
   }
-
-
-
 }

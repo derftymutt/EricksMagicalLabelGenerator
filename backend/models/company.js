@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const companySchema = mongoose.Schema({
   name: { type: String, required: true },
   address: {
-    street1: { type: String, required: true },
+    street1: { type: String },
     street2: { type: String },
-    city: { type: String, required: true },
-    state: { type: String, required: true },
-    zip: { type: String, required: true }
+    city: { type: String },
+    state: { type: String },
+    zip: { type: String }
   }
 });
 
