@@ -237,6 +237,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.printService.isFromFirst = checked;
   }
 
+  //TODO: rename all vernon to Texas, and move all address to an appSettings file
   public onFromVernonAddressClick(checked: boolean): void {
     this.printService.isShowFromVernonAddress = checked;
   }
