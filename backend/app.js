@@ -15,8 +15,8 @@ mongoose.connect(`mongodb+srv://allen:${process.env.MONGO_ATLAS_PW}@cluster0-jba
   .then(() => {
     console.log('Connected to the database!');
   })
-  .catch(() => {
-    console.log('Connection to database FAILED');
+  .catch((error) => {
+    console.log('Connection to database FAILED with error: ' + error);
   });
 
 app.use(bodyParser.json());
