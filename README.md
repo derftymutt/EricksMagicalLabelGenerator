@@ -8,7 +8,7 @@ client: run `ng serve`
 
 ## how to Deploy to AWS
 ### Server
-1. zip backend folder contents
+1. zip backend folder contents **(WITHOUT Node_Modules)**
 2. in AWS Elastic Beanstalk, find ericks-magical-label-generator application
 3. click into it and click 'Update and deploy', add zip file, incrememt version
 
