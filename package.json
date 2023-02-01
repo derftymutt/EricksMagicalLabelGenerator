@@ -27,7 +27,7 @@
     "express": "^4.17.1",
     "html2pdf.js": "^0.10.1",
     "jquery": "^3.5.1",
-    "mongoose": "^5.9.20",
+    "mongoose": "^5.13.15",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
