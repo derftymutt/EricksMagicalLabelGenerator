@@ -176,6 +176,10 @@ body {
   align-items: center;
 }
 
+.label-container.variety {
+  height: 100%;
+}
+
 .label-container-four-by-six {
   width: 384px;
   height: 576px;
@@ -205,6 +209,10 @@ body {
 .font-bold-uppercase {
   font-weight: 900 !important;
   text-transform: uppercase !important;
+}
+
+.text-vertical-rl {
+  writing-mode: vertical-rl;
 }
 
 @media print {

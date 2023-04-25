@@ -38,6 +38,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
     return this.printService.isCartonCountOnTop;
   }
 
+  public get isVariety(): boolean {
+    return this.printService.isVariety;
+  }
+
   public get isDoubleLabels(): boolean {
     return this.printService.isDoubleLabels;
   }
@@ -231,6 +235,10 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
   public onCartonCountOnTopClick(checked: boolean): void {
     this.printService.isCartonCountOnTop = checked;
+  }
+
+  public onIsVarietyClick(checked: boolean): void {
+    this.printService.isVariety = checked;
   }
 
   public onFromFirstClick(checked: boolean): void {
