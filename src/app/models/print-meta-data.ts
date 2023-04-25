@@ -8,4 +8,5 @@ export interface PrintMetaData {
   isShowFromVernonAddress: boolean;
   isShowFromSanDiegoAddress: boolean;
   isSmallFont: boolean;
+  isVariety: boolean;
 }

@@ -1,0 +1,69 @@
+<div *ngFor="let page of printData.pages" class="page-one-label">
+  <div *ngFor="let label of page.labels" class="label-container variety">
+
+    <div class="label d-flex flex-column justify-content-between text-vertical-rl"
+      [class.print-font-small]="printData.metaData.isSmallFont">
+
+
+      <div class="row justify-content-between">
+        <div class="col-4" *ngIf="label.from.value">
+          <div>
+            <span *ngIf="!label.from.isHidden">{{ label.from.name}}: </span>
+            {{ label.from.value }}
+          </div>
+          <div *ngIf="printData.metaData.isShowFromVernonAddress && !printData.metaData.isShowFromSanDiegoAddress">
+            <div>4225 NW 72nd Ave</div>
+            <div>Miami FL 33166</div>
+          </div>
+          <div *ngIf="printData.metaData.isShowFromSanDiegoAddress && !printData.metaData.isShowFromVernonAddress">
+            <div>2290 Enrico Fermi Dr. Suite 19</div>
+            <div>San Diego CA 92154</div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div *ngIf="!label.to.isHidden && label.to.value.name">{{ label.to.name }}: {{ label.to.value.name}}</div>
+          <div *ngIf="label.to.value.name">
+            <div *ngIf="label.to.value.address.street1">{{ label.to.value.address.street1 }}</div>
+            <div *ngIf="label.to.value.address.street2">{{ label.to.value.address.street2 }}</div>
+            <div *ngIf="label.to.value.address.city">{{ label.to.value.address.city }}, {{ label.to.value.address.state }} {{ label.to.value.address.zip }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <ng-container *ngIf="label.purchaseOrder.value">
+          <div>
+            <span *ngIf="!label.purchaseOrder.isHidden"><u>{{ label.purchaseOrder.name}}: </u></span>
+            {{ label.purchaseOrder.value }}
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="label.dept.value">
+          <div [class.mt-3]="label.dept.isSpaceAbove">
+            <span *ngIf="!label.dept.isHidden"><u>{{ label.dept.name}}: </u></span>
+            {{ label.dept.value }}
+          </div>
+        </ng-container>
+
+        <div class="d-flex justify-content-between">
+          <div *ngFor="let field of label.fields">
+            <div><u>{{ field.name }}</u></div>
+            <div>{{ field.value }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <div><u>CARTON#</u>&nbsp;<u>{{ label.labelNumber }}</u> OF &nbsp;<u>{{
+            printData.metaData.labelCount }}</u>
+        </div>
+        <div class="mr-5 h3">
+          VARIETY<span>&#8212;</span>{{ label.to.value.address.state }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

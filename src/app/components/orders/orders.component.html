@@ -200,6 +200,11 @@
           </option>
       </select>
       <div class="custom-control custom-checkbox d-flex justify-content-center">
+        <input type="checkbox" class="custom-control-input" id="isVariety" [checked]="isVariety"
+          (change)="onIsVarietyClick($event.target.checked)">
+        <label class="custom-control-label" for="isVariety">Variety</label>
+      </div>
+      <div class="custom-control custom-checkbox d-flex justify-content-center ml-2">
         <input type="checkbox" class="custom-control-input" id="cartonCountOnTop" [checked]="isCartonCountOnTop"
           (change)="onCartonCountOnTopClick($event.target.checked)">
         <label class="custom-control-label" for="cartonCountOnTop">Carton count on top</label>

@@ -14,6 +14,7 @@ export class PrintService {
   public isFromFirst = false;
   public isShowFromVernonAddress = false;
   public isShowFromSanDiegoAddress = false;
+  public isVariety = false;
 
   public buildPages(order: Order): Page[] {
     const result = [];

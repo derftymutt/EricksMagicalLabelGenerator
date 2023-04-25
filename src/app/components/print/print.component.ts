@@ -28,7 +28,8 @@ export class PrintComponent implements OnInit {
           isFromFirst: this.printService.isFromFirst,
           isShowFromVernonAddress: this.printService.isShowFromVernonAddress,
           isShowFromSanDiegoAddress: this.printService.isShowFromSanDiegoAddress,
-          isSmallFont: this.printService.isSmallFont()
+          isSmallFont: this.printService.isSmallFont(),
+          isVariety: this.printService.isVariety
         }
       };
 
@@ -42,7 +43,8 @@ export class PrintComponent implements OnInit {
             isFromFirst: this.printService.isFromFirst,
             isShowFromVernonAddress: this.printService.isShowFromVernonAddress,
             isShowFromSanDiegoAddress: this.printService.isShowFromSanDiegoAddress,
-            isSmallFont: this.printService.isSmallFont()
+            isSmallFont: this.printService.isSmallFont(),
+            isVariety: this.printService.isVariety
           }
         };
       }
