@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { onErrorResumeNextStatic } from 'rxjs/internal/operators/onErrorResumeNext';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Order } from 'src/app/models/order';
