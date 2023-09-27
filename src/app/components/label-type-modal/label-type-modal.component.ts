@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormArray } from '@angular/forms';
 import { LabelTypeService } from 'src/app/services/label-type.service';
 import { LabelType } from 'src/app/models/label-type';
 
@@ -10,10 +10,10 @@ import { LabelType } from 'src/app/models/label-type';
 })
 export class LabelTypeModalComponent implements OnInit {
   @Input() public labelType: LabelType;
-  public labelTypeForm: FormGroup;
+  public labelTypeForm: UntypedFormGroup;
   public isEditMode = false;
 
-  constructor(private activeModal: NgbActiveModal, private fb: FormBuilder, private labelTypeService: LabelTypeService) { }
+  constructor(private activeModal: NgbActiveModal, private fb: UntypedFormBuilder, private labelTypeService: LabelTypeService) { }
 
   public ngOnInit(): void {
     if (this.labelType) {
@@ -23,11 +23,11 @@ export class LabelTypeModalComponent implements OnInit {
     this.buildForm();
   }
 
-  public get fieldsArray(): FormArray {
-    return this.labelTypeForm.get('fields') as FormArray;
+  public get fieldsArray(): UntypedFormArray {
+    return this.labelTypeForm.get('fields') as UntypedFormArray;
   }
 
-  public onSubmit(form: FormGroup): void {
+  public onSubmit(form: UntypedFormGroup): void {
     const labelType = form.value;
 
     if (this.isEditMode) {

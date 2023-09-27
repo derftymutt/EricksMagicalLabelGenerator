@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LabelType } from 'src/app/models/label-type';
 import { CompanyService } from 'src/app/services/company.service';
@@ -20,7 +20,7 @@ import { LabelsPerPageType } from 'src/app/models/labels-per-page-type';
 })
 export class OrdersComponent implements OnInit, OnDestroy {
   public order: Order;
-  public orderForm: FormGroup;
+  public orderForm: UntypedFormGroup;
   public activeDetailIndex = null;
   public labelTypes: LabelType[] = [];
   public companies: Company[] = [];
@@ -30,8 +30,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
   private companySubscription: Subscription;
   private labelTypeSubscription: Subscription;
 
-  public get labelFieldsFormArray(): FormArray {
-    return this.orderForm.get('labelFields') as FormArray;
+  public get labelFieldsFormArray(): UntypedFormArray {
+    return this.orderForm.get('labelFields') as UntypedFormArray;
   }
 
   public get isCartonCountOnTop(): boolean {
@@ -59,7 +59,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private companyService: CompanyService,
     private printService: PrintService,
     private labelTypeService: LabelTypeService,
@@ -198,7 +198,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     if (this.isAnotherLabelInCount()) {
       const nextFormGroup = this.labelFieldsFormArray.at(
         this.activeDetailIndex + 1
-      ) as FormGroup;
+      ) as UntypedFormGroup;
 
       if (nextFormGroup) {
         result = nextFormGroup.valid;
@@ -254,7 +254,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     this.printService.isShowFromSanDiegoAddress = checked;
   }
 
-  public onSaveOrder(orderForm: FormGroup): void {
+  public onSaveOrder(orderForm: UntypedFormGroup): void {
     const order: Order = this.prepareOrder(orderForm);
     const modalRef = this.modalService.open(SaveOrderModalComponent);
 
@@ -269,12 +269,12 @@ export class OrdersComponent implements OnInit, OnDestroy {
     });
   }
 
-  public onPrint(form: FormGroup): void {
+  public onPrint(form: UntypedFormGroup): void {
     const order: Order = this.prepareOrder(form);
     this.printOrder(order);
   }
 
-  private prepareOrder(orderform: FormGroup): Order {
+  private prepareOrder(orderform: UntypedFormGroup): Order {
     const formData = orderform.value;
     const selectedCompany = this.companyService.getCompany(formData.to.value);
 
@@ -291,14 +291,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
     if (this.isAnotherLabelInCount()) {
       const currentlabelFieldsFieldsFormArray = this.labelFieldsFormArray.at(
         this.activeDetailIndex
-      ) as FormArray;
+      ) as UntypedFormArray;
       const nextlabelFieldsFieldsFormArray = this.labelFieldsFormArray.at(
         this.activeDetailIndex + 1
-      ) as FormArray;
+      ) as UntypedFormArray;
 
       nextlabelFieldsFieldsFormArray.controls.forEach(
         (labelFieldControl, i) => {
-          const currentlabelFieldFormGroup = currentlabelFieldsFieldsFormArray.at(i) as FormGroup;
+          const currentlabelFieldFormGroup = currentlabelFieldsFieldsFormArray.at(i) as UntypedFormGroup;
 
           labelFieldControl.get('value')
             .setValue(currentlabelFieldFormGroup.get('value').value);
@@ -335,7 +335,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
   private patchLabelFieldsFormArray(i: number) {
     const currentlabelFieldsLabelFieldsFormArray = this.labelFieldsFormArray.at(
       i
-    ) as FormArray;
+    ) as UntypedFormArray;
     this.activeLabelType.fields.forEach((field, fieldIndex) => {
       currentlabelFieldsLabelFieldsFormArray.push(
         this.fb.group({
