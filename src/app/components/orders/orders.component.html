@@ -4,7 +4,6 @@
     Label Generator</h1>
 
   <div class="row">
-
     <div formGroupName="from" class="form-group col-6">
       <div class="d-flex align-items-center">
         <i class="material-icons app-cursor-default me-2">edit</i>
@@ -108,7 +107,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-2">
     <div class="form-group col-6">
       <label for="labelType">Label Type</label>
       <div class="d-flex">
@@ -130,8 +129,7 @@
     </div>
   </div>
 
-  <div formArrayName="labelFields" class="mb-3">
-
+  <div formArrayName="labelFields" class="my-3">
     <div *ngIf="orderForm.get('labelFields')['controls'].length > 0"
       class="d-flex justify-content-end align-items-center">
       <button type="button" class="btn btn-warning ms-2 d-flex align-items-center" (click)="onGoBackOne()"
