@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="d-flex">
-          <select class="form-control" formControlName="value">
+          <select class="form-select" formControlName="value">
             <option value="-1">NO COMPANY ADDRESS</option>
             <option *ngFor="let company of companies" [value]="company.id">
               {{ company.name }}
@@ -111,7 +111,7 @@
     <div class="form-group col-6">
       <label for="labelType">Label Type</label>
       <div class="d-flex">
-        <select class="form-control" [(ngModel)]="activeLabelType" [ngModelOptions]="{standalone: true}">
+        <select class="form-select" [(ngModel)]="activeLabelType" [ngModelOptions]="{standalone: true}">
           <option *ngFor="let labelType of labelTypes" [ngValue]="labelType">
             {{ labelType.name }}
           </option>
@@ -191,7 +191,7 @@
   </div>
   <div *ngIf="orderForm.get('labelFields')['controls'].length > 0">
     <div class="form-group d-flex align-items-center justify-content-end">
-      <select formControlName="labelsPerPage" class="form-control w-25 me-2">
+      <select formControlName="labelsPerPage" class="form-select w-25 me-2">
         <option *ngFor="let perPageType of labelsPerPage | enumKeys" [ngValue]="+perPageType.key">
             {{ perPageType.value }} per page
           </option>
