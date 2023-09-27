@@ -14,12 +14,12 @@
               <span *ngIf="!label.from.isHidden">{{ label.from.name}}: </span>
               {{ label.from.value }}
             </div>
-            <div *ngIf="printData.metaData.isShowFromVernonAddress && !printData.metaData.isShowFromSanDiegoAddress" class="ml-4">
+            <div *ngIf="printData.metaData.isShowFromVernonAddress && !printData.metaData.isShowFromSanDiegoAddress" class="ms-4">
               <div>320 Logistic Drive Suite C</div>
               <div>Laredo, Texas 78045</div>
               <div>United States</div>
             </div>
-            <div *ngIf="printData.metaData.isShowFromSanDiegoAddress && !printData.metaData.isShowFromVernonAddress" class="ml-4">
+            <div *ngIf="printData.metaData.isShowFromSanDiegoAddress && !printData.metaData.isShowFromVernonAddress" class="ms-4">
               <div>2290 Enrico Fermi Dr. Suite 19</div>
               <div>San Diego CA 92154</div>
               <div>United States</div>
@@ -28,7 +28,7 @@
         </ng-container>
         <ng-template #toFirstBlock>
           <div *ngIf="!label.to.isHidden && label.to.value.name">{{ label.to.name }}: </div>
-          <div *ngIf="label.to.value.name" class="ml-4">
+          <div *ngIf="label.to.value.name" class="ms-4">
             <div>{{ label.to.value.name}}</div>
             <div *ngIf="label.to.value.address.street1">{{ label.to.value.address.street1 }}</div>
             <div *ngIf="label.to.value.address.street2">{{ label.to.value.address.street2 }}</div>
@@ -49,12 +49,12 @@
               <span *ngIf="!label.from.isHidden">{{ label.from.name}}: </span>
               {{ label.from.value }}
             </div>
-            <div *ngIf="printData.metaData.isShowFromVernonAddress && !printData.metaData.isShowFromSanDiegoAddress" class="ml-4">
+            <div *ngIf="printData.metaData.isShowFromVernonAddress && !printData.metaData.isShowFromSanDiegoAddress" class="ms-4">
               <div>4225 NW 72nd Ave</div>
               <div>Miami FL 33166</div>
               <div>United States</div>
             </div>
-            <div *ngIf="printData.metaData.isShowFromSanDiegoAddress && !printData.metaData.isShowFromVernonAddress" class="ml-4">
+            <div *ngIf="printData.metaData.isShowFromSanDiegoAddress && !printData.metaData.isShowFromVernonAddress" class="ms-4">
               <div>2290 Enrico Fermi Dr. Suite 19</div>
               <div>San Diego CA 92154</div>
               <div>United States</div>
@@ -63,7 +63,7 @@
         </ng-container>
         <ng-template #toSecondBlock>
           <div *ngIf="!label.to.isHidden && label.to.value.name">{{ label.to.name }}: </div>
-          <div *ngIf="label.to.value.name" class="ml-4">
+          <div *ngIf="label.to.value.name" class="ms-4">
             <div>{{ label.to.value.name}}</div>
             <div *ngIf="label.to.value.address.street1">{{ label.to.value.address.street1 }}</div>
             <div *ngIf="label.to.value.address.street2">{{ label.to.value.address.street2 }}</div>
