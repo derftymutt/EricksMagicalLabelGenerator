@@ -5,8 +5,9 @@ export interface PrintMetaData {
   labelsPerPage: LabelsPerPageType;
   isCartonCountOnTop: boolean;
   isFromFirst: boolean;
-  isShowFromVernonAddress: boolean;
-  isShowFromSanDiegoAddress: boolean;
+  isShowFromVernonAddress: boolean; // TODO: remove
+  isShowFromSanDiegoAddress: boolean; // TODO: remove
   isSmallFont: boolean;
   isVariety: boolean;
+  companyName: string;
 }

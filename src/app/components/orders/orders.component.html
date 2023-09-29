@@ -4,7 +4,7 @@
     Label Generator</h1>
 
   <div class="row">
-    <div formGroupName="from" class="form-group col-6">
+    <!-- <div formGroupName="from" class="form-group col-6">
       <div class="d-flex align-items-center">
         <i class="material-icons app-cursor-default me-2">edit</i>
         <input for="from" formControlName="name" class="form-control-plaintext">
@@ -29,6 +29,42 @@
         </div>
       </div>
       <input name="from" formControlName="value" type="text" class="form-control">
+    </div> -->
+
+    <div class="form-group col-6">
+      <div formGroupName="from">
+        <div class="d-flex align-items-center">
+          <i class="material-icons app-cursor-default me-2">edit</i>
+          <input for="from" formControlName="name" class="form-control-plaintext">
+          <div class="form-check me-2">
+            <input type="checkbox" class="form-check-input" id="fromFirst" [checked]="isFromFirst"
+              (change)="onFromFirstClick($event.target.checked)">
+            <label class="form-check-label" for="fromFirst">1st</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" formControlName="isHidden" id="isHiddenTo">
+            <label class="form-check-label" for="isHiddenTo">hide</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-5">
+            <input for="from-company" formControlName="companyName" class="form-control">
+          </div>
+          <div class="d-flex col-7">
+            <select class="form-select" formControlName="value">
+              <option value="-1">NO FROM ADDRESS</option>
+              <ng-container *ngIf="originCompanies$ | async as originCompanies">
+                <option *ngFor="let company of originCompanies" [value]="company.id">
+                  {{ company.name }}
+                </option>
+              </ng-container>
+            </select>
+            <button type="button" class="btn btn-success ms-2" (click)="onEditOriginCompanyClick()">Edit</button>
+            <button type="button" class="btn btn-info ms-2" (click)="onAddOriginCompanyClick()">Add</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="form-group col-6">
@@ -44,9 +80,11 @@
         <div class="d-flex">
           <select class="form-select" formControlName="value">
             <option value="-1">NO COMPANY ADDRESS</option>
-            <option *ngFor="let company of companies" [value]="company.id">
-              {{ company.name }}
-            </option>
+            <ng-container *ngIf="companies$ | async as companies">
+              <option *ngFor="let company of companies" [value]="company.id">
+                {{ company.name }}
+              </option>
+            </ng-container>
           </select>
           <button type="button" class="btn btn-success ms-2" (click)="onEditCompanyClick()">Edit</button>
           <button type="button" class="btn btn-info ms-2" (click)="onAddCompanyClick()">Add</button>
@@ -193,8 +231,8 @@
     <div class="form-group d-flex align-items-center justify-content-end">
       <select formControlName="labelsPerPage" class="form-select w-25 me-2">
         <option *ngFor="let perPageType of labelsPerPage | enumKeys" [ngValue]="+perPageType.key">
-            {{ perPageType.value }} per page
-          </option>
+          {{ perPageType.value }} per page
+        </option>
       </select>
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="isVariety" [checked]="isVariety"
