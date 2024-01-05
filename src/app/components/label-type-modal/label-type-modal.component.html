@@ -18,7 +18,7 @@
         <label for="name">Field {{i + 1}} Title</label>
         <div class="d-flex">
           <input name="name" formControlName="name" type="text" class="form-control">
-          <button class="btn btn-danger d-flex align-items-center ml-2" (click)="onRemoveField(i)"><i
+          <button class="btn btn-danger d-flex align-items-center ms-2" (click)="onRemoveField(i)"><i
               class="material-icons">clear</i></button>
         </div>
       </div>
@@ -31,7 +31,7 @@
     <button *ngIf="isEditMode" class="btn btn-danger" type="button" (click)="onDelete()">DELETE</button>
     <div>
       <button class="btn btn-light" type="button" (click)="onClose()">Close</button>
-      <button class="btn btn-success ml-2" type="submit"
+      <button class="btn btn-success ms-2" type="submit"
         [disabled]="labelTypeForm.invalid">{{ isEditMode ? 'Update' : 'Add' }}</button>
     </div>
   </div>

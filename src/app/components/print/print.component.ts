@@ -26,10 +26,11 @@ export class PrintComponent implements OnInit {
           labelsPerPage: this.printService.order.labelsPerPage,
           isCartonCountOnTop: this.printService.isCartonCountOnTop,
           isFromFirst: this.printService.isFromFirst,
-          isShowFromVernonAddress: this.printService.isShowFromVernonAddress,
-          isShowFromSanDiegoAddress: this.printService.isShowFromSanDiegoAddress,
+          isShowFromVernonAddress: this.printService.isShowFromVernonAddress, // TODO: remove
+          isShowFromSanDiegoAddress: this.printService.isShowFromSanDiegoAddress, // TODO: remove
           isSmallFont: this.printService.isSmallFont(),
-          isVariety: this.printService.isVariety
+          isVariety: this.printService.isVariety,
+          companyName: this.printService.companyName
         }
       };
 
@@ -41,10 +42,11 @@ export class PrintComponent implements OnInit {
             labelsPerPage: this.printService.order.labelsPerPage,
             isCartonCountOnTop: this.printService.isCartonCountOnTop,
             isFromFirst: this.printService.isFromFirst,
-            isShowFromVernonAddress: this.printService.isShowFromVernonAddress,
-            isShowFromSanDiegoAddress: this.printService.isShowFromSanDiegoAddress,
+            isShowFromVernonAddress: this.printService.isShowFromVernonAddress, // TODO: remove
+            isShowFromSanDiegoAddress: this.printService.isShowFromSanDiegoAddress, // TODO: remove
             isSmallFont: this.printService.isSmallFont(),
-            isVariety: this.printService.isVariety
+            isVariety: this.printService.isVariety,
+            companyName: this.printService.companyName
           }
         };
       }

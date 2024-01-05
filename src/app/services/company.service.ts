@@ -68,6 +68,4 @@ export class CompanyService {
       this.companiesUpdated.next([...this.companies]);
     });
   }
-
-
 }

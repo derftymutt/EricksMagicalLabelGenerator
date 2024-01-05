@@ -9,7 +9,7 @@ export interface Order {
   createdAt?: Date;
   updatedAt?: Date;
   to: AddressLabelField;
-  from: LabelField;
+  from: AddressLabelField;
   madeIn: LabelField;
   purchaseOrder: LabelField;
   dept: LabelField;

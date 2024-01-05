@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { onErrorResumeNextStatic } from 'rxjs/internal/operators/onErrorResumeNext';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Order } from 'src/app/models/order';
 import { OrderService } from 'src/app/services/order.service';
 import { Subscription } from 'rxjs';
@@ -12,11 +11,11 @@ import { Subscription } from 'rxjs';
 })
 export class SaveOrderModalComponent implements OnInit, OnDestroy {
   @Input() public order: Order;
-  public saveOrderForm: FormGroup;
+  public saveOrderForm: UntypedFormGroup;
   public isEditMode = false;
   private orderSubscription: Subscription;
 
-  constructor(private activeModal: NgbActiveModal, private fb: FormBuilder, private orderService: OrderService) { }
+  constructor(private activeModal: NgbActiveModal, private fb: UntypedFormBuilder, private orderService: OrderService) { }
 
   public ngOnInit(): void {
     if (this.order.id) {
@@ -37,7 +36,7 @@ export class SaveOrderModalComponent implements OnInit, OnDestroy {
     this.activeModal.close();
   }
 
-  public onSubmit(orderForm: FormGroup): void {
+  public onSubmit(orderForm: UntypedFormGroup): void {
     if (orderForm.valid) {
       const orderFormData = orderForm.value;
       this.order.title = orderFormData.title;

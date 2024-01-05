@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { CompanyService } from 'src/app/services/company.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Company } from 'src/app/models/company';
@@ -10,10 +10,10 @@ import { Company } from 'src/app/models/company';
 })
 export class CompanyModalComponent implements OnInit {
   @Input() public company: Company;
-  public companyForm: FormGroup;
+  public companyForm: UntypedFormGroup;
   public isEditMode = false;
 
-  constructor(private activeModal: NgbActiveModal, private fb: FormBuilder, private companyService: CompanyService) { }
+  constructor(private activeModal: NgbActiveModal, private fb: UntypedFormBuilder, private companyService: CompanyService) { }
 
   public ngOnInit(): void {
     if (this.company) {
@@ -23,7 +23,7 @@ export class CompanyModalComponent implements OnInit {
     this.buildForm();
   }
 
-  public onSubmit(form: FormGroup): void {
+  public onSubmit(form: UntypedFormGroup): void {
     const company = form.value;
 
     if (this.isEditMode) {
