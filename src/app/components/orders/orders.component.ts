@@ -30,6 +30,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
   public activeLabelType: LabelType = null;
   public isRepeatManyLabels = false;
   public labelsPerPage = LabelsPerPageType;
+  public isNoFromAddress = true;
+  public isNoCompanyAddress = true;
   private companySubscription: Subscription;
   private labelTypeSubscription: Subscription;
 
@@ -103,6 +105,14 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
   public onAddOriginCompanyClick(): void {
     this.modalService.open(OriginCompanyModalComponent);
+  }
+
+  public onOriginCompanyChange(originCompanyId: number): void {
+    this.isNoFromAddress = +originCompanyId === -1;
+  }
+
+  public onCompanyChange(companyId: number): void {
+    this.isNoCompanyAddress = +companyId === -1;
   }
 
   public onEditCompanyClick(): void {

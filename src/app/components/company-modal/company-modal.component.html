@@ -1,9 +1,7 @@
 <form [formGroup]="companyForm" (ngSubmit)="onSubmit(companyForm)" novalidate>
   <div class="modal-header">
     <h4 class="modal-title">{{ isEditMode ? 'Update' : 'Add' }} Company</h4>
-    <button type="button" class="close" aria-label="Close" (click)="onClose()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="onClose()"></button>
   </div>
   <div class="modal-body">
 

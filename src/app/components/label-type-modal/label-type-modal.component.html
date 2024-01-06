@@ -1,9 +1,7 @@
 <form [formGroup]="labelTypeForm" (ngSubmit)="onSubmit(labelTypeForm)" novalidate>
   <div class="modal-header">
     <h4 class="modal-title">Add Label Type</h4>
-    <button type="button" class="close" aria-label="Close" (click)="onClose()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="onClose()"></button>
   </div>
   <div class="modal-body">
 
@@ -22,7 +20,7 @@
               class="material-icons">clear</i></button>
         </div>
       </div>
-      <button class="btn btn-info" type="button" (click)="onAddFieldClick()">Add Field</button>
+      <button class="btn btn-info mt-2" type="button" (click)="onAddFieldClick()">Add Field</button>
     </div>
 
   </div>
