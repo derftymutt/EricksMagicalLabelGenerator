@@ -12,17 +12,14 @@
           <ng-container *ngIf="label.from.value">
             <div>
               <span *ngIf="!label.from.isHidden">{{ label.from.name}}: </span>
-              {{ label.from.value }}
+              {{ printData.metaData.companyName }}
             </div>
-            <div *ngIf="printData.metaData.isShowFromVernonAddress && !printData.metaData.isShowFromSanDiegoAddress" class="ms-4">
-              <div>320 Logistic Drive Suite C</div>
-              <div>Laredo, Texas 78045</div>
-              <div>United States</div>
-            </div>
-            <div *ngIf="printData.metaData.isShowFromSanDiegoAddress && !printData.metaData.isShowFromVernonAddress" class="ms-4">
-              <div>2290 Enrico Fermi Dr. Suite 19</div>
-              <div>San Diego CA 92154</div>
-              <div>United States</div>
+            <div *ngIf="label.from?.value?.id" class="ms-4">
+              <div *ngIf="label.from.value.address.street1">{{ label.from.value.address.street1 }}</div>
+              <div *ngIf="label.from.value.address.street2">{{ label.from.value.address.street2 }}</div>
+              <div *ngIf="label.from.value.address.city">{{ label.from.value.address.city }}, {{
+                label.from.value.address.state }} {{ label.from.value.address.zip }}
+              </div>
             </div>
           </ng-container>
         </ng-container>
@@ -47,17 +44,14 @@
           <ng-container *ngIf="label.from.value">
             <div>
               <span *ngIf="!label.from.isHidden">{{ label.from.name}}: </span>
-              {{ label.from.value }}
+              {{ printData.metaData.companyName }}
             </div>
-            <div *ngIf="printData.metaData.isShowFromVernonAddress && !printData.metaData.isShowFromSanDiegoAddress" class="ms-4">
-              <div>4225 NW 72nd Ave</div>
-              <div>Miami FL 33166</div>
-              <div>United States</div>
-            </div>
-            <div *ngIf="printData.metaData.isShowFromSanDiegoAddress && !printData.metaData.isShowFromVernonAddress" class="ms-4">
-              <div>2290 Enrico Fermi Dr. Suite 19</div>
-              <div>San Diego CA 92154</div>
-              <div>United States</div>
+            <div *ngIf="label.from?.value?.id" class="ms-4">
+              <div *ngIf="label.from.value.address.street1">{{ label.from.value.address.street1 }}</div>
+              <div *ngIf="label.from.value.address.street2">{{ label.from.value.address.street2 }}</div>
+              <div *ngIf="label.from.value.address.city">{{ label.from.value.address.city }}, {{
+                label.from.value.address.state }} {{ label.from.value.address.zip }}
+              </div>
             </div>
           </ng-container>
         </ng-container>

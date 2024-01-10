@@ -3,24 +3,20 @@
 
     <div class="label d-flex flex-column justify-content-between text-vertical-rl"
       [class.print-font-small]="printData.metaData.isSmallFont">
-
-
       <div class="row justify-content-between">
         <div class="col-4" *ngIf="label.from.value">
           <div>
             <span *ngIf="!label.from.isHidden">{{ label.from.name}}: </span>
-            {{ label.from.value }}
+            {{ printData.metaData.companyName }}
           </div>
-          <div *ngIf="printData.metaData.isShowFromVernonAddress && !printData.metaData.isShowFromSanDiegoAddress">
-            <div>5120 NW 165TH ST UNIT 102</div>
-            <div>Miami Lakes FL 33014</div>
-          </div>
-          <div *ngIf="printData.metaData.isShowFromSanDiegoAddress && !printData.metaData.isShowFromVernonAddress">
-            <div>2290 Enrico Fermi Dr. Suite 19</div>
-            <div>San Diego CA 92154</div>
+          <div *ngIf="label.from?.value?.id" class="ms-4">
+            <div *ngIf="label.from.value.address.street1">{{ label.from.value.address.street1 }}</div>
+            <div *ngIf="label.from.value.address.street2">{{ label.from.value.address.street2 }}</div>
+            <div *ngIf="label.from.value.address.city">{{ label.from.value.address.city }}, {{
+              label.from.value.address.state }} {{ label.from.value.address.zip }}
+            </div>
           </div>
         </div>
-
         <div class="col-4">
           <div *ngIf="!label.to.isHidden && label.to.value.name">{{ label.to.name }}: {{ label.to.value.name}}</div>
           <div *ngIf="label.to.value.name">
@@ -31,7 +27,6 @@
           </div>
         </div>
       </div>
-
       <div>
         <ng-container *ngIf="label.purchaseOrder.value">
           <div>
