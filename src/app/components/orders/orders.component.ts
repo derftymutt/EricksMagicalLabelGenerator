@@ -144,7 +144,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
       }),
       from: this.fb.group({
         name: ['FROM'],
-        companyName: 'TRAMEVER, INC', // TODO: wire this up
+        companyName: 'MACNAMERA SUPPLY, INC', // TODO: wire this up
         value: [this.order && this.order.from.value ? this.order.from.value.id : -1],
         isHidden: [this.order ? this.order.from.isHidden : false]
       }),
