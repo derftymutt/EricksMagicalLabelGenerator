@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const companyRoutes = require('./routes/companies');
+const originCompanyRoutes = require('./routes/origin-companies');
 const labelTypeRoutes = require('./routes/label-types');
 const orderRoutes = require('./routes/orders');
 
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/companies', companyRoutes);
+app.use('/api/origin-companies', originCompanyRoutes);
 app.use('/api/label-types', labelTypeRoutes);
 app.use('/api/orders', orderRoutes);
 

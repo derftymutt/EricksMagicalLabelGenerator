@@ -3,7 +3,7 @@ import { AddressLabelField } from './address-label-field';
 
 export interface Label {
   to: AddressLabelField;
-  from: LabelField;
+  from: AddressLabelField;
   madeIn: LabelField;
   purchaseOrder: LabelField;
   dept: LabelField;

@@ -4,53 +4,63 @@
     Label Generator</h1>
 
   <div class="row">
+    <div class="form-group col-6">
+      <div formGroupName="from">
+        <div class="d-flex align-items-center">
+          <i class="material-icons app-cursor-default me-2">edit</i>
+          <input for="from" formControlName="name" class="form-control-plaintext">
+          <div class="form-check me-2">
+            <input type="checkbox" class="form-check-input" id="fromFirst" [checked]="isFromFirst"
+              (change)="onFromFirstClick($event.target.checked)">
+            <label class="form-check-label" for="fromFirst">1st</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" formControlName="isHidden" id="isHiddenTo">
+            <label class="form-check-label" for="isHiddenTo">hide</label>
+          </div>
+        </div>
 
-    <div formGroupName="from" class="form-group col-6">
-      <div class="d-flex align-items-center">
-        <i class="material-icons app-cursor-default mr-2">edit</i>
-        <input for="from" formControlName="name" class="form-control-plaintext">
-        <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
-          <input type="checkbox" class="custom-control-input" id="fromVernonAddress" [checked]="isShowFromVernonAddress"
-            (change)="onFromVernonAddressClick($event.target.checked)">
-          <label class="custom-control-label" for="fromVernonAddress">MI</label>
-        </div>
-        <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
-          <input type="checkbox" class="custom-control-input" id="fromSanDiegoAddress" [checked]="isShowFromSanDiegoAddress"
-            (change)="onFromSanDiegoAddressClick($event.target.checked)">
-          <label class="custom-control-label" for="fromSanDiegoAddress">SD</label>
-        </div>
-        <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
-          <input type="checkbox" class="custom-control-input" id="fromFirst" [checked]="isFromFirst"
-            (change)="onFromFirstClick($event.target.checked)">
-          <label class="custom-control-label" for="fromFirst">1st</label>
-        </div>
-        <div class="custom-control custom-checkbox d-flex justify-content-center">
-          <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenFrom">
-          <label class="custom-control-label" for="isHiddenFrom">hide</label>
+        <div class="row">
+          <div class="col-5">
+            <input for="from-company" formControlName="companyName" class="form-control">
+          </div>
+          <div class="d-flex col-7">
+            <select class="form-select" formControlName="value" (change)="onOriginCompanyChange($event.target.value)">
+              <option value="-1">NO FROM ADDRESS</option>
+              <ng-container *ngIf="originCompanies$ | async as originCompanies">
+                <option *ngFor="let company of originCompanies" [value]="company.id">
+                  {{ company.name }}
+                </option>
+              </ng-container>
+            </select>
+            <button *ngIf="!isNoFromAddress" type="button" class="btn btn-success ms-2" (click)="onEditOriginCompanyClick()">Edit</button>
+            <button type="button" class="btn btn-info ms-2" (click)="onAddOriginCompanyClick()">Add</button>
+          </div>
         </div>
       </div>
-      <input name="from" formControlName="value" type="text" class="form-control">
     </div>
 
     <div class="form-group col-6">
       <div formGroupName="to">
         <div class="d-flex align-items-center">
-          <i class="material-icons app-cursor-default mr-2">edit</i>
+          <i class="material-icons app-cursor-default me-2">edit</i>
           <input for="to" formControlName="name" class="form-control-plaintext">
-          <div class="custom-control custom-checkbox d-flex justify-content-center">
-            <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenTo">
-            <label class="custom-control-label" for="isHiddenTo">hide</label>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" formControlName="isHidden" id="isHiddenTo">
+            <label class="form-check-label" for="isHiddenTo">hide</label>
           </div>
         </div>
         <div class="d-flex">
-          <select class="form-control" formControlName="value">
+          <select class="form-select" formControlName="value" (change)="onCompanyChange($event.target.value)">
             <option value="-1">NO COMPANY ADDRESS</option>
-            <option *ngFor="let company of companies" [value]="company.id">
-              {{ company.name }}
-            </option>
+            <ng-container *ngIf="companies$ | async as companies">
+              <option *ngFor="let company of companies" [value]="company.id">
+                {{ company.name }}
+              </option>
+            </ng-container>
           </select>
-          <button type="button" class="btn btn-success ml-2" (click)="onEditCompanyClick()">Edit</button>
-          <button type="button" class="btn btn-info ml-2" (click)="onAddCompanyClick()">Add</button>
+          <button *ngIf="!isNoCompanyAddress" type="button" class="btn btn-success ms-2" (click)="onEditCompanyClick()">Edit</button>
+          <button type="button" class="btn btn-info ms-2" (click)="onAddCompanyClick()">Add</button>
         </div>
       </div>
     </div>
@@ -60,28 +70,28 @@
   <div class="row">
     <div formGroupName="madeIn" class="form-group col-4">
       <div class="d-flex align-items-center">
-        <i class="material-icons app-cursor-default mr-2">edit</i>
+        <i class="material-icons app-cursor-default me-2">edit</i>
         <input for="madeIn" formControlName="name" class="form-control-plaintext">
-        <div class="custom-control custom-checkbox d-flex justify-content-center">
-          <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenMadeIn">
-          <label class="custom-control-label" for="isHiddenMadeIn">hide</label>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" formControlName="isHidden" id="isHiddenMadeIn">
+          <label class="form-check-label" for="isHiddenMadeIn">hide</label>
         </div>
       </div>
       <input name="madeIn" formControlName="value" type="text" class="form-control">
     </div>
     <div formGroupName="purchaseOrder" class="form-group col-4">
       <div class="d-flex align-items-center">
-        <i class="material-icons app-cursor-default mr-2">edit</i>
+        <i class="material-icons app-cursor-default me-2">edit</i>
         <input for="purchaseOrder" formControlName="name" class="form-control-plaintext">
         <div class="d-flex">
-          <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
-            <input type="checkbox" class="custom-control-input" formControlName="isSpaceAbove"
+          <div class="form-check me-2">
+            <input type="checkbox" class="form-check-input" formControlName="isSpaceAbove"
               id="isSpaceAbovePurchaseOrder">
-            <label class="custom-control-label" for="isSpaceAbovePurchaseOrder">&#8593;</label>
+            <label class="form-check-label" for="isSpaceAbovePurchaseOrder">&#8593;</label>
           </div>
-          <div class="custom-control custom-checkbox d-flex justify-content-center">
-            <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenPurchaseOrder">
-            <label class="custom-control-label" for="isHiddenPurchaseOrder">hide</label>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" formControlName="isHidden" id="isHiddenPurchaseOrder">
+            <label class="form-check-label" for="isHiddenPurchaseOrder">hide</label>
           </div>
         </div>
       </div>
@@ -90,16 +100,16 @@
     </div>
     <div formGroupName="dept" class="form-group col-4">
       <div class="d-flex align-items-center">
-        <i class="material-icons app-cursor-default mr-2">edit</i>
+        <i class="material-icons app-cursor-default me-2">edit</i>
         <input for="dept" formControlName="name" class="form-control-plaintext">
         <div class="d-flex">
-          <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
-            <input type="checkbox" class="custom-control-input" formControlName="isSpaceAbove" id="isSpaceAboveDept">
-            <label class="custom-control-label" for="isSpaceAboveDept">&#8593;</label>
+          <div class="form-check me-2">
+            <input type="checkbox" class="form-check-input" formControlName="isSpaceAbove" id="isSpaceAboveDept">
+            <label class="form-check-label" for="isSpaceAboveDept">&#8593;</label>
           </div>
-          <div class="custom-control custom-checkbox d-flex justify-content-center">
-            <input type="checkbox" class="custom-control-input" formControlName="isHidden" id="isHiddenDept">
-            <label class="custom-control-label" for="isHiddenDept">hide</label>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" formControlName="isHidden" id="isHiddenDept">
+            <label class="form-check-label" for="isHiddenDept">hide</label>
           </div>
         </div>
       </div>
@@ -108,52 +118,50 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-2">
     <div class="form-group col-6">
-
       <label for="labelType">Label Type</label>
       <div class="d-flex">
-        <select class="form-control" [(ngModel)]="activeLabelType" [ngModelOptions]="{standalone: true}">
+        <select class="form-select" [(ngModel)]="activeLabelType" [ngModelOptions]="{standalone: true}">
           <option *ngFor="let labelType of labelTypes" [ngValue]="labelType">
             {{ labelType.name }}
           </option>
         </select>
-        <button type="button" class="btn btn-success ml-2" (click)="onEditLabelTypeClick()">Edit</button>
-        <button type="button" class="btn btn-info ml-2" (click)="onAddLabelTypeClick()">Add</button>
+        <button type="button" class="btn btn-success ms-2" (click)="onEditLabelTypeClick()">Edit</button>
+        <button type="button" class="btn btn-info ms-2" (click)="onAddLabelTypeClick()">Add</button>
       </div>
     </div>
     <div class="form-group col-6">
       <label for="labelCount">Label Count</label>
       <div class="d-flex">
         <input #labelCount name="labelCount" formControlName="labelCount" type="number" class="form-control">
-        <button type="button" class="btn btn-danger ml-2" (click)="onLabelCountConfirm(labelCount)">Confirm</button>
+        <button type="button" class="btn btn-danger ms-2" (click)="onLabelCountConfirm(labelCount)">Confirm</button>
       </div>
     </div>
   </div>
 
-  <div formArrayName="labelFields" class="mb-3">
-
+  <div formArrayName="labelFields" class="my-3">
     <div *ngIf="orderForm.get('labelFields')['controls'].length > 0"
       class="d-flex justify-content-end align-items-center">
-      <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onGoBackOne()"
+      <button type="button" class="btn btn-warning ms-2 d-flex align-items-center" (click)="onGoBackOne()"
         [disabled]="activeDetailIndex === 0"><i class="material-icons">navigate_before</i></button>
-      <button type="button" class="btn btn-warning ml-2 d-flex align-items-center" (click)="onNextBlank()"
+      <button type="button" class="btn btn-warning ms-2 d-flex align-items-center" (click)="onNextBlank()"
         [disabled]="!isAnotherLabelInCount()"><i class="material-icons">navigate_next</i></button>
-      <button type="button" class="btn btn-info ml-2 d-flex align-items-center" (click)="onRepeatLabel()"
+      <button type="button" class="btn btn-info ms-2 d-flex align-items-center" (click)="onRepeatLabel()"
         [disabled]="!isAnotherLabelInCount()"><i class="material-icons">navigate_next</i>Repeat</button>
-      <button *ngIf="!isRepeatManyLabels" type="button" class="btn btn-info ml-2 d-flex align-items-center"
+      <button *ngIf="!isRepeatManyLabels" type="button" class="btn btn-info ms-2 d-flex align-items-center"
         (click)="isRepeatManyLabels = !isRepeatManyLabels" [disabled]="!isAnotherLabelInCount()"><i
           class="material-icons">navigate_next</i>Repeat Many</button>
-      <div *ngIf="isRepeatManyLabels" class="form-inline ml-2">
+      <div *ngIf="isRepeatManyLabels" class="form-inline ms-2">
         <div class="form-group">
           <input #repeatManyValue class="form-control" type="number" placeholder="pero cuantos?!?">
         </div>
-        <button class="btn btn-info d-flex align-items-center ml-1" type="button"
+        <button class="btn btn-info d-flex align-items-center ms-1" type="button"
           (click)="onRepeatManyLabels(repeatManyValue.value)">
           <i class="material-icons">done</i>
         </button>
       </div>
-      <div class="h2 ml-4">
+      <div class="h2 ms-4">
         {{ activeDetailIndex + 1 }}/{{orderForm.get('labelFields')['controls'].length}}
       </div>
     </div>
@@ -166,22 +174,22 @@
             <div class="d-flex justify-content-between">
               <label for="name">{{field.get('name').value}}</label>
               <div class="d-flex">
-                <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
-                  <input type="checkbox" class="custom-control-input" formControlName="isSpaceAbove"
+                <div class="form-check me-2">
+                  <input type="checkbox" class="form-check-input" formControlName="isSpaceAbove"
                     id="{{'isSpaceAbove' + fieldIndex}}">
-                  <label class="custom-control-label" for="{{'isSpaceAbove' + fieldIndex}}">&#8593;</label>
+                  <label class="form-check-label" for="{{'isSpaceAbove' + fieldIndex}}">&#8593;</label>
                 </div>
 
-                <div class="custom-control custom-checkbox d-flex justify-content-center mr-2">
-                  <input type="checkbox" class="custom-control-input" formControlName="isHidden"
+                <div class="form-check me-2">
+                  <input type="checkbox" class="form-check-input" formControlName="isHidden"
                     id="{{'isHidden' + fieldIndex}}">
-                  <label class="custom-control-label" for="{{'isHidden' + fieldIndex}}">hide</label>
+                  <label class="form-check-label" for="{{'isHidden' + fieldIndex}}">hide</label>
                 </div>
 
-                <div class="custom-control custom-checkbox d-flex justify-content-center">
-                  <input type="checkbox" class="custom-control-input" formControlName="isAfterValue"
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" formControlName="isAfterValue"
                     id="{{'isAfterValue' + fieldIndex}}">
-                  <label class="custom-control-label" for="{{'isAfterValue' + fieldIndex}}">end</label>
+                  <label class="form-check-label" for="{{'isAfterValue' + fieldIndex}}">end</label>
                 </div>
               </div>
             </div>
@@ -194,29 +202,29 @@
   </div>
   <div *ngIf="orderForm.get('labelFields')['controls'].length > 0">
     <div class="form-group d-flex align-items-center justify-content-end">
-      <select formControlName="labelsPerPage" class="form-control w-25 mr-2">
+      <select formControlName="labelsPerPage" class="form-select w-25 me-2">
         <option *ngFor="let perPageType of labelsPerPage | enumKeys" [ngValue]="+perPageType.key">
-            {{ perPageType.value }} per page
-          </option>
+          {{ perPageType.value }} per page
+        </option>
       </select>
-      <div class="custom-control custom-checkbox d-flex justify-content-center">
-        <input type="checkbox" class="custom-control-input" id="isVariety" [checked]="isVariety"
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="isVariety" [checked]="isVariety"
           (change)="onIsVarietyClick($event.target.checked)">
-        <label class="custom-control-label" for="isVariety">Variety</label>
+        <label class="form-check-label" for="isVariety">Variety</label>
       </div>
-      <div class="custom-control custom-checkbox d-flex justify-content-center ml-2">
-        <input type="checkbox" class="custom-control-input" id="cartonCountOnTop" [checked]="isCartonCountOnTop"
+      <div class="form-check ms-2">
+        <input type="checkbox" class="form-check-input" id="cartonCountOnTop" [checked]="isCartonCountOnTop"
           (change)="onCartonCountOnTopClick($event.target.checked)">
-        <label class="custom-control-label" for="cartonCountOnTop">Carton count on top</label>
+        <label class="form-check-label" for="cartonCountOnTop">Carton count on top</label>
       </div>
-      <div class="custom-control custom-checkbox d-flex justify-content-center ml-2">
-        <input type="checkbox" class="custom-control-input" id="doubleLabels" [checked]="isDoubleLabels"
+      <div class="form-check ms-2">
+        <input type="checkbox" class="form-check-input" id="doubleLabels" [checked]="isDoubleLabels"
           (change)="onDoubleLabelsClick($event.target.checked)">
-        <label class="custom-control-label" for="doubleLabels">Double Labels</label>
+        <label class="form-check-label" for="doubleLabels">Double Labels</label>
       </div>
-      <button class="btn btn-danger ml-2" type="button" [disabled]="!orderForm.valid"
+      <button class="btn btn-danger ms-2" type="button" [disabled]="!orderForm.valid"
         (click)="onSaveOrder(orderForm)">Save order</button>
-      <button type="submit" class="btn btn-danger ml-2" [disabled]="!orderForm.valid">Print</button>
+      <button type="submit" class="btn btn-danger ms-2" [disabled]="!orderForm.valid">Print</button>
     </div>
   </div>
 

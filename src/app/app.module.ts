@@ -20,6 +20,7 @@ import { PrintPageFourLabelsComponent } from './components/print-page-four-label
 import { PrintPageTwoLabelsComponent } from './components/print-page-two-labels/print-page-two-labels.component';
 import { PrintPageOneLabelComponent } from './components/print-page-one-label/print-page-one-label.component';
 import { PrintPageOneLabelVarietyComponent } from './components/print-page-one-label-variety/print-page-one-label-variety.component';
+import { OriginCompanyModalComponent } from './components/origin-company-modal/origin-company-modal.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { PrintPageOneLabelVarietyComponent } from './components/print-page-one-l
         LabelTypeModalComponent,
         SaveOrderModalComponent,
         EnumKeysPipe,
-        PrintPageOneLabelVarietyComponent
+        PrintPageOneLabelVarietyComponent,
+        OriginCompanyModalComponent
     ],
     imports: [
         BrowserModule,

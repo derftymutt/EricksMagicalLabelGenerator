@@ -12,9 +12,10 @@ export class PrintService {
   public isDoubleLabels = false;
   public isCartonCountOnTop = false;
   public isFromFirst = false;
-  public isShowFromVernonAddress = false;
-  public isShowFromSanDiegoAddress = false;
+  public isShowFromVernonAddress = false; // TODO: remove
+  public isShowFromSanDiegoAddress = false; // TODO: remove
   public isVariety = false;
+  public companyName = '';
 
   public buildPages(order: Order): Page[] {
     const result = [];
